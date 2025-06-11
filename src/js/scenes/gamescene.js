@@ -51,17 +51,18 @@ export class GameScene extends Scene {
         // this.add(world5)
     }
 
-    fishLeft(e) {
-        e.target.pos = new Vector(1350, 300)
-    }
-
     onPostUpdate(engine) {
         if (engine.mygamepad) {
             const xButton = engine.mygamepad.isButtonPressed(Buttons.Face3);
             if (xButton) {
-                console.log("X-knop ingedrukt - naar gameover");
-                engine.goToScene("gameover");
+                console.log("X-knop ingedrukt");
+                this.gameOver(engine);
             }
         }
+    }
+
+    gameOver(engine) {
+        console.log("Overschakelen naar gameover");
+        engine.goToScene("gameover");
     }
 }
