@@ -8,10 +8,10 @@ export class StartScene extends Scene {
             width: 1280,
             height: 720,
             anchor: new Vector(0.5, 0.25),
-            scale: new Vector(0.6, 0.6)
+            scale: new Vector(1.3, 1.3)
         })
 
-        const bgSprite = Resources.Scenebg.toSprite()
+        const bgSprite = Resources.StartScenebackground.toSprite()
         background.graphics.use(bgSprite)
         this.add(background)
 
