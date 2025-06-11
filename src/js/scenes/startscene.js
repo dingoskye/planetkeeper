@@ -1,5 +1,6 @@
 import { Scene, Label, FontUnit, Vector, Keys, Font, Color, Actor, Buttons } from "excalibur"
 import { Resources } from "../resources.js"
+import { Startbg } from "../startbackground.js"
 
 export class StartScene extends Scene {
 
@@ -8,15 +9,8 @@ export class StartScene extends Scene {
     }
 
     onInitialize(engine) {
-        const background = new Actor({
-            pos: new Vector(650, 190),
-            anchor: new Vector(0.5, 0.25),
-            scale: new Vector(1.3, 1.3)
-        })
-
-        const bgSprite = Resources.StartScenebackground.toSprite()
-        background.graphics.use(bgSprite)
-        this.add(background)
+        const startbg = new Startbg()
+        this.add(startbg)
 
         const title = new Label({
             text: "Planet Keeper",
