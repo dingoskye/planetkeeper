@@ -7,7 +7,8 @@ const Resources = {
     WorldStage3: new ImageSource('images/wereld_stage-3.png'),
     WorldStage4: new ImageSource('images/weleld_stage-4.png'),
     WorldDead: new ImageSource('images/wereld_dead.png'),
-    Scenebg: new ImageSource('images/scenebg.png')
+    Scenebg: new ImageSource('images/scenebg.png'),
+    StartScenebackground: new ImageSource('images/startscene.png')
 }
 
 
