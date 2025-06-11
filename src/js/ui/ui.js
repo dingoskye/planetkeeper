@@ -1,14 +1,14 @@
 import { ScreenElement, Actor } from "excalibur"
+import { ProgressionBar } from './progressbar.js'
 
 export class UI extends ScreenElement {
 
     progressionBar
 
     constructor() {
-        super({})
+        super()
 
-        console.log("test")
+        this.progressionBar = new ProgressionBar()
+        this.addChild(this.progressionBar)
     }
-
-
 }
