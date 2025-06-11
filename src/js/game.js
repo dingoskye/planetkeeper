@@ -3,11 +3,12 @@ import { Engine, DisplayMode, FadeInOut, Color, SolverStrategy, Vector } from "e
 import { ResourceLoader } from './resources.js'
 import { StartScene } from './scenes/startscene.js'
 import { GameScene } from './scenes/gamescene.js'
+import { GameOver } from './scenes/gameover.js'
 
 export class Game extends Engine {
 
     mygamepad
-    
+
     constructor() {
         super({
             width: 1280,
@@ -23,7 +24,7 @@ export class Game extends Engine {
         this.start(ResourceLoader).then(() => this.startGame())
     }
 
-        startGame() {
+    startGame() {
         const transitions = {
             in: new FadeInOut({ duration: 400, direction: 'in', color: Color.Black }),
             out: new FadeInOut({ duration: 400, direction: 'out', color: Color.Black })
@@ -47,6 +48,11 @@ export class Game extends Engine {
 
         this.add('game', {
             scene: new GameScene(),
+            transitions: transitions
+        });
+
+        this.add('gameover', {
+            scene: new GameOver(),
             transitions: transitions
         });
 

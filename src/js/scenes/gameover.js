@@ -1,15 +1,18 @@
 import { Scene, Label, FontUnit, Vector, Keys, Font, Color, Actor, Buttons } from "excalibur"
 import { Bg } from "../background.js"
+import { Resources } from '../resources.js'
 
-export class GameOverScene extends Scene {
+export class GameOver extends Scene {
 
     constructor() {
         super()
     }
 
     onInitialize(engine) {
+        console.log("gameover scherm")
         const bg = new Bg()
         this.add(bg)
+        bg.graphics.use(Resources.Endbg.toSprite())
 
         const title = new Label({
             text: "Game Over",
@@ -55,14 +58,12 @@ export class GameOverScene extends Scene {
     onPreUpdate(engine) {
         if (engine.input.keyboard.wasPressed(Keys.Enter)) {
             engine.goToScene("start");
-            return;
         }
 
         if (engine.mygamepad) {
             if (engine.mygamepad.isButtonPressed(Buttons.Face1)) {
                 console.log("A-knop ingedrukt - terug naar start");
                 engine.goToScene("start");
-                return;
             }
         }
     }

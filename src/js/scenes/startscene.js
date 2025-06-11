@@ -47,7 +47,6 @@ export class StartScene extends Scene {
         }
 
         if (engine.mygamepad) {
-            const aButton = engine.mygamepad.isButtonPressed(Buttons.Face1);
             if (engine.mygamepad.isButtonPressed(Buttons.Face1)) {
                 console.log("A-knop ingedrukt - start game");
                 engine.goToScene("game");

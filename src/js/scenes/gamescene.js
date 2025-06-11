@@ -1,4 +1,4 @@
-import { Actor, Scene, Vector } from "excalibur"
+import { Actor, Scene, Vector, Buttons } from "excalibur"
 import { Resources } from '../resources.js'
 import { UI } from '../ui/ui.js'
 import { Bg } from '../background.js'
@@ -50,5 +50,15 @@ export class GameScene extends Scene {
 
     fishLeft(e) {
         e.target.pos = new Vector(1350, 300)
+    }
+
+    onPostUpdate(engine) {
+        if (engine.mygamepad) {
+            const xButton = engine.mygamepad.isButtonPressed(Buttons.Face3);
+            if (xButton) {
+                console.log("X-knop ingedrukt - naar gameover");
+                engine.goToScene("gameover");
+            }
+        }
     }
 }
