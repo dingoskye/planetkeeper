@@ -10,8 +10,6 @@ export class StartScene extends Scene {
     onInitialize(engine) {
         const background = new Actor({
             pos: new Vector(650, 190),
-            width: 1280,
-            height: 720,
             anchor: new Vector(0.5, 0.25),
             scale: new Vector(1.3, 1.3)
         })
