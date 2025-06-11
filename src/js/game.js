@@ -5,7 +5,7 @@ import { StartScene } from './scenes/startscene.js'
 import { GameScene } from './scenes/gamescene.js'
 
 export class Game extends Engine {
-    
+
     mygamepad
     
     constructor() {
@@ -23,35 +23,34 @@ export class Game extends Engine {
         this.start(ResourceLoader).then(() => this.startGame())
     }
 
-    startGame() {
-        this.input.gamepads.enabled = true
+        startGame() {
+        const transitions = {
+            in: new FadeInOut({ duration: 400, direction: 'in', color: Color.Black }),
+            out: new FadeInOut({ duration: 400, direction: 'out', color: Color.Black })
+        };
+
+        this.input.gamepads.enabled = true;
         this.input.gamepads.on('connect', (connectevent) => {
-            console.log("Gamepad gedetecteerd")
-            this.mygamepad = connectevent.gamepad
-        })
+            console.log("Gamepad gedetecteerd");
+            this.mygamepad = connectevent.gamepad;
+        });
 
         this.input.gamepads.on('disconnect', () => {
-            console.log("Gamepad losgekoppeld")
-            this.mygamepad = null
-        })
+            console.log("Gamepad losgekoppeld");
+            this.mygamepad = null;
+        });
 
         this.add('start', {
             scene: new StartScene(),
-            transitions: {
-                in: new FadeInOut({ duration: 400, direction: 'in', color: Color.Black }),
-                out: new FadeInOut({ duration: 400, direction: 'out', color: Color.Black })
-            }
-        })
+            transitions: transitions
+        });
 
         this.add('game', {
             scene: new GameScene(),
-            transitions: {
-                in: new FadeInOut({ duration: 400, direction: 'in', color: Color.Black }),
-                out: new FadeInOut({ duration: 400, direction: 'out', color: Color.Black })
-            }
-        })
+            transitions: transitions
+        });
 
-        this.goToScene('start')
+        this.goToScene('start');
     }
 }
 
