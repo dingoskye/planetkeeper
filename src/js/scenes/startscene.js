@@ -1,7 +1,12 @@
-import { Scene, Label, FontUnit, Vector, Keys, Font, Color, Actor } from "excalibur"
+import { Scene, Label, FontUnit, Vector, Keys, Font, Color, Actor, Buttons } from "excalibur"
 import { Resources } from "../resources.js"
 
 export class StartScene extends Scene {
+
+    constructor() {
+        super()
+    }
+
     onInitialize(engine) {
         const background = new Actor({
             pos: new Vector(650, 190),
@@ -18,17 +23,17 @@ export class StartScene extends Scene {
         const title = new Label({
             text: "Planet Keeper",
             font: new Font({
-                size: 40,
+                size: 50,
                 unit: FontUnit.Px,
                 family: "Impact",
                 color: Color.White,
                 textAlign: 'center'
             }),
-            pos: new Vector(800, 600),
+            pos: new Vector(640, 230),
         })
 
         const instruction = new Label({
-            text: "Klik op 'enter' om te beginnen",
+            text: "Druk op 'A' of 'X'",
             font: new Font({
                 size: 30,
                 unit: FontUnit.Px,
@@ -36,7 +41,7 @@ export class StartScene extends Scene {
                 color: Color.White,
                 textAlign: 'center'
             }),
-            pos: new Vector(400, 260),
+            pos: new Vector(640, 310),
         })
 
         this.add(title)
@@ -44,10 +49,18 @@ export class StartScene extends Scene {
     }
 
     onPreUpdate(engine) {
-        const kb = engine.input.keyboard;
-        if (kb.wasPressed(Keys.Enter)) {
-            console.log("Start game!");
+        if (engine.input.keyboard.wasPressed(Keys.Enter)) {
             engine.goToScene("game");
+            return;
+        }
+
+        if (engine.mygamepad) {
+            const aButton = engine.mygamepad.isButtonPressed(Buttons.Face1);
+            if (engine.mygamepad.isButtonPressed(Buttons.Face1)) {
+                console.log("A-knop ingedrukt - start game");
+                engine.goToScene("game");
+                return;
+            }
         }
     }
 }

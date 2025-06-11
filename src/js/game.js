@@ -4,7 +4,10 @@ import { ResourceLoader } from './resources.js'
 import { StartScene } from './scenes/startscene.js'
 import { GameScene } from './scenes/gamescene.js'
 
-class Game extends Engine {
+export class Game extends Engine {
+    
+    mygamepad
+    
     constructor() {
         super({
             width: 1280,
@@ -12,7 +15,7 @@ class Game extends Engine {
             maxFps: 60,
             displayMode: DisplayMode.FitScreen,
             physics: {
-                solver: SolverStrategy.Arcade,
+                solver: SolverStrategy.Realistic,
                 gravity: new Vector(0, 800)
             }
         })
@@ -21,10 +24,16 @@ class Game extends Engine {
     }
 
     startGame() {
-        const transitions = {
-            in: new FadeInOut({ duration: 400, direction: 'in', color: Color.Black }),
-            out: new FadeInOut({ duration: 400, direction: 'out', color: Color.Black })
-        }
+        this.input.gamepads.enabled = true
+        this.input.gamepads.on('connect', (connectevent) => {
+            console.log("Gamepad gedetecteerd")
+            this.mygamepad = connectevent.gamepad
+        })
+
+        this.input.gamepads.on('disconnect', () => {
+            console.log("Gamepad losgekoppeld")
+            this.mygamepad = null
+        })
 
         this.add('start', {
             scene: new StartScene(),
@@ -41,7 +50,6 @@ class Game extends Engine {
                 out: new FadeInOut({ duration: 400, direction: 'out', color: Color.Black })
             }
         })
-
 
         this.goToScene('start')
     }
