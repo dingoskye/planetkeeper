@@ -2,6 +2,7 @@ import { Actor, Scene, Vector } from "excalibur"
 import { Resources } from '../resources.js'
 import { UI } from '../ui/ui.js'
 import { Bg } from '../background.js'
+import { WorldFaseOne } from '../worlds/world_fase-1.js'
 
 export class GameScene extends Scene {
 
@@ -12,6 +13,8 @@ export class GameScene extends Scene {
         this.ui = new UI()
         this.add(this.ui)
 
+        const world = new WorldFaseOne()
+        this.add(world)
         // const world = new Actor()
         // world.graphics.use(Resources.World.toSprite())
         // world.pos = new Vector(500, 300)
