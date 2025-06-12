@@ -1,4 +1,4 @@
-import { ImageSource, Sound, Resource, Loader } from 'excalibur'
+import { ImageSource, Sound, Resource, Loader, FontSource } from 'excalibur'
 
 // voeg hier jouw eigen resources toe
 const Resources = {
@@ -9,7 +9,9 @@ const Resources = {
     WorldDead: new ImageSource('images/wereld_dead.png'),
     Scenebg: new ImageSource('images/background.png'),
     StartScenebackground: new ImageSource('images/startscene.png'),
-    Endbg: new ImageSource ('images/endscene.png')
+    Endbg: new ImageSource ('images/endscene.png'),
+    MainText: new FontSource('fonts/Audiowide-Regular.ttf', 'AudioWide'),
+    SubText: new FontSource('fonts/Orbitron-VariableFont_wght.ttf', 'Orbitron')
 }
 
 

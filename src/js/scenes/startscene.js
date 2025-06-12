@@ -14,26 +14,24 @@ export class StartScene extends Scene {
 
         const title = new Label({
             text: "Planet Keeper",
-            font: new Font({
+            font: Resources.MainText.toFont({
+                color: Color.White,
+                textAlign: 'center',
                 size: 50,
                 unit: FontUnit.Px,
-                family: "Impact",
-                color: Color.White,
-                textAlign: 'center'
             }),
-            pos: new Vector(640, 230),
+            pos: new Vector(640, 310),
         })
 
         const instruction = new Label({
             text: "Druk op 'A' of 'X'",
-            font: new Font({
+            font: Resources.SubText.toFont({
+                color: Color.White,
+                textAlign: 'center',
                 size: 30,
                 unit: FontUnit.Px,
-                family: "Impact",
-                color: Color.White,
-                textAlign: 'center'
             }),
-            pos: new Vector(640, 310),
+            pos: new Vector(640, 390),
         })
 
         this.add(title)

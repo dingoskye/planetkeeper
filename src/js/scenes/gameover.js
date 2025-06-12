@@ -16,38 +16,35 @@ export class GameOver extends Scene {
 
         const title = new Label({
             text: "Game Over",
-            font: new Font({
-                size: 50,
+            font: Resources.MainText.toFont ({
+                size: 70,
                 unit: FontUnit.Px,
-                family: "Impact",
-                color: Color.White,
+                color: Color.Gray,
                 textAlign: 'center'
             }),
             pos: new Vector(640, 230),
         })
 
         const message = new Label({
-            text: "Je planeet is dood. RIP.",
-            font: new Font({
-                size: 30,
+            text: "Je planeet is dood",
+            font: Resources.MainText.toFont ({
+                size: 35,
                 unit: FontUnit.Px,
-                family: "Impact",
-                color: Color.White,
+                color: Color.Gray,
                 textAlign: 'center'
             }),
-            pos: new Vector(640, 290),
+            pos: new Vector(640, 330),
         })
 
         const instruction = new Label({
             text: "Druk op 'A' of 'X' om terug te gaan",
-            font: new Font({
+            font: Resources.SubText.toFont ({
                 size: 25,
                 unit: FontUnit.Px,
-                family: "Impact",
-                color: Color.White,
+                color: Color.Gray,
                 textAlign: 'center'
             }),
-            pos: new Vector(640, 350),
+            pos: new Vector(640, 390),
         })
 
         this.add(title)
