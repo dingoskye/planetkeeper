@@ -3,6 +3,11 @@ import { Resources } from '../resources.js'
 import { UI } from '../ui/ui.js'
 import { Bg } from '../background.js'
 import { World } from '../worlds/world.js'
+import { WorldFaseTwo } from '../worlds/world_fase-2.js'
+import { WorldFaseThree } from '../worlds/world_fase-3.js'
+import { WorldFaseFour } from '../worlds/world_fase-4.js'
+import { WorldFaseFive } from '../worlds/world_fase-5.js'
+import { WorldDead } from '../worlds/worldDead.js'
 
 export class GameScene extends Scene {
 
@@ -13,7 +18,7 @@ export class GameScene extends Scene {
         this.ui = new UI()
         this.add(this.ui)
 
-        const world = new World()
+        const world = new WorldFaseFive()
         this.add(world)
         // const world = new Actor()
         // world.graphics.use(Resources.World.toSprite())
