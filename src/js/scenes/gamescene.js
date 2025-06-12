@@ -18,7 +18,7 @@ export class GameScene extends Scene {
         this.ui = new UI()
         this.add(this.ui)
 
-        const world = new WorldFaseFive()
+        const world = new World()
         this.add(world)
         // const world = new Actor()
         // world.graphics.use(Resources.World.toSprite())
