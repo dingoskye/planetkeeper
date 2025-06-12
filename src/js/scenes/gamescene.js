@@ -2,7 +2,7 @@ import { Actor, Scene, Vector, Buttons } from "excalibur"
 import { Resources } from '../resources.js'
 import { UI } from '../ui/ui.js'
 import { Bg } from '../background.js'
-import { WorldFaseOne } from '../worlds/world_fase-1.js'
+import { World } from '../worlds/world.js'
 
 export class GameScene extends Scene {
 
@@ -13,7 +13,7 @@ export class GameScene extends Scene {
         this.ui = new UI()
         this.add(this.ui)
 
-        const world = new WorldFaseOne()
+        const world = new World()
         this.add(world)
         // const world = new Actor()
         // world.graphics.use(Resources.World.toSprite())
