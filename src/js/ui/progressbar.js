@@ -49,7 +49,7 @@ export class ProgressionBar extends Actor {
     }
 
     updateProgress() {
-        let currentValue = Math.max(0, Math.min(this.progress, this.maxValue))
+        let currentValue = this.progress
         const percentage = currentValue / this.maxValue
         this.bar.scale = new Vector(percentage, 1)
 
