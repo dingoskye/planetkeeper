@@ -10,10 +10,10 @@ export class UI extends ScreenElement {
     constructor() {
         super()
 
-        this.progressionBar = new ProgressionBar()
-        this.addChild(this.progressionBar)
-
         this.reputationBar = new ReputationBar()
         this.addChild(this.reputationBar)
+
+        this.progressionBar = new ProgressionBar()
+        this.addChild(this.progressionBar)
     }
 }

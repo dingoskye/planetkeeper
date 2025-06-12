@@ -1,4 +1,5 @@
 import { Actor, Vector, Color, Keys, Label, Font, FontUnit } from "excalibur"
+import { Resources } from '../resources.js'
 
 export class ProgressionBar extends Actor {
 
@@ -14,10 +15,9 @@ export class ProgressionBar extends Actor {
 
         let label = new Label({
             text: 'Progressie:',
-            pos: new Vector(560, 635),
-            font: new Font({
-                family: 'impact',
-                size: 35,
+            pos: new Vector(540, 637),
+            font: Resources.SubText.toFont({
+                size: 30,
                 unit: FontUnit.Px,
                 color: Color.White
             })
@@ -50,9 +50,12 @@ export class ProgressionBar extends Actor {
 
     updateProgress() {
         let currentValue = this.progress
-        const percentage = currentValue / this.maxValue
+        let percentage = currentValue / this.maxValue
+        if (percentage >= 1) {
+            percentage = 1
+        }
         this.bar.scale = new Vector(percentage, 1)
-
+        console.log(this.bar.scale)
         if (this.progress >= this.maxValue) {
             console.log("Whoohoo")
         }
