@@ -32,10 +32,12 @@ export class World extends Actor {
             this.progression += + 10;
             console.log(this.progression)
         }
+        
         if (engine.input.keyboard.wasPressed(Keys.F)) {
             this.progression -= 10;
             console.log(this.progression)
         }
+
         if (this.progressionCounter >= 3600) {
             this.progression--
             this.progressionCounter = 0
@@ -45,6 +47,7 @@ export class World extends Actor {
             this.resource += 10
             this.resourceCounter = 0
         }
+
         if (this.progression >= 110) {
             engine.currentScene.worldUpdate("faseTwo", this.progression)
             this.kill()
