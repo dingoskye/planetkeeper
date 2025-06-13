@@ -8,6 +8,7 @@ import { WorldFaseThree } from '../worlds/world_fase-3.js'
 import { WorldFaseFour } from '../worlds/world_fase-4.js'
 import { WorldFaseFive } from '../worlds/world_fase-5.js'
 import { WorldDead } from '../worlds/worldDead.js'
+import { DilemmaEvent } from "../dilemmaEvent.js"
 
 export class GameScene extends Scene {
 
@@ -20,6 +21,9 @@ export class GameScene extends Scene {
 
         this.ui = new UI()
         this.add(this.ui)
+
+        const dilemma = new DilemmaEvent();
+        dilemma.showDilemma();
     }
 
     onPostUpdate(engine) {

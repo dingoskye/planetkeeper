@@ -4,6 +4,7 @@ import { ResourceLoader } from './resources.js'
 import { StartScene } from './scenes/startscene.js'
 import { GameScene } from './scenes/gamescene.js'
 import { GameOver } from './scenes/gameover.js'
+import { DilemmaEvent } from './dilemmaEvent.js'
 
 export class Game extends Engine {
 
