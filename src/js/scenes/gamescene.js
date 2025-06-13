@@ -40,4 +40,31 @@ export class GameScene extends Scene {
         console.log("Overschakelen naar gameover");
         engine.goToScene("gameover");
     }
+      
+    worldUpdate(newWorld, progression){
+        if(newWorld === "dead"){
+            const worldDead = new WorldDead()
+            this.add(worldDead)
+        }
+         if(newWorld === "faseOne"){
+            const newWorld = new World(progression)
+            this.add(newWorld)
+         }
+         if(newWorld === "faseTwo"){
+            const worldFaseTwo = new WorldFaseTwo(progression)
+            this.add(worldFaseTwo)
+         }
+         if(newWorld === "faseThree"){
+            const worldFaseThree = new WorldFaseThree(progression)
+            this.add(worldFaseThree)
+         }
+         if(newWorld === "faseFour"){
+           const worldFaseFour = new WorldFaseFour(progression)
+            this.add(worldFaseFour)
+         }
+         if(newWorld === "faseFive"){
+            const worldFaseFice = new WorldFaseFive(progression)
+            this.add(worldFaseFice)
+         }
+    }
 }

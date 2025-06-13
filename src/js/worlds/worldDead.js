@@ -5,16 +5,7 @@ import { World } from './world.js'
 export class WorldDead extends World {
     constructor() {
         super()
+        console.log("dead")
         this.graphics.use(Resources.WorldDead.toSprite())
-    }
-
-    onPostUpdate(engine){
-        this.progressionCounter ++
-        if (this.progressionCounter >= 3600) {
-            this.progression --;
-            this.progressionCounter = 0
-        }
-
-
     }
 }
