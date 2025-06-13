@@ -12,14 +12,14 @@ export class StartScene extends Scene {
         const startbg = new Startbg()
         this.add(startbg)
 
-        this.pointer = new Actor ({
-            pos: new Vector({
-                width: 32,
-                height: 31,
-                anchor: Vector.Half,
-            }),
-            // this.pointer.graphics.use(Resources.pointer.toSprite)
+        this.pointer = new Actor({
+            pos: new Vector(640, 400),
+            scale: new Vector(0.3, 0.3),
+            anchor: Vector.Half,
         })
+        this.pointer.graphics.use(Resources.Pointer.toSprite())
+        this.pointer.z = 5
+        this.add(this.pointer)
 
         const title = new Label({
             text: "Planet Keeper",
@@ -33,7 +33,7 @@ export class StartScene extends Scene {
         })
 
         this.startButton = new Actor({
-            pos: new Vector(640,400),
+            pos: new Vector(640, 400),
             width: 300,
             height: 60,
             color: Color.Gray,
@@ -90,21 +90,23 @@ export class StartScene extends Scene {
             return;
         }
 
-      if (gamepad) {
-            const dpadY = gamepad.getAxes(1)
-            if (dpadY < -0.5 || dpadY > 0.5) {
+        if (gamepad) {
+            const speed = 5
+            this.pointer.pos.x += stickX * speed
+            this.pointer.pos.y += stickY * speed
+
+            if (this.pointer.collidesWith(this.startButton)) {
                 this.buttonFocused = true
                 this.updateButtonVisual()
-            }
 
-            if (gamepad.isButtonPressed(Buttons.Face1) && this.buttonFocused) {
-                engine.goToScene("game")
+                if (gamepad.isButtonPressed(Buttons.Face1)) {
+                    engine.goToScene("game")
+                } else {
+                    this.buttonFocused = false
+                    this.updateButtonVisual()
+                }
             }
-        }
-
-        // Enter op toetsenbord activeert knop
-        if (engine.input.keyboard.wasPressed(Keys.Enter) && this.buttonFocused) {
-            engine.goToScene("game")
         }
     }
 }
+
