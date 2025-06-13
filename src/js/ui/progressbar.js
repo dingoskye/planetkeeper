@@ -15,24 +15,24 @@ export class ProgressionBar extends Actor {
 
         let label = new Label({
             text: 'Progressie:',
-            pos: new Vector(540, 637),
+            pos: new Vector(550, 658),
             font: Resources.SubText.toFont({
                 size: 30,
                 unit: FontUnit.Px,
-                color: Color.White
+                color: Color.Black
             })
         })
         this.addChild(label)
 
         let barbackground = new Actor({
-            x: 735, y: 635,
+            x: 745, y: 655,
             color: Color.fromRGB(255, 255, 255, 0.4),
             width: 500, height: 40, anchor: Vector.Zero
         })
         this.addChild(barbackground)
 
         this.bar = new Actor({
-            x: 735, y: 635,
+            x: 745, y: 655,
             color: Color.Green,
             width: 500, height: 40, anchor: Vector.Zero
         })

@@ -19,22 +19,21 @@ export class ReputationBar extends Actor {
             font: Resources.SubText.toFont({
                 size: 27,
                 unit: FontUnit.Px,
-                color: Color.White
+                color: Color.Black
             }),
-            pos: new Vector(780, 27),
+            pos: new Vector(787, 27),
         })
-
         this.addChild(label)
 
         let barbackground = new Actor({
-            x: 935, y: 25,
+            x: 945, y: 25,
             color: Color.fromRGB(255, 255, 255, 0.4),
             width: 300, height: 30, anchor: Vector.Zero
         })
         this.addChild(barbackground)
 
         this.bar = new Actor({
-            x: 935, y: 25,
+            x: 945, y: 25,
             anchor: Vector.Zero
         })
         this.barGraphics = new Rectangle({
@@ -62,11 +61,12 @@ export class ReputationBar extends Actor {
         }
         this.bar.scale = new Vector(percentage, 1)
 
-        console.log(this.bar.graphics.color)
-        if (percentage < 0.5 && this.barGraphics.color !== Color.fromRGB(225, 0, 0, 1)) {
-            this.barGraphics.color = Color.fromRGB(225, 0, 0, 1)
-        } else if (percentage > 0.5 && this.barGraphics.color !== Color.fromRGB(0, 225, 0, 1)) {
-            this.barGraphics.color = Color.fromRGB(0, 225, 0, 1)
+        if (percentage < 0.4 && this.barGraphics.color !== Color.fromRGB(225, 0, 0, 1)) {
+            this.barGraphics.color = Color.Red
+        } else if (percentage < 0.7 && this.barGraphics.color !== Color.fromRGB(0, 225, 0, 1)) {
+            this.barGraphics.color = Color.Yellow
+        } else {
+            this.barGraphics.color = Color.Green
         }
 
         if (this.reputation >= this.maxValue) {
