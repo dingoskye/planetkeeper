@@ -13,7 +13,7 @@ const Resources = {
     GoldbarStacks: new ImageSource('images/goldbarmulti.png'),
     HappyFace: new ImageSource('images/happyface.png'),
     Pointer: new ImageSource('images/pointer.png'),
-    HappyFace: new ImageSource('images/happyface.png'),
+    SadFace: new ImageSource('images/Sadface.png'),
     Scenebg: new ImageSource('images/background.png'),
     StartScenebackground: new ImageSource('images/startscene.png'),
     Endbg: new ImageSource ('images/endscene.png'),
