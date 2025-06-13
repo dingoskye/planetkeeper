@@ -9,7 +9,13 @@ export class ResourceUI extends Actor {
         super()
 
         this.resources = 0
-        this.maxValue = 100
+
+        let resourceImage = new Actor({
+            x: 50, y: 40,
+        })
+        resourceImage.graphics.use(Resources.GoldbarStacks.toSprite())
+        resourceImage.scale = new Vector(0.5, 0.5)
+        this.addChild(resourceImage)
 
         this.label = new Label({
             text: '0',
