@@ -1,8 +1,8 @@
-import { ScreenElement, Actor, Color, Vector } from "excalibur"
-import { Resources } from '../resources.js'
+import { ScreenElement } from "excalibur"
 import { ProgressionBar } from './progressbar.js'
 import { ReputationBar } from './reputationbar.js'
 import { ResourceUI } from './resourcesui.js'
+import { BackgroundUi } from './backgroundUi.js'
 
 export class UI extends ScreenElement {
 
@@ -12,23 +12,12 @@ export class UI extends ScreenElement {
 
     constructor() {
         super()
-        //Bovenkant UI
+        //BOVENKANT UI
         //Achterkant
-        let barbackground = new Actor({
-            x: 0, y: 0,
-            color: Color.fromRGB(197, 179, 88, 0.7),
-            width: 1280, height: 80, anchor: Vector.Zero
-        })
-        this.addChild(barbackground)
+        let background = new BackgroundUi(0, 0, 80)
+        this.addChild(background)
 
         //Materialen
-        let resourceImage = new Actor({
-            x: 50, y: 40,
-        })
-        resourceImage.graphics.use(Resources.GoldbarStacks.toSprite())
-        resourceImage.scale = new Vector(0.5, 0.5)
-        this.addChild(resourceImage)
-
         this.resourceUI = new ResourceUI()
         this.addChild(this.resourceUI)
 
@@ -36,17 +25,14 @@ export class UI extends ScreenElement {
         this.reputationBar = new ReputationBar()
         this.addChild(this.reputationBar)
 
-        //Onderkant UI
+        //ONDERKANT UI
         //Achterkant
-        let barbackground1 = new Actor({
-            x: 0, y: 635,
-            color: Color.fromRGB(197, 179, 88, 0.7),
-            width: 1280, height: 85, anchor: Vector.Zero
-        })
-        this.addChild(barbackground1)
+        let background1 = new BackgroundUi(0, 635, 85)
+        this.addChild(background1)
 
         //Progressie
         this.progressionBar = new ProgressionBar()
         this.addChild(this.progressionBar)
     }
 }
+

@@ -13,10 +13,10 @@ const Resources = {
     GoldbarStacks: new ImageSource('images/goldbarmulti.png'),
     HappyFace: new ImageSource('images/happyface.png'),
     Pointer: new ImageSource('images/pointer.png'),
-    SadFace: new ImageSource('images/Sadface.png'),
+    SadFace: new ImageSource('images/sadface.png'),
     Scenebg: new ImageSource('images/background.png'),
     StartScenebackground: new ImageSource('images/startscene.png'),
-    Endbg: new ImageSource ('images/endscene.png'),
+    Endbg: new ImageSource('images/endscene.png'),
     MainText: new FontSource('fonts/Audiowide-Regular.ttf', 'AudioWide'),
     SubText: new FontSource('fonts/Orbitron-VariableFont_wght.ttf', 'Orbitron')
 }

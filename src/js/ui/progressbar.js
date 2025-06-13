@@ -38,26 +38,29 @@ export class ProgressionBar extends Actor {
         })
         this.addChild(this.bar)
 
-        this.updateProgress()
+        this.showrogress()
     }
 
     onPostUpdate(engine) {
         if (engine.input.keyboard.wasPressed(Keys.Space)) {
             this.progress = this.progress + 10
-            this.updateProgress()
+            this.showrogress()
         }
     }
 
-    updateProgress() {
+    showrogress() {
         let currentValue = this.progress
         let percentage = currentValue / this.maxValue
         if (percentage >= 1) {
             percentage = 1
         }
+
         this.bar.scale = new Vector(percentage, 1)
         console.log(this.bar.scale)
         if (this.progress >= this.maxValue) {
             console.log("Whoohoo")
         }
     }
+
+    //resetBar()
 }
