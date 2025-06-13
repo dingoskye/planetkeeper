@@ -43,7 +43,7 @@ export class GameScene extends Scene {
       
     worldUpdate(newWorld, progression){
         if(newWorld === "dead"){
-            const worldDead = new WorldDead()
+            const worldDead = new WorldDead(progression)
             this.add(worldDead)
         }
          if(newWorld === "faseOne"){

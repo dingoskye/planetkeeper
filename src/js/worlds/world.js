@@ -51,7 +51,7 @@ export class World extends Actor {
 
         }
         if (this.progression <= 0) {
-            engine.currentScene.worldUpdate("dead")
+            engine.currentScene.worldUpdate("dead", this.progression)
             this.kill()
         }
     }
