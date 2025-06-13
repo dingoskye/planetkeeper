@@ -11,9 +11,9 @@ export class World extends Actor {
 
     constructor(progression) {
         super()
-        if(progression){
-        this.progression = progression
-        } else{
+        if (progression) {
+            this.progression = progression
+        } else {
             this.progression = 10
         }
         this.graphics.use(Resources.World.toSprite())
@@ -21,7 +21,7 @@ export class World extends Actor {
         this.scale = new Vector(1, 1)
         this.progressionCounter = 0
         this.resourceCounter = 0
-      
+
     }
 
     onPostUpdate(engine) {
@@ -29,10 +29,13 @@ export class World extends Actor {
         this.resourceCounter++
 
         if (engine.input.keyboard.wasPressed(Keys.R)) {
-            this.progression+=+ 10;
+            this.progression += + 10;
             console.log(this.progression)
         }
-
+        if (engine.input.keyboard.wasPressed(Keys.F)) {
+            this.progression -= 10;
+            console.log(this.progression)
+        }
         if (this.progressionCounter >= 3600) {
             this.progression--
             this.progressionCounter = 0
@@ -47,7 +50,7 @@ export class World extends Actor {
             this.kill()
 
         }
-        if (this.progression <= 9) {
+        if (this.progression <= 0) {
             engine.currentScene.worldUpdate("dead")
             this.kill()
         }

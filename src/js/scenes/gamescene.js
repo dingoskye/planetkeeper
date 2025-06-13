@@ -23,7 +23,7 @@ export class GameScene extends Scene {
         this.add(this.ui)
 
         const dilemma = new DilemmaEvent();
-        dilemma.showDilemma();
+        this.add(dilemma)
     }
 
     onPostUpdate(engine) {
