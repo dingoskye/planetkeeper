@@ -91,22 +91,33 @@ export class StartScene extends Scene {
         }
 
         if (gamepad) {
-            const speed = 5
-            this.pointer.pos.x += stickX * speed
-            this.pointer.pos.y += stickY * speed
+            const threshold = 0.2;
+            const stickX = Math.abs(gamepad.getAxes(0)) > threshold ? gamepad.getAxes(0) : 0;
+            const stickY = Math.abs(gamepad.getAxes(1)) > threshold ? gamepad.getAxes(1) : 0;
 
-            if (this.pointer.collidesWith(this.startButton)) {
-                this.buttonFocused = true
-                this.updateButtonVisual()
+            const speed = 55;
+            this.pointer.pos.x += stickX * speed;
+            this.pointer.pos.y += stickY * speed;
+
+            this.pointer.pos.x = Math.max(0, Math.min(engine.drawWidth, this.pointer.pos.x));
+            this.pointer.pos.y = Math.max(0, Math.min(engine.drawHeight, this.pointer.pos.y));
+
+            const pointerBounds = this.pointer.body.collider?.bounds;
+            const buttonBounds = this.startButton.body.collider?.bounds;
+
+            if (pointerBounds && buttonBounds && pointerBounds.intersect(buttonBounds)) {
+                this.buttonFocused = true;
+                this.updateButtonVisual();
 
                 if (gamepad.isButtonPressed(Buttons.Face1)) {
-                    engine.goToScene("game")
-                } else {
-                    this.buttonFocused = false
-                    this.updateButtonVisual()
+                    engine.goToScene("gamescene");
                 }
+            } else {
+                this.buttonFocused = false;
+                this.updateButtonVisual();
             }
         }
     }
 }
+
 
