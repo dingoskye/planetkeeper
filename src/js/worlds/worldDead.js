@@ -11,13 +11,13 @@ export class WorldDead extends World {
         this.graphics.use(Resources.WorldDead.toSprite())
     }
     onPostUpdate(engine) {
-        if (engine.input.keyboard.wasPressed(Keys.R)) {
-            this.progression += + 10;
-            console.log(this.progression)
-        }
-        if (engine.input.keyboard.wasPressed(Keys.F)) {
-            this.progression -= 10;
-            console.log(this.progression)
-        }
+        // if (engine.input.keyboard.wasPressed(Keys.R)) {
+        //     this.progression += + 10;
+        //     console.log(this.progression)
+        // }
+        // if (engine.input.keyboard.wasPressed(Keys.F)) {
+        //     this.progression -= 10;
+        //     console.log(this.progression)
+        // }
     }
 }

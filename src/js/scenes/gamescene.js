@@ -13,17 +13,22 @@ import { DilemmaEvent } from "../dilemmaEvent.js"
 export class GameScene extends Scene {
 
     onInitialize(engine) {
+        
         const background = new Bg()
         this.add(background)
-
-        const world = new World()
-        this.add(world)
+        
+        this.worldActor = new World();
+        console.log("Adding world:", this.worldActor);
+        this.add(this.worldActor)
+        
 
         this.ui = new UI()
         this.add(this.ui)
 
         const dilemma = new DilemmaEvent();
         this.add(dilemma)
+
+
     }
 
     onPostUpdate(engine) {
@@ -40,31 +45,36 @@ export class GameScene extends Scene {
         console.log("Overschakelen naar gameover");
         engine.goToScene("gameover");
     }
-      
-    worldUpdate(newWorld, progression){
-        if(newWorld === "dead"){
-            const worldDead = new WorldDead(progression)
-            this.add(worldDead)
+
+    worldUpdate(newWorld, progression) {
+        console.log("Adding world:", this.world);
+        if (this.worldActor) {
+            this.worldActor.kill(); // Remove the previous world actor from the scene
+            this.worldActor = null;
         }
-         if(newWorld === "faseOne"){
-            const newWorld = new World(progression)
-            this.add(newWorld)
-         }
-         if(newWorld === "faseTwo"){
-            const worldFaseTwo = new WorldFaseTwo(progression)
-            this.add(worldFaseTwo)
-         }
-         if(newWorld === "faseThree"){
-            const worldFaseThree = new WorldFaseThree(progression)
-            this.add(worldFaseThree)
-         }
-         if(newWorld === "faseFour"){
-           const worldFaseFour = new WorldFaseFour(progression)
-            this.add(worldFaseFour)
-         }
-         if(newWorld === "faseFive"){
-            const worldFaseFice = new WorldFaseFive(progression)
-            this.add(worldFaseFice)
-         }
+        if (newWorld === "dead") {
+            this.worldActor = new WorldDead(progression)
+            this.add(this.worldActor)
+        }
+        else if (newWorld === "faseTwo") {
+            this.worldActor = new WorldFaseTwo(progression)
+            this.add(this.worldActor)
+        }
+        else if (newWorld === "faseThree") {
+            this.worldActor = new WorldFaseThree(progression)
+            this.add(this.worldActor)
+        }
+        else if (newWorld === "faseFour") {
+            this.worldActor = new WorldFaseFour(progression)
+            this.add(this.worldActor)
+        }
+        else if (newWorld === "faseFive") {
+            this.worldActor = new WorldFaseFive(progression)
+            this.add(this.worldActor)
+        }
+        else if (newWorld === "faseOne") {
+            this.worldActor = new World(progression)
+            this.add(this.worldActor)
+        }
     }
 }

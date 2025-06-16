@@ -1,6 +1,7 @@
 import { Scene, Label, FontUnit, Vector, Keys, Font, Color, Actor, Buttons, CollisionType } from "excalibur"
 import { Resources } from "../resources.js"
 import { Startbg } from "../startbackground.js"
+
 import { Pointer } from "../pointer.js"
 
 export class StartScene extends Scene {
