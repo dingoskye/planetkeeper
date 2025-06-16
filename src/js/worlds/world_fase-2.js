@@ -11,6 +11,10 @@ export class WorldFaseTwo extends World {
         this.graphics.use(Resources.WorldStage2.toSprite())
         this.progressionCounter = 0
         this.resourceCounter = 0
+
+        this.minProgress = 100
+        this.maxProgress = 210
+        this.fase = 2
     }
 
     onPostUpdate(engine) {
@@ -18,16 +22,15 @@ export class WorldFaseTwo extends World {
         this.resourceCounter++
 
         if (engine.input.keyboard.wasPressed(Keys.R)) {
-            this.progression += 10;
-            console.log(this.progression)
+            this.progressionUpdate(+10)
         }
+
         if (engine.input.keyboard.wasPressed(Keys.F)) {
-            this.progression -= 10;
-            console.log(this.progression)
+            this.progressionUpdate(-10)
         }
 
         if (this.progressionCounter >= 3600) {
-            this.progression--
+            this.progressionUpdate(-1)
             this.progressionCounter = 0
         }
 
@@ -35,16 +38,15 @@ export class WorldFaseTwo extends World {
             this.resource += 10
             this.resourceCounter = 0
         }
-        if (this.progression >= 210) {
-            engine.currentScene.worldUpdate("faseThree", this.progression)
-            this.kill()
 
-        }
-        if (this.progression <= 100) {
+        // if (this.progression >= 210) {
+        //     engine.currentScene.worldUpdate("faseThree", this.progression)
+        //     this.kill()
+        // }
+
+        if (this.progression <= this.minProgress) {
             engine.currentScene.worldUpdate("faseOne", this.progression)
             this.kill()
         }
-
-
     }
 }

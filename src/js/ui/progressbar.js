@@ -4,14 +4,9 @@ import { Resources } from '../resources.js'
 export class ProgressionBar extends Actor {
 
     bar
-    progress
-    maxValue
 
     constructor() {
         super()
-
-        this.progress = 0
-        this.maxValue = 100
 
         let label = new Label({
             text: 'Progressie:',
@@ -38,35 +33,24 @@ export class ProgressionBar extends Actor {
         })
         this.addChild(this.bar)
 
-        this.showProgress()
-    }
-
-    onPostUpdate(engine) {
-        if (engine.input.keyboard.wasPressed(Keys.Space)) {
-            this.progress = this.progress + 10
-            this.showProgress()
-        }
-
-        if (engine.input.keyboard.wasPressed(Keys.P)) {
-            this.resetBar()
-        }
+        this.bar.scale = new Vector(0, 1)
     }
 
     showProgress() {
-        let currentValue = this.progress
-        let percentage = currentValue / this.maxValue
-        if (percentage >= 1) {
-            percentage = 1
+        let currentValue = this.scene.worldActor.progression - this.scene.worldActor.minProgress
+        let percentage = currentValue / this.scene.worldActor.maxProgress
+
+        if (percentage <= 0) {
+            percentage = 0
         }
 
         this.bar.scale = new Vector(percentage, 1)
-        if (this.progress >= this.maxValue) {
-            console.log("Whoohoo")
+        if (currentValue >= this.scene.worldActor.maxProgress) {
+            this.scene.worldActor.updateWorld(this.scene.worldActor.fase)
         }
     }
 
     resetBar() {
-        this.progress = 0
         this.showProgress()
     }
 }

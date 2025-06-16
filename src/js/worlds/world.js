@@ -8,6 +8,8 @@ export class World extends Actor {
     resourceCounter
     resource
     progression
+    maxProgress
+    fase
 
     constructor(progression) {
         super()
@@ -22,6 +24,9 @@ export class World extends Actor {
         this.progressionCounter = 0
         this.resourceCounter = 0
 
+        this.minProgress = 0
+        this.maxProgress = 110
+        this.fase = 1
     }
 
     onPostUpdate(engine) {
@@ -29,17 +34,15 @@ export class World extends Actor {
         this.resourceCounter++
 
         if (engine.input.keyboard.wasPressed(Keys.R)) {
-            this.progression += + 10;
-            console.log(this.progression)
+            this.progressionUpdate(+10)
         }
-        
+
         if (engine.input.keyboard.wasPressed(Keys.F)) {
-            this.progression -= 10;
-            console.log(this.progression)
+            this.progressionUpdate(-10)
         }
 
         if (this.progressionCounter >= 3600) {
-            this.progression--
+            this.progressionUpdate(-1)
             this.progressionCounter = 0
         }
 
@@ -48,17 +51,42 @@ export class World extends Actor {
             this.resourceCounter = 0
         }
 
-        if (this.progression >= 110) {
-            engine.currentScene.worldUpdate("faseTwo", this.progression)
-            this.kill()
+        // if (this.progression >= this.maxProgress) {
+        //     engine.currentScene.worldUpdate("faseTwo", this.progression)
+        //     this.kill()
+        // }
 
-        }
-        if (this.progression <= 0) {
-            engine.currentScene.worldUpdate("dead", this.progression)
+        if (this.progression <= this.minProgress) {
+            this.scene.worldUpdate("dead", this.progression)
             this.kill()
         }
     }
+
     progressionUpdate(progress) {
-        this.progression = + progress
+        this.progression = this.progression + progress
+        console.log(this.progression)
+        this.scene.ui.progressionBar.showProgress()
+    }
+
+    updateWorld(fase) {
+        switch (fase) {
+            case 1:
+                this.scene.worldUpdate("faseTwo", this.progression)
+                break;
+            case 2:
+                this.scene.worldUpdate("faseThree", this.progression)
+                break;
+            case 3:
+                this.scene.worldUpdate("faseFour", this.progression)
+                break;
+            case 4:
+                this.scene.worldUpdate("faseFive", this.progression)
+                break
+            case 5:
+                this.scene.worldUpdate("faseFive", this.progression)
+        }
+
+        this.kill()
+        this.scene.ui.progressionBar.resetBar()
     }
 }
