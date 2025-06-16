@@ -16,6 +16,11 @@ const Resources = {
     SadFace: new ImageSource('images/sadface.png'),
     Scenebg: new ImageSource('images/background.png'),
     StartScenebackground: new ImageSource('images/startscene.png'),
+    CollectibleBird: new ImageSource('images/Collectable_Bird.png'),
+    CollectibleFlower: new ImageSource('images/Collectable_Flower.png'),
+    CollectibleBird: new ImageSource('images/Collectable_Bird.png'),
+    Materiaal1: new ImageSource('images/Materiaal_1.jpg'),
+    Materiaal2: new ImageSource('images/Materiaal_2.jpg'),
     Endbg: new ImageSource('images/endscene.png'),
     MainText: new FontSource('fonts/Audiowide-Regular.ttf', 'AudioWide'),
     SubText: new FontSource('fonts/Orbitron-VariableFont_wght.ttf', 'Orbitron')
