@@ -29,5 +29,6 @@ export class Pointer extends Actor {
             this.pos.x += x * speed;
             this.pos.y += y * speed;
         }
+        
     }
 }
