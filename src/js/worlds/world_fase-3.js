@@ -34,7 +34,7 @@ export class WorldFaseThree extends World {
         }
 
         if (this.resourceCounter >= 3600) {
-            this.resource += 10
+            this.updateResource(250)
             this.resourceCounter = 0
         }
 

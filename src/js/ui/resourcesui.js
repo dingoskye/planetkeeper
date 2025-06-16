@@ -42,12 +42,12 @@ export class ResourceUI extends Actor {
     // }
 
     updateResources(number) {
-        
+
         //resources
-        this.resource += number
+        this.resource = this.resource + number
         this.label.text = `${this.resource}`
         if (this.resource > 0) {
-            this.resource -= number
+            // this.resource -= number
             console.log(`Your resources are: ${this.resource}`)
         } else {
             console.log("Not enough resources to update progress")

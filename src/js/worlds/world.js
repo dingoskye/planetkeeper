@@ -27,6 +27,7 @@ export class World extends Actor {
         this.minProgress = 0
         this.maxProgress = 110
         this.fase = 1
+
     }
 
     onPostUpdate(engine) {
@@ -34,7 +35,7 @@ export class World extends Actor {
         this.resourceCounter++
 
         if (engine.input.keyboard.wasPressed(Keys.R)) {
-           // this.progressionUpdate(+10)
+            // this.progressionUpdate(+10)
             this.updateProgression(+10)
         }
 
@@ -48,8 +49,7 @@ export class World extends Actor {
         }
 
         if (this.resourceCounter >= 3600) {
-            this.resource += 10
-            //this.recourseUpdate(10)
+            this.updateResource(10)
             this.resourceCounter = 0
         }
 
@@ -63,32 +63,37 @@ export class World extends Actor {
             this.kill()
         }
     }
+    updateResource(number) {
+        this.resource = this.resource + number
+        this.scene.ui.resourceUI.updateResources(number)
+        console.log(this.resource + " Dit zijn mijn resources")
+    }
 
     progressionUpdate(progress) {
         this.progression = this.progression + progress
         console.log(this.progression)
         this.scene.ui.progressionBar.showProgress()
     }
-    
-        updateProgression(number) {
-            this.progression += number
-            //progress blijft tussen 0 en 100
-            if (this.progression > this.maxValue) {
-                this.progression = this.maxValue;
-                console.log("Whoohoo")
-            } else if (this.progression < 0) {
-                this.progression  = 0
-            }
-            console.log(`Your progress is: ${this.progression}`)
 
-            //updateResources()
-            this.scene.ui.progressionBar.showProgress()
+    updateProgression(number) {
+        this.progression += number
+        //progress blijft tussen 0 en 100
+        if (this.progression > this.maxValue) {
+            this.progression = this.maxValue;
+            console.log("Whoohoo")
+        } else if (this.progression < 0) {
+            this.progression = 0
         }
+        console.log(`Your progress is: ${this.progression}`)
 
-        //progress laten zien
-         showProgression() {
-             console.log(`Your progress is: ${progression}`)
-         }
+        //updateResources()
+        this.scene.ui.progressionBar.showProgress()
+    }
+
+    //progress laten zien
+    showProgression() {
+        console.log(`Your progress is: ${progression}`)
+    }
 
 
     updateWorld(fase) {
