@@ -10,7 +10,7 @@ export class Pointer extends Actor {
     constructor() {
         super({
             pos: new Vector(640, 400),
-            scale: new Vector(0.3, 0.3),
+            scale: new Vector(0.2, 0.2),
             anchor: Vector.Half,
             z: 5,
             collisionType: CollisionType.PreventCollision,
@@ -25,10 +25,22 @@ export class Pointer extends Actor {
             const x = gamepad.getAxes(Axes.LeftStickX);
             const y = gamepad.getAxes(Axes.LeftStickY);
 
-            const speed = 55;
+            const speed = 30;
             this.pos.x += x * speed;
             this.pos.y += y * speed;
+
+            if (this.pos.x < 0) {
+                this.pos.x = 0;
+            }
+            if (this.pos.y < 0) {
+                this.pos.y = 0;
+            }
+            if (this.pos.x > 1280) {
+                this.pos.x = 1280;
+            }
+            if (this.pos.y > 720) {
+                this.pos.y = 720;
+            }
         }
-        
     }
 }

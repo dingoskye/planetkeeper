@@ -1,7 +1,6 @@
-import { Scene, Label, FontUnit, Vector, Keys, Font, Color, Actor, Buttons, CollisionType } from "excalibur"
+import { Scene, Label, FontUnit, Vector, Keys, Font, Color, Actor, Buttons, CollisionType, Rectangle } from "excalibur"
 import { Resources } from "../resources.js"
 import { Startbg } from "../startbackground.js"
-
 import { Pointer } from "../pointer.js"
 
 export class StartScene extends Scene {
@@ -16,6 +15,7 @@ export class StartScene extends Scene {
 
         this.pointer = new Pointer()
         this.add(this.pointer)
+        this.pointer.startButton = this.startButton;
 
         const title = new Label({
             text: "Planet Keeper",
@@ -32,9 +32,16 @@ export class StartScene extends Scene {
             pos: new Vector(640, 410),
             width: 300,
             height: 60,
-            color: Color.Gray,
             collisionType: CollisionType.PreventCollision,
-        })
+        });
+
+        this.startButtonGraphics = new Rectangle({
+            color: Color.Gray,
+            width: 300,
+            height: 60,
+        });
+        this.startButton.graphics.use(this.startButtonGraphics);
+
 
         const buttonText = new Label({
             text: "Start spel",
@@ -71,15 +78,39 @@ export class StartScene extends Scene {
 
     updateButtonVisual() {
         if (this.pointer.buttonFocused) {
-            this.startButton.color = Color.Yellow
+            this.startButtonGraphics.color = Color.Yellow;
         } else {
-            this.startButton.color = Color.Gray
+            this.startButtonGraphics.color = Color.Gray;
         }
     }
 
-    onPreUpdate(engine) {
+     onPreUpdate(engine) {
+        //wat ik heb
+        const pointer = this.pointer;
+        let isHovering = false;
+        if (pointer && this.startButton) {
+
+            // Dit is met copilot gedaan
+            //Checkt de corners/hitbox van de start button en wanneer de pointer op die positie is, komt er een soort trigger
+           isHovering =
+                pointer.pos.x >= this.startButton.pos.x - this.startButton.width / 2 &&
+                pointer.pos.x <= this.startButton.pos.x + this.startButton.width / 2 &&
+                pointer.pos.y >= this.startButton.pos.y - this.startButton.height / 2 &&
+                pointer.pos.y <= this.startButton.pos.y + this.startButton.height / 2;
+        }
+
+        //de rest is zelf
+        pointer.buttonFocused = isHovering;
+        this.updateButtonVisual();
+
         if (engine.input.keyboard.wasPressed(Keys.Enter)) {
             engine.goToScene("game");
+        }
+
+        const gamepad = engine.mygamepad;
+        if (isHovering && gamepad && gamepad.isButtonPressed(Buttons.Face1)) {
+            engine.goToScene("game");
+            console.log("press A");
         }
     }
 }
