@@ -21,15 +21,16 @@ export class WorldFaseFive extends World {
         this.resourceCounter++
 
         if (engine.input.keyboard.wasPressed(Keys.R)) {
-            this.progressionUpdate(+10)
+            this.updateProgression(+10)
+            // this.updateProgression(+10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.F)) {
-            this.progressionUpdate(-10)
+            this.updateProgression(-10)
         }
 
         if (this.progressionCounter >= 3600) {
-            this.progressionUpdate(-1)
+            this.updateProgression(-1)
             this.progressionCounter = 0
         }
 
