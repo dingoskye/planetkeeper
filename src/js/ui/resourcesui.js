@@ -3,12 +3,12 @@ import { Resources } from '../resources.js'
 
 export class ResourceUI extends Actor {
 
-    resources
+    resource
 
     constructor() {
         super()
 
-        this.resources = 0
+        this.resource = 0
 
         let resourceImage = new Actor({
             x: 50, y: 40,
@@ -30,13 +30,28 @@ export class ResourceUI extends Actor {
     }
 
     onPostUpdate(engine) {
+
         if (engine.input.keyboard.wasPressed(Keys.B)) {
-            this.resources = this.resources + 10
-            this.updateResources()
+            //this.resources = this.resources + 10
+            this.updateResources(+10)
         }
     }
 
-    updateResources() {
-        this.label.text = `${this.resources}`
+    // updateResources() {
+    //     this.label.text = `${this.resources}`
+    // }
+
+    updateResources(number) {
+        
+        //resources
+        this.resource += number
+        this.label.text = `${this.resource}`
+        if (this.resource > 0) {
+            this.resource -= number
+            console.log(`Your resources are: ${this.resource}`)
+        } else {
+            console.log("Not enough resources to update progress")
+        }
     }
+
 }

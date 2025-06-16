@@ -34,7 +34,8 @@ export class World extends Actor {
         this.resourceCounter++
 
         if (engine.input.keyboard.wasPressed(Keys.R)) {
-            this.progressionUpdate(+10)
+           // this.progressionUpdate(+10)
+            this.updateProgression(+10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.F)) {
@@ -48,6 +49,7 @@ export class World extends Actor {
 
         if (this.resourceCounter >= 3600) {
             this.resource += 10
+            //this.recourseUpdate(10)
             this.resourceCounter = 0
         }
 
@@ -67,6 +69,27 @@ export class World extends Actor {
         console.log(this.progression)
         this.scene.ui.progressionBar.showProgress()
     }
+    
+        updateProgression(number) {
+            this.progression += number
+            //progress blijft tussen 0 en 100
+            if (this.progression > this.maxValue) {
+                this.progression = this.maxValue;
+                console.log("Whoohoo")
+            } else if (this.progression < 0) {
+                this.progression  = 0
+            }
+            console.log(`Your progress is: ${this.progression}`)
+
+            //updateResources()
+            this.scene.ui.progressionBar.showProgress()
+        }
+
+        //progress laten zien
+         showProgression() {
+             console.log(`Your progress is: ${progression}`)
+         }
+
 
     updateWorld(fase) {
         switch (fase) {
