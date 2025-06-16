@@ -3,72 +3,240 @@
     "title": "Samenwerken met Andere Kolonies",
     "context": "Een andere kolonie met een andere cultuur biedt samenwerking aan.",
     "choices": [
-      { "option": "Accepteer samenwerking", "effects": { "reputation": 10, "resources": -5 } },
-      { "option": "Weiger, blijf onafhankelijk", "effects": { "reputation": -5, "resources": 10 } },
-      { "option": "Onderzoek eerst de impact", "effects": { "reputation": 0, "resources": 0 } }
+      {
+        "option": "Accepteer samenwerking",
+        "effects": {
+          "reputation": 10,
+          "resources": -5,
+          "progression": 5
+        }
+      },
+      {
+        "option": "Weiger, blijf onafhankelijk",
+        "effects": {
+          "reputation": -5,
+          "resources": 10,
+          "progression": -2
+        }
+      },
+      {
+        "option": "Onderzoek eerst de impact",
+        "effects": {
+          "reputation": 0,
+          "resources": 0,
+          "progression": 2
+        }
+      }
     ]
   },
   {
     "title": "Taalbarrières",
     "context": "Migranten spreken een andere taal, communicatie stokt.",
     "choices": [
-      { "option": "Investeer in taallessen", "effects": { "reputation": 8, "resources": -6 } },
-      { "option": "Sta enkel inwoners met basiskennis toe", "effects": { "reputation": -7, "resources": 5 } },
-      { "option": "Gebruik vertaaltechnologie", "effects": { "reputation": 5, "resources": -4 } }
+      {
+        "option": "Investeer in taallessen",
+        "effects": {
+          "reputation": 8,
+          "resources": -6,
+          "progression": 4
+        }
+      },
+      {
+        "option": "Sta enkel inwoners met basiskennis toe",
+        "effects": {
+          "reputation": -7,
+          "resources": 5,
+          "progression": -3
+        }
+      },
+      {
+        "option": "Gebruik vertaaltechnologie",
+        "effects": {
+          "reputation": 5,
+          "resources": -4,
+          "progression": 3
+        }
+      }
     ]
   },
   {
     "title": "Discriminatie op de Arbeidsmarkt",
     "context": "Minderheidsgroepen melden structurele achterstand in werkgelegenheid.",
     "choices": [
-      { "option": "Voer inclusief wervingsbeleid in", "effects": { "reputation": 10, "resources": -8 } },
-      { "option": "Laat bedrijven vrij beslissen", "effects": { "reputation": -6, "resources": 8 } },
-      { "option": "Start bewustwordingscampagne", "effects": { "reputation": 4, "resources": -3 } }
+      {
+        "option": "Voer inclusief wervingsbeleid in",
+        "effects": {
+          "reputation": 10,
+          "resources": -8,
+          "progression": 5
+        }
+      },
+      {
+        "option": "Laat bedrijven vrij beslissen",
+        "effects": {
+          "reputation": -6,
+          "resources": 8,
+          "progression": -3
+        }
+      },
+      {
+        "option": "Start bewustwordingscampagne",
+        "effects": {
+          "reputation": 4,
+          "resources": -3,
+          "progression": 2
+        }
+      }
     ]
   },
   {
     "title": "Rechten voor LGBTQIA+",
     "context": "Er is protest over het ontbreken van gelijke rechten.",
     "choices": [
-      { "option": "Erken volledige rechten", "effects": { "reputation": 12, "resources": -7 } },
-      { "option": "Voer een referendum uit", "effects": { "reputation": 5, "resources": -3 } },
-      { "option": "Negeer voorlopig", "effects": { "reputation": -8, "resources": 3 } }
+      {
+        "option": "Erken volledige rechten",
+        "effects": {
+          "reputation": 12,
+          "resources": -7,
+          "progression": 6
+        }
+      },
+      {
+        "option": "Voer een referendum uit",
+        "effects": {
+          "reputation": 5,
+          "resources": -3,
+          "progression": 2
+        }
+      },
+      {
+        "option": "Negeer voorlopig",
+        "effects": {
+          "reputation": -8,
+          "resources": 3,
+          "progression": -4
+        }
+      }
     ]
   },
   {
     "title": "Toegankelijkheidsprotest",
     "context": "Mensen met een beperking eisen gelijke toegang tot het OV.",
     "choices": [
-      { "option": "Verplicht aanpassingen", "effects": { "reputation": 10, "resources": -10 } },
-      { "option": "Geef enkel subsidies", "effects": { "reputation": 6, "resources": -6 } },
-      { "option": "Geen actie", "effects": { "reputation": -7, "resources": 4 } }
+      {
+        "option": "Verplicht aanpassingen",
+        "effects": {
+          "reputation": 10,
+          "resources": -10,
+          "progression": 5
+        }
+      },
+      {
+        "option": "Geef enkel subsidies",
+        "effects": {
+          "reputation": 6,
+          "resources": -6,
+          "progression": 3
+        }
+      },
+      {
+        "option": "Geen actie",
+        "effects": {
+          "reputation": -7,
+          "resources": 4,
+          "progression": -3
+        }
+      }
     ]
   },
   {
     "title": "Algoritmische Vooroordelen",
     "context": "Jullie AI-systeem discrimineert onbedoeld bepaalde groepen.",
     "choices": [
-      { "option": "Hervorm AI met bias-checks", "effects": { "reputation": 12, "resources": -9 } },
-      { "option": "Minimaliseer menselijke tussenkomst", "effects": { "reputation": -6, "resources": 5 } },
-      { "option": "Maak AI open-source", "effects": { "reputation": 8, "resources": -4 } }
+      {
+        "option": "Hervorm AI met bias-checks",
+        "effects": {
+          "reputation": 12,
+          "resources": -9,
+          "progression": 6
+        }
+      },
+      {
+        "option": "Minimaliseer menselijke tussenkomst",
+        "effects": {
+          "reputation": -6,
+          "resources": 5,
+          "progression": -2
+        }
+      },
+      {
+        "option": "Maak AI open-source",
+        "effects": {
+          "reputation": 8,
+          "resources": -4,
+          "progression": 4
+        }
+      }
     ]
   },
   {
     "title": "Diversiteit in Intergalactische Diplomatie",
     "context": "Je planeet wordt uitgenodigd in een raad met diverse rassen en culturen.",
     "choices": [
-      { "option": "Stuur een gemengd representatief team", "effects": { "reputation": 10, "resources": -5 } },
-      { "option": "Stuur je sterkste diplomaten", "effects": { "reputation": -4, "resources": 5 } },
-      { "option": "Wissel teams per sessie af", "effects": { "reputation": 7, "resources": -3 } }
+      {
+        "option": "Stuur een gemengd representatief team",
+        "effects": {
+          "reputation": 10,
+          "resources": -5,
+          "progression": 5
+        }
+      },
+      {
+        "option": "Stuur je sterkste diplomaten",
+        "effects": {
+          "reputation": -4,
+          "resources": 5,
+          "progression": -2
+        }
+      },
+      {
+        "option": "Wissel teams per sessie af",
+        "effects": {
+          "reputation": 7,
+          "resources": -3,
+          "progression": 3
+        }
+      }
     ]
   },
   {
     "title": "Virtuele Discriminatie",
     "context": "In virtuele omgevingen ontstaat racisme en seksisme.",
     "choices": [
-      { "option": "Ontwikkel streng moderatiebeleid", "effects": { "reputation": 9, "resources": -6 } },
-      { "option": "Laat spelers vrij met waarschuwingen", "effects": { "reputation": -5, "resources": 4 } },
-      { "option": "Integreer gedragsscores", "effects": { "reputation": 6, "resources": -3 } }
+      {
+        "option": "Ontwikkel streng moderatiebeleid",
+        "effects": {
+          "reputation": 9,
+          "resources": -6,
+          "progression": 4
+        }
+      },
+      {
+        "option": "Laat spelers vrij met waarschuwingen",
+        "effects": {
+          "reputation": -5,
+          "resources": 4,
+          "progression": -3
+        }
+      },
+      {
+        "option": "Integreer gedragsscores",
+        "effects": {
+          "reputation": 6,
+          "resources": -3,
+          "progression": 3
+        }
+      }
     ]
   }
 ]

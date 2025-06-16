@@ -8,6 +8,7 @@ export class World extends Actor {
     resourceCounter
     resource
     progression
+    reputation
     maxProgress
     fase
 
@@ -35,16 +36,16 @@ export class World extends Actor {
         this.resourceCounter++
 
         if (engine.input.keyboard.wasPressed(Keys.R)) {
-            this.progressionUpdate(+10)
+            this.updateProgression(+10)
             // this.updateProgression(+10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.F)) {
-            this.progressionUpdate(-10)
+            this.updateProgression(-10)
         }
 
         if (this.progressionCounter >= 3600) {
-            this.progressionUpdate(-1)
+            this.updateProgression(-1)
             this.progressionCounter = 0
         }
 
@@ -70,10 +71,14 @@ export class World extends Actor {
         console.log(this.resource + " Dit zijn mijn resources")
     }
 
-    progressionUpdate(progress) {
+    updateProgression(progress) {
         this.progression = this.progression + progress
         console.log(this.progression)
         this.scene.ui.progressionBar.showProgress()
+    }
+
+    updateReputation() {
+        console.log(this.reputation)
     }
 
     // updateProgression(number) {

@@ -1,6 +1,7 @@
 import { Actor, Vector, Color, ScreenElement, Engine, Loader, CollisionType, Shape, Text, Font, Label, BaseAlign, TextAlign } from "excalibur";
 import jsonData from "../include/events.json"
 import { Resources } from './resources.js'
+import { World } from "./worlds/world.js";
 
 export class DilemmaEvent extends Actor {
 
@@ -18,7 +19,6 @@ export class DilemmaEvent extends Actor {
         this.dilemmaManager();
     }
 
-
     logJson() {
         for (let p of jsonData) {
             console.log(p)
@@ -27,13 +27,13 @@ export class DilemmaEvent extends Actor {
 
     dilemmaManager() {
         // Toon direct een random dilemma bij start
-        this.showRandomDilemma();
+        // this.showRandomDilemma();
 
         // Daarna elke minuut een nieuw dilemma
         this.dilemmaInterval = setInterval(() => {
             this.hideDilemma(); // Verberg het vorige dilemma
             this.showRandomDilemma();
-        }, 2000); // 60.000 ms = 1 minuut
+        }, 60000); // 60.000 ms = 1 minuut
     }
 
     showRandomDilemma() {
@@ -112,6 +112,12 @@ export class DilemmaEvent extends Actor {
         });
         this.addChild(this.#labelA);
 
+        // Maak label A klikbaar
+        this.#labelA.on('pointerup', () => {
+            console.log('A gekozen');
+            this.handleChoice(event.choices[0], 'A');
+        });
+
         this.#labelB = new Label({
             text: "B: " + event.choices[1].option,
             pos: new Vector(20, 650),
@@ -126,6 +132,12 @@ export class DilemmaEvent extends Actor {
         });
         this.addChild(this.#labelB);
 
+        // Maak label B klikbaar
+        this.#labelB.on('pointerup', () => {
+            console.log('B gekozen');
+            this.handleChoice(event.choices[1], 'B');
+        });
+
         this.#LabelC = new Label({
             text: "C: " + event.choices[2].option,
             pos: new Vector(20, 670),
@@ -139,6 +151,12 @@ export class DilemmaEvent extends Actor {
             z: 9001
         });
         this.addChild(this.#LabelC);
+
+        // Maak label C klikbaar
+        this.#LabelC.on('pointerup', () => {
+            console.log('C gekozen');
+            this.handleChoice(event.choices[2], 'C');
+        });
     }
 
     hideDilemma() {
@@ -165,16 +183,32 @@ export class DilemmaEvent extends Actor {
         this.#LabelC = null;
     }
 
+    handleChoice(choice, label) {
+        console.log(`Keuze ${label} gekozen:`, choice);
+        // Stuur de waardes door naar world.js
+        // @ts-ignore
+        const world = this.scene.actors.find(actor => actor instanceof World);
+        if (world) {
+            world.updateProgression(choice.progression);
+            world.updateResource(choice.resources);
+            world.updateReputation(choice.reputation); // Voeg logica toe in updateReputation
+        } else {
+            console.warn('World instance niet gevonden!');
+        }
 
-    progressionHandler() {
 
-    }
+        // Verberg het dilemma na keuze
+        this.hideDilemma();
 
-    reputationHandler() {
+        // Stop het bestaande interval
+        if (this.dilemmaInterval) {
+            clearInterval(this.dilemmaInterval);
+        }
 
-    }
-
-    resourcesHandler() {
-
+        // Start het interval opnieuw (1 minuut)
+        this.dilemmaInterval = setInterval(() => {
+            this.hideDilemma();
+            this.showRandomDilemma();
+        }, 60000);
     }
 }
