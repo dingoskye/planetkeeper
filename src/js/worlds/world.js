@@ -63,6 +63,7 @@ export class World extends Actor {
             this.kill()
         }
     }
+
     updateResource(number) {
         this.resource = this.resource + number
         this.scene.ui.resourceUI.updateResources(number)
@@ -75,26 +76,25 @@ export class World extends Actor {
         this.scene.ui.progressionBar.showProgress()
     }
 
-    updateProgression(number) {
-        this.progression += number
-        //progress blijft tussen 0 en 100
-        if (this.progression > this.maxValue) {
-            this.progression = this.maxValue;
-            console.log("Whoohoo")
-        } else if (this.progression < 0) {
-            this.progression = 0
-        }
-        console.log(`Your progress is: ${this.progression}`)
+    // updateProgression(number) {
+    //     this.progression += number
+    //     //progress blijft tussen 0 en 100
+    //     if (this.progression > this.maxValue) {
+    //         this.progression = this.maxValue;
+    //         console.log("Whoohoo")
+    //     } else if (this.progression < 0) {
+    //         this.progression = 0
+    //     }
+    //     console.log(`Your progress is: ${this.progression}`)
 
-        //updateResources()
-        this.scene.ui.progressionBar.showProgress()
-    }
+    //     //updateResources()
+    //     this.scene.ui.progressionBar.showProgress()
+    // }
 
-    //progress laten zien
-    showProgression() {
-        console.log(`Your progress is: ${progression}`)
-    }
-
+    // //progress laten zien
+    // showProgression() {
+    //     console.log(`Your progress is: ${progression}`)
+    // }
 
     updateWorld(fase) {
         switch (fase) {
