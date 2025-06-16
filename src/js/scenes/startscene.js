@@ -29,7 +29,7 @@ export class StartScene extends Scene {
         })
 
         this.startButton = new Actor({
-            pos: new Vector(640, 400),
+            pos: new Vector(640, 410),
             width: 300,
             height: 60,
             color: Color.Gray,
@@ -51,22 +51,22 @@ export class StartScene extends Scene {
             engine.goToScene('gamescene')
         })
 
-        // const instruction = new Label({
-        //     text: "Druk op 'A' of 'X'",
-        //     font: Resources.SubText.toFont({
-        //         color: Color.White,
-        //         textAlign: 'center',
-        //         size: 30,
-        //         unit: FontUnit.Px,
-        //     }),
-        //     pos: new Vector(640, 390),
-        // })
+        const instruction = new Label({
+            text: "Druk op 'A' of 'X' om iets te selecteren",
+            font: Resources.SubText.toFont({
+                color: Color.White,
+                textAlign: 'center',
+                size: 30,
+                unit: FontUnit.Px,
+            }),
+            pos: new Vector(640, 680),
+        })
 
         this.add(title)
         this.add(this.startButton)
         this.add(buttonText)
         this.updateButtonVisual()
-        // this.add(instruction)
+        this.add(instruction)
     }
 
     updateButtonVisual() {
