@@ -13,14 +13,14 @@ import { DilemmaEvent } from "../dilemmaEvent.js"
 export class GameScene extends Scene {
 
     onInitialize(engine) {
-        
+
         const background = new Bg()
         this.add(background)
-        
+
         this.worldActor = new World();
         console.log("Adding world:", this.worldActor);
         this.add(this.worldActor)
-        
+
 
         this.ui = new UI()
         this.add(this.ui)
@@ -49,8 +49,7 @@ export class GameScene extends Scene {
     worldUpdate(newWorld, progression) {
         console.log("Adding world:", this.world);
         if (this.worldActor) {
-            this.worldActor.kill(); // Remove the previous world actor from the scene
-            this.worldActor = null;
+            this.worldActor.kill()
         }
         if (newWorld === "dead") {
             this.worldActor = new WorldDead(progression)
