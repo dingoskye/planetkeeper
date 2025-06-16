@@ -35,8 +35,8 @@ export class World extends Actor {
         this.resourceCounter++
 
         if (engine.input.keyboard.wasPressed(Keys.R)) {
-            // this.progressionUpdate(+10)
-            this.updateProgression(+10)
+            this.progressionUpdate(+10)
+            // this.updateProgression(+10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.F)) {
