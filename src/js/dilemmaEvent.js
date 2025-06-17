@@ -188,13 +188,15 @@ export class DilemmaEvent extends Actor {
         // Stuur de waardes door naar world.js
         // @ts-ignore
         const world = this.scene.actors.find(actor => actor instanceof World);
-        if (world) {
-            world.updateProgression(choice.progression);
-            world.updateResource(choice.resources);
-            world.updateReputation(choice.reputation); // Voeg logica toe in updateReputation
+        if (choice.effects) {
+            const { progression, resources, reputation } = choice.effects;
+            world.updateProgression(progression);
+            world.updateResource(resources);
+            world.updateReputation(reputation);
         } else {
             console.warn('World instance niet gevonden!');
         }
+
 
 
         // Verberg het dilemma na keuze
