@@ -25,6 +25,7 @@ export class World extends Actor {
         this.progressionCounter = 0
         this.resourceCounter = 0
 
+        this.reputation = 50
         this.minProgress = 0
         this.maxProgress = 110
         this.fase = 1
@@ -50,8 +51,16 @@ export class World extends Actor {
         }
 
         if (this.resourceCounter >= 3600) {
-            this.updateResource(10)
+            this.updateResource("+", 10)
             this.resourceCounter = 0
+        }
+
+        if (engine.input.keyboard.wasPressed(Keys.Enter)) {
+            this.updateReputation("-", 10)
+        }
+
+        if (engine.input.keyboard.wasPressed(Keys.B)) {
+            this.updateResource("+", 10)
         }
 
         // if (this.progression >= this.maxProgress) {
@@ -65,10 +74,11 @@ export class World extends Actor {
         }
     }
 
-    updateResource(number) {
-        this.resource = this.resource + number
-        this.scene.ui.resourceUI.updateResources(number)
-        console.log(this.resource + " Dit zijn mijn resources")
+    updateResource(update, number) {
+        //this.resource = this.resource + number
+        this.scene.ui.resourceUI.showResources(update, number)
+        //console.log(this.resource + " Dit zijn mijn resources")
+        this.scene.ui.showPopUp("resource", update, number)
     }
 
     updateProgression(progress) {
@@ -77,9 +87,15 @@ export class World extends Actor {
         this.scene.ui.progressionBar.showProgress()
     }
 
-    updateReputation() {
-        this.reputation = this.reputation + 10
-        this.scene.ui.reputationBar.updateReputation(10)
+    updateReputation(update, number) {
+        if (update === "+") {
+            this.reputation = this.reputation + number
+        } else if (update === "-") {
+            this.reputation = this.reputation - number
+        }
+
+        this.scene.ui.reputationBar.showReputation()
+        this.scene.ui.showPopUp("reputation", update, number)
         console.log(this.reputation)
     }
 

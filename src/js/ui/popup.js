@@ -3,12 +3,23 @@ import { Resources } from '../resources.js'
 
 export class PopUp extends Actor {
 
+    label
+    image
+    label1
+    counter
+    kind
+    updatekind
+    number
+
     constructor(kind, update, number) {
         super()
-        console.log(kind)
+        this.counter = 120
+        this.kind = kind
+        this.updatekind = update
+        this.number = number
 
-        let label = new Label({
-            text: `${update}`,
+        this.label = new Label({
+            text: `${this.updatekind}`,
             pos: new Vector(25, 100),
             font: Resources.SubText.toFont({
                 size: 30,
@@ -16,11 +27,10 @@ export class PopUp extends Actor {
                 color: Color.White
             })
         })
+        this.image = new Actor()
 
-        let image = new Actor()
-
-        let label1 = new Label({
-            text: `${number}`,
+        this.label1 = new Label({
+            text: `${this.number}`,
             pos: new Vector(115, 100),
             font: Resources.SubText.toFont({
                 size: 30,
@@ -29,29 +39,40 @@ export class PopUp extends Actor {
             })
         })
 
-        if (kind = "reputation") {
-            label.pos = new Vector(1100, 100)
-            label1.pos = new Vector(1190, 100)
+    }
 
-            image.pos = new Vector(1150, 116)
-            if (update === "-") {
-                image.graphics.use(Resources.SadFace.toSprite())
-            } else if (update === "+") {
-                image.graphics.use(Resources.HappyFace.toSprite())
+    onInitialize() {
+        console.log(this.kind)
+
+        if (this.kind === "reputation") {
+            this.label.pos = new Vector(1100, 100)
+            this.label1.pos = new Vector(1190, 100)
+
+            this.image.pos = new Vector(1150, 116)
+            if (this.updatekind === "-") {
+                this.image.graphics.use(Resources.SadFace.toSprite())
+            } else if (this.updatekind === "+") {
+                this.image.graphics.use(Resources.HappyFace.toSprite())
             }
-            image.scale = new Vector(0.5, 0.5)
-        }
-        if (kind = "resource") {
-            label.pos = new Vector(25, 100)
-            label1.pos = new Vector(115, 100)
+            this.image.scale = new Vector(0.5, 0.5)
+        } else if (this.kind === "resource") {
+            this.label.pos = new Vector(25, 100)
+            this.label1.pos = new Vector(115, 100)
 
-            image.pos = new Vector(75, 116)
-            image.graphics.use(Resources.Goldbar.toSprite())
-            image.scale = new Vector(0.5, 0.5)
+            this.image.pos = new Vector(75, 116)
+            this.image.graphics.use(Resources.Goldbar.toSprite())
+            this.image.scale = new Vector(0.5, 0.5)
         }
 
-        this.addChild(label)
-        this.addChild(image)
-        this.addChild(label1)
+        this.addChild(this.label)
+        this.addChild(this.image)
+        this.addChild(this.label1)
+    }
+
+    onPostUpdate() {
+        this.counter--
+        if (this.counter === 0) {
+            this.actions.fade(0, 100).callMethod(() => this.kill)
+        }
     }
 }

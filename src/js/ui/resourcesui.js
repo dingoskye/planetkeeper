@@ -30,26 +30,27 @@ export class ResourceUI extends Actor {
     }
 
     onPostUpdate(engine) {
-
-        if (engine.input.keyboard.wasPressed(Keys.B)) {
-            //this.resources = this.resources + 10
-            this.updateResources(+10)
-        }
+        // if (engine.input.keyboard.wasPressed(Keys.B)) {
+        //     //this.resources = this.resources + 10
+        //     this.updateResources(+10)
+        // }
     }
 
-
-
-    updateResources(number) {
-
+    showResources(update, number) {
         //resources
-        this.resource = this.resource + number
-        this.label.text = `${this.resource}`
-        if (this.resource > 0) {
-            // this.resource -= number
-            console.log(`Your resources are: ${this.resource}`)
-        } else {
-            console.log("Not enough resources to update progress")
+        if (update === "+") {
+            this.resource = this.resource + number
+        } else if (update === "-") {
+            this.resource = this.resource - number
         }
+
+        this.label.text = `${this.resource}`
+        // if (this.resource > 0) {
+        //     // this.resource -= number
+        //     console.log(`Your resources are: ${this.resource}`)
+        // } else {
+        //     console.log("Not enough resources to update progress")
+        // }
     }
 
 }

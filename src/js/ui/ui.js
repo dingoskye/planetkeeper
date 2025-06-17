@@ -34,8 +34,10 @@ export class UI extends ScreenElement {
         //Progressie
         this.progressionBar = new ProgressionBar()
         this.addChild(this.progressionBar)
+    }
 
-        this.showPopUp("reputation", "+", 10)
+    onInitialize() {
+        //this.showPopUp("resource", "+", 10)
     }
 
     showPopUp(kind, update, number) {
@@ -43,4 +45,3 @@ export class UI extends ScreenElement {
         this.addChild(popUp)
     }
 }
-

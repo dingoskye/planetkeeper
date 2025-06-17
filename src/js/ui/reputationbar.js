@@ -42,19 +42,14 @@ export class ReputationBar extends Actor {
         })
         this.bar.graphics.use(this.barGraphics)
         this.addChild(this.bar)
-
-        this.updateReputation()
     }
 
-    onPostUpdate(engine) {
-        if (engine.input.keyboard.wasPressed(Keys.Enter)) {
-            this.reputation = this.reputation + 10
-            this.updateReputation()
-        }
+    onInitialize() {
+        this.showReputation()
     }
 
-    updateReputation() {
-        let currentValue = this.reputation
+    showReputation() {
+        let currentValue = this.scene.worldActor.reputation
         let percentage = currentValue / this.maxValue
         if (percentage >= 1) {
             percentage = 1
@@ -67,10 +62,6 @@ export class ReputationBar extends Actor {
             this.barGraphics.color = Color.Yellow
         } else {
             this.barGraphics.color = Color.Green
-        }
-
-        if (this.reputation >= this.maxValue) {
-            console.log("Whoohoo")
         }
     }
 }
