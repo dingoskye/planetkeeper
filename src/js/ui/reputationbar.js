@@ -11,7 +11,7 @@ export class ReputationBar extends Actor {
     constructor() {
         super()
 
-        this.reputation = 0
+        this.reputation = 50
         this.maxValue = 100
 
         const label = new Label({
