@@ -54,6 +54,9 @@ export class ReputationBar extends Actor {
         if (percentage >= 1) {
             percentage = 1
         }
+        if (percentage <= 0) {
+            percentage = 0
+        }
         this.bar.scale = new Vector(percentage, 1)
 
         if (percentage < 0.4 && this.barGraphics.color !== Color.fromRGB(225, 0, 0, 1)) {

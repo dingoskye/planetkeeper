@@ -45,9 +45,9 @@ export class ProgressionBar extends Actor {
         }
 
         this.bar.scale = new Vector(percentage, 1)
-        if (currentValue >= this.scene.worldActor.maxProgress) {
-            this.scene.worldActor.updateWorld(this.scene.worldActor.fase)
-        }
+        // if (currentValue >= this.scene.worldActor.maxProgress) {
+        //     this.scene.worldActor.updateWorld(this.scene.worldActor.fase)
+        // }
     }
 
     resetBar() {
