@@ -20,6 +20,7 @@ const Resources = {
     CollectibleFlower: new ImageSource('images/Collectable_Flower.png'),
     CollectibleBird: new ImageSource('images/Collectable_Bird.png'),
     CollectableBloodBird: new ImageSource('images/Collectable_BloodBird.png'),
+    PinPointer: new ImageSource('images/pinpointer.png'),
     Materiaal1: new ImageSource('images/Materiaal_1.jpg'),
     Materiaal2: new ImageSource('images/Materiaal_2.jpg'),
     Endbg: new ImageSource('images/endscene.png'),

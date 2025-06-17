@@ -33,11 +33,12 @@ export class DilemmaEvent extends Actor {
         this.dilemmaInterval = setInterval(() => {
             this.hideDilemma(); // Verberg het vorige dilemma
             this.showRandomDilemma();
-        }, 60000); // 60.000 ms = 1 minuut
+        }, 500); // 60.000 ms = 1 minuut
     }
 
     showRandomDilemma() {
         const randomIndex = Math.floor(Math.random() * jsonData.length);
+        this.scene.worldActor.eventMarking();
         const event = jsonData[randomIndex];
         this.showDilemma(event);
     }

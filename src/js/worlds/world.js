@@ -1,6 +1,6 @@
 import { Actor, Vector, Keys } from "excalibur"
 import { Resources } from '../resources.js'
-
+import { EventMarker } from "../eventMarker.js"
 
 export class World extends Actor {
 
@@ -140,4 +140,13 @@ export class World extends Actor {
         this.kill()
         this.scene.ui.progressionBar.resetBar()
     }
+    eventMarking() {
+        if (this.eventMarker) {
+            this.eventMarker.kill()
+        }
+        this.eventMarker = new EventMarker()
+        this.addChild(this.eventMarker)
+
+    }
+
 }
