@@ -8,7 +8,7 @@ const Resources = {
     WorldStage4: new ImageSource('images/wereld_stage-4.png'),
     WorldStage5: new ImageSource('images/wereld_stage-5.png'),
     WorldDead: new ImageSource('images/wereld_dead.png'),
-    EventText: new ImageSource('images/eventtext.png'), //voor events. IS
+    EventText: new ImageSource('images/eventtext.png'), 
     Goldbar: new ImageSource('images/goldbar.png'),
     GoldbarStacks: new ImageSource('images/goldbarmulti.png'),
     HappyFace: new ImageSource('images/happyface.png'),
