@@ -135,4 +135,7 @@ export class World extends Actor {
         this.eventMarker = new EventMarker()
         this.addChild(this.eventMarker)
     }
+    eventKill() {
+        this.eventMarker.kill()
+    }
 }

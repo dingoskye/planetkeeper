@@ -162,6 +162,7 @@ export class DilemmaEvent extends Actor {
 
     hideDilemma() {
         if (this.labelScreen) {
+            this.scene.worldActor.eventKill();
             this.labelScreen.kill();
             this.labelScreen = null;
         }
