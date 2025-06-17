@@ -37,9 +37,12 @@ export class ProgressionBar extends Actor {
     }
 
     showProgress() {
-        let currentValue = this.scene.worldActor.progression - this.scene.worldActor.minProgress
+        let currentValue = this.scene.worldActor.progression
         let percentage = currentValue / this.scene.worldActor.maxProgress
 
+        if (percentage >= 1) {
+            percentage = 1
+        }
         if (percentage <= 0) {
             percentage = 0
         }

@@ -13,7 +13,7 @@ export class World extends Actor {
     fase
 
     constructor(progression) {
-        super()
+        super({ anchor: new Vector(0.5, 0.5) })
         if (progression) {
             this.progression = progression
         } else {
@@ -38,7 +38,6 @@ export class World extends Actor {
 
         if (engine.input.keyboard.wasPressed(Keys.R)) {
             this.updateProgression(+10)
-            // this.updateProgression(+10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.F)) {
@@ -51,34 +50,41 @@ export class World extends Actor {
         }
 
         if (this.resourceCounter >= 3600) {
-            this.updateResource("+", 10)
+            this.updateResource(+10)
             this.resourceCounter = 0
         }
 
         if (engine.input.keyboard.wasPressed(Keys.Enter)) {
-            this.updateReputation("-", 10)
+            this.updateReputation(-10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.B)) {
-            this.updateResource("+", 10)
+            this.updateResource(+10)
         }
 
-        // if (this.progression >= this.maxProgress) {
-        //     engine.currentScene.worldUpdate("faseTwo", this.progression)
-        //     this.kill()
-        // }
-
         if (this.progression <= this.minProgress) {
-            this.scene.worldUpdate("dead", this.progression)
-            this.kill()
+            this.scale.x -= 0.025
+            this.scale.y -= 0.025
+            if (this.scale.x < 0.75 && this.scale.y < 0.75) {
+                this.scene.worldUpdate("dead", this.progression)
+            }
+        }
+
+        if (this.progression >= this.maxProgress) {
+            this.scale.x -= 0.025
+            this.scale.y -= 0.025
+            if (this.scale.x < 0.75 && this.scale.y < 0.75) {
+                this.updateWorld(this.fase, this.progression)
+            }
         }
     }
 
-    updateResource(update, number) {
-        //this.resource = this.resource + number
-        this.scene.ui.resourceUI.showResources(update, number)
-        //console.log(this.resource + " Dit zijn mijn resources")
-        this.scene.ui.showPopUp("resource", update, number)
+    updateResource(number) {
+        const update = number < 0 ? "-" : "+"
+        const number1 = Math.abs(number)
+
+        this.scene.ui.resourceUI.showResources(update, number1)
+        this.scene.ui.showPopUp("resource", update, number1)
     }
 
     updateProgression(progress) {
@@ -87,7 +93,9 @@ export class World extends Actor {
         this.scene.ui.progressionBar.showProgress()
     }
 
-    updateReputation(update, number) {
+    updateReputation(number) {
+        const update = number < 0 ? "-" : "+"
+        const number1 = Math.abs(number)
         if (update === "+") {
             this.reputation = this.reputation + number
         } else if (update === "-") {
@@ -95,29 +103,9 @@ export class World extends Actor {
         }
 
         this.scene.ui.reputationBar.showReputation()
-        this.scene.ui.showPopUp("reputation", update, number)
+        this.scene.ui.showPopUp("reputation", update, number1)
         console.log(this.reputation)
     }
-
-    // updateProgression(number) {
-    //     this.progression += number
-    //     //progress blijft tussen 0 en 100
-    //     if (this.progression > this.maxValue) {
-    //         this.progression = this.maxValue;
-    //         console.log("Whoohoo")
-    //     } else if (this.progression < 0) {
-    //         this.progression = 0
-    //     }
-    //     console.log(`Your progress is: ${this.progression}`)
-
-    //     //updateResources()
-    //     this.scene.ui.progressionBar.showProgress()
-    // }
-
-    // //progress laten zien
-    // showProgression() {
-    //     console.log(`Your progress is: ${progression}`)
-    // }
 
     updateWorld(fase) {
         switch (fase) {
@@ -146,7 +134,5 @@ export class World extends Actor {
         }
         this.eventMarker = new EventMarker()
         this.addChild(this.eventMarker)
-
     }
-
 }

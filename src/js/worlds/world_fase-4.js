@@ -22,7 +22,6 @@ export class WorldFaseFour extends World {
 
         if (engine.input.keyboard.wasPressed(Keys.R)) {
             this.updateProgression(+10)
-            // this.updateProgression(+10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.F)) {
@@ -35,18 +34,33 @@ export class WorldFaseFour extends World {
         }
 
         if (this.resourceCounter >= 3600) {
-            this.updateResource(500)
+            this.updateResource("+", 10)
             this.resourceCounter = 0
         }
 
-        // if (this.progression >= 410) {
-        //     engine.currentScene.worldUpdate("faseFive", this.progression)
-        //     this.kill()
-        // }
+        if (engine.input.keyboard.wasPressed(Keys.Enter)) {
+            this.updateReputation("-", 10)
+        }
+
+        if (engine.input.keyboard.wasPressed(Keys.B)) {
+            this.updateResource("+", 10)
+        }
 
         if (this.progression <= this.minProgress) {
-            engine.currentScene.worldUpdate("faseThree", this.progression)
-            this.kill()
+            this.scale.x -= 0.025
+            this.scale.y -= 0.025
+            if (this.scale.x < 0.75 && this.scale.y < 0.75) {
+                this.scene.worldUpdate("faseThree", this.progression)
+                this.kill()
+            }
+        }
+
+        if (this.progression >= this.maxProgress) {
+            this.scale.x -= 0.025
+            this.scale.y -= 0.025
+            if (this.scale.x < 0.75 && this.scale.y < 0.75) {
+                this.updateWorld(this.fase, this.progression)
+            }
         }
     }
 }
