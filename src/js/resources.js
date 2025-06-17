@@ -25,7 +25,10 @@ const Resources = {
     Materiaal2: new ImageSource('images/Materiaal_2.jpg'),
     Endbg: new ImageSource('images/endscene.png'),
     MainText: new FontSource('fonts/Audiowide-Regular.ttf', 'AudioWide'),
-    SubText: new FontSource('fonts/Orbitron-VariableFont_wght.ttf', 'Orbitron')
+    SubText: new FontSource('fonts/Orbitron-VariableFont_wght.ttf', 'Orbitron'),
+    Click: new Sound('sounds/click.mp3'),
+    Intro: new Sound('sounds/intro.mp3'),
+    Hover: new Sound('sounds/hover.mp3'),
 }
 
 

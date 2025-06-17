@@ -15,7 +15,8 @@ export class StartScene extends Scene {
 
         this.pointer = new Pointer()
         this.add(this.pointer)
-        this.pointer.startButton = this.startButton;
+
+        Resources.Intro.play(0.4)
 
         const title = new Label({
             text: "Planet Keeper",
@@ -32,7 +33,7 @@ export class StartScene extends Scene {
             pos: new Vector(640, 410),
             width: 300,
             height: 60,
-            collisionType: CollisionType.PreventCollision,
+            collisionType: CollisionType.ActiveCollision,
         });
 
         this.startButtonGraphics = new Rectangle({
@@ -41,7 +42,6 @@ export class StartScene extends Scene {
             height: 60,
         });
         this.startButton.graphics.use(this.startButtonGraphics);
-
 
         const buttonText = new Label({
             text: "Start spel",
@@ -111,6 +111,7 @@ export class StartScene extends Scene {
         if (isHovering && gamepad && gamepad.isButtonPressed(Buttons.Face1)) {
             engine.goToScene("game");
             console.log("press A");
+            Resources.Click.play(0.5)
         }
     }
 }
