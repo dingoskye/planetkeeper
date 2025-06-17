@@ -78,6 +78,8 @@ export class World extends Actor {
     }
 
     updateReputation() {
+        this.reputation = this.reputation + 10
+        this.scene.ui.reputationBar.updateReputation(10)
         console.log(this.reputation)
     }
 

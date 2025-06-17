@@ -37,9 +37,7 @@ export class ResourceUI extends Actor {
         }
     }
 
-    // updateResources() {
-    //     this.label.text = `${this.resources}`
-    // }
+
 
     updateResources(number) {
 
