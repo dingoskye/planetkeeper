@@ -5,6 +5,8 @@ import { ResourceUI } from './resourcesui.js'
 import { BackgroundUi } from './backgroundUi.js'
 import { PopUp } from './popup.js'
 import { ProgressButtonUI } from './progressbutton.js'
+import { WorldnameUI } from "./worldname.js"
+import { WorldFaseUI } from "./worldfaseui.js"
 
 export class UI extends ScreenElement {
 
@@ -39,6 +41,14 @@ export class UI extends ScreenElement {
         //ProgessButton
         this.progressButton = new ProgressButtonUI()
         this.addChild(this.progressButton)
+
+        //Worldname
+        this.worldName = new WorldnameUI()
+        this.addChild(this.worldName)
+
+        //Worldfase
+        this.worldFase = new WorldFaseUI()  
+        this.addChild(this.worldFase)
 
     }
 

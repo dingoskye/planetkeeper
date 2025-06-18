@@ -13,6 +13,8 @@ export class ResourceUI extends Actor {
         let resourceImage = new Actor({
             x: 50, y: 40,
         })
+
+        
         resourceImage.graphics.use(Resources.GoldbarStacks.toSprite())
         resourceImage.scale = new Vector(0.5, 0.5)
         this.addChild(resourceImage)

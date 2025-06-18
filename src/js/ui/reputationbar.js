@@ -3,7 +3,7 @@ import { Resources } from '../resources.js'
 
 export class ReputationBar extends Actor {
 
-    bar
+    bars
     barGraphics
     reputation
     maxValue

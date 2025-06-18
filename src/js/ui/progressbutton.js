@@ -9,24 +9,19 @@ export class ProgressButtonUI extends Actor {
     resource
 
     constructor() {
-        super()
+        super({x: 440, y: 40})
 
 
         this.resource = 0
-        // dit is al een actor dus je hoeft niet nog een actor te maken
-        let resourceImage = new Actor({
-            x: 440, y: 40,
-        })
-        resourceImage.graphics.use(Resources.Materiaal1.toSprite())
-        resourceImage.scale = new Vector(0.08, 0.08)
-        this.addChild(resourceImage)
+
+        this.graphics.use(Resources.Materiaal1.toSprite())
+        this.scale = new Vector(0.08, 0.08)
+        
 
     }
 
     onPostUpdate(engine) {
         if (engine.input.keyboard.wasPressed(Keys.Z)) {
-
-
             console.log(this.scene)
             console.log(this.scene.worldActor)
             this.scene.worldActor.updateProgression(10)
