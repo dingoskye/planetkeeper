@@ -27,8 +27,15 @@ const Resources = {
     MainText: new FontSource('fonts/Audiowide-Regular.ttf', 'AudioWide'),
     SubText: new FontSource('fonts/Orbitron-VariableFont_wght.ttf', 'Orbitron'),
     Click: new Sound('sounds/click.mp3'),
-    Intro: new Sound('sounds/intro.mp3'),
     Hover: new Sound('sounds/hover.mp3'),
+    EventPopUp: new Sound('sounds/eventPopUp.mp3'),
+    Materials: new Sound('sounds/materials.mp3'),
+    upgradeFase: new Sound('sounds/upgradeFase.mp3'),
+    IncreaseReputation: new Sound('sounds/increaseReputation.mp3'),
+    DecreaseReputation: new Sound('sounds/decreaseReputation.mp3'),
+    Intro: new Sound('sounds/intro.mp3'),
+    GameWorld1: new Sound('sounds/gameWorld1.mp3'),
+    GameOver: new Sound('sounds/gameOver.mp3'),
 }
 
 
