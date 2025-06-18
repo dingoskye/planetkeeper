@@ -40,7 +40,7 @@ export class World extends Actor {
         this.resourceCounter++
 
         if (engine.input.keyboard.wasPressed(Keys.R)) {
-            this.updateProgression(+10)
+            this.updateProgression(10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.F)) {
@@ -62,7 +62,7 @@ export class World extends Actor {
         }
 
         if (engine.input.keyboard.wasPressed(Keys.B)) {
-            this.updateResource(+10)
+            this.updateResource(10)
         }
 
         //animatie voor de upgrade en downgrade
