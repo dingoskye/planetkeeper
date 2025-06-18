@@ -43,18 +43,22 @@ export class PopUp extends Actor {
 
     onInitialize() {
         console.log(this.kind)
-
+        //checkt wat er geupdate gaat worden
         if (this.kind === "reputation") {
             this.label.pos = new Vector(1100, 100)
             this.label1.pos = new Vector(1190, 100)
 
             this.image.pos = new Vector(1150, 116)
+            //past aan voor omhoog of omlaag
             if (this.updatekind === "-") {
                 this.image.graphics.use(Resources.SadFace.toSprite())
+                Resources.DecreaseReputation.play()
             } else if (this.updatekind === "+") {
                 this.image.graphics.use(Resources.HappyFace.toSprite())
+                Resources.IncreaseReputation.play()
             }
             this.image.scale = new Vector(0.5, 0.5)
+
         } else if (this.kind === "resource") {
             this.label.pos = new Vector(25, 100)
             this.label1.pos = new Vector(115, 100)
@@ -62,6 +66,7 @@ export class PopUp extends Actor {
             this.image.pos = new Vector(75, 116)
             this.image.graphics.use(Resources.Goldbar.toSprite())
             this.image.scale = new Vector(0.5, 0.5)
+            Resources.Materials.play()
         }
 
         this.addChild(this.label)
@@ -70,6 +75,7 @@ export class PopUp extends Actor {
     }
 
     onPostUpdate() {
+        //zorgt dat de popup weg gaat
         this.counter--
         if (this.counter === 0) {
             this.actions.fade(0, 100).callMethod(() => this.kill)

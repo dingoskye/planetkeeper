@@ -65,6 +65,7 @@ export class World extends Actor {
             this.updateResource(+10)
         }
 
+        //animatie voor de upgrade en downgrade
         if (this.progression <= this.minProgress) {
             this.scale.x -= 0.025
             this.scale.y -= 0.025
@@ -83,6 +84,7 @@ export class World extends Actor {
     }
 
     updateResource(number) {
+        //Haald het nummer en het wiskundige teken uit elkaar
         const update = number < 0 ? "-" : "+"
         const number1 = Math.abs(number)
 
@@ -91,18 +93,20 @@ export class World extends Actor {
     }
 
     updateProgression(progress) {
-        this.progression = this.progression + progress
+        this.progression += progress
         console.log(this.progression)
         this.scene.ui.progressionBar.showProgress()
     }
 
     updateReputation(number) {
+        //Haald het nummer en het wiskundige teken uit elkaar
         const update = number < 0 ? "-" : "+"
         const number1 = Math.abs(number)
+
         if (update === "+") {
-            this.reputation = this.reputation + number
+            this.reputation += number1
         } else if (update === "-") {
-            this.reputation = this.reputation - number
+            this.reputation -= number1
         }
 
         this.scene.ui.reputationBar.showReputation()
@@ -111,6 +115,7 @@ export class World extends Actor {
     }
 
     updateWorld(fase) {
+        //checkt welke fase de wereld nu is en welke hij moet worden stuurd hij mee
         switch (fase) {
             case 1:
                 this.scene.worldUpdate("faseTwo", this.progression)
@@ -128,6 +133,7 @@ export class World extends Actor {
                 this.scene.worldUpdate("faseFive", this.progression)
         }
 
+        //haald deze wereld weg en reset de progressiebalk
         this.kill()
         this.scene.ui.progressionBar.resetBar()
     }

@@ -8,6 +8,7 @@ export class StartScene extends Scene {
     pointer
     startButton
     buttonFocused = false
+    sceneStarted = false
 
     onInitialize(engine) {
         const startbg = new Startbg()
@@ -84,7 +85,7 @@ export class StartScene extends Scene {
         }
     }
 
-     onPreUpdate(engine) {
+    onPreUpdate(engine) {
         //wat ik heb
         const pointer = this.pointer;
         let isHovering = false;
@@ -92,7 +93,7 @@ export class StartScene extends Scene {
 
             // Dit is met copilot gedaan
             //Checkt de corners/hitbox van de start button en wanneer de pointer op die positie is, komt er een soort trigger
-           isHovering =
+            isHovering =
                 pointer.pos.x >= this.startButton.pos.x - this.startButton.width / 2 &&
                 pointer.pos.x <= this.startButton.pos.x + this.startButton.width / 2 &&
                 pointer.pos.y >= this.startButton.pos.y - this.startButton.height / 2 &&
@@ -103,15 +104,20 @@ export class StartScene extends Scene {
         pointer.buttonFocused = isHovering;
         this.updateButtonVisual();
 
-        if (engine.input.keyboard.wasPressed(Keys.Enter)) {
+        if (!this.sceneStarted && engine.input.keyboard.wasPressed(Keys.Enter)) {
+            this.sceneStarted = true;
             engine.goToScene("game");
+            Resources.Click.play(0.5)
+            Resources.Intro.stop()
         }
 
         const gamepad = engine.mygamepad;
-        if (isHovering && gamepad && gamepad.isButtonPressed(Buttons.Face1)) {
+        if (!this.sceneStarted && isHovering && gamepad && gamepad.isButtonPressed(Buttons.Face1)) {
+            this.sceneStarted = true;
             engine.goToScene("game");
             console.log("press A");
             Resources.Click.play(0.5)
+            Resources.Intro.stop()
         }
     }
 }
