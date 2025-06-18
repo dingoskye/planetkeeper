@@ -94,7 +94,7 @@ export class World extends Actor {
 
     updateProgression(progress) {
         this.progression += progress
-        console.log(this.progression)
+        console.log(`your progress is${this.progression}`)
         this.scene.ui.progressionBar.showProgress()
     }
 
