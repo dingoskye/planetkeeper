@@ -66,7 +66,7 @@ export class GameOver extends Scene {
 
       onActivate(context) {
         this.sceneStarted = false
-        Resources.GameOver.play(0.5);
+        Resources.GameOver.play(0.3);
     }
 
     onPreUpdate(engine) {
