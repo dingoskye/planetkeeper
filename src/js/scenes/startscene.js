@@ -22,8 +22,6 @@ export class StartScene extends Scene {
         this.startButton = new StartButton();
         this.add(this.startButton);
 
-        Resources.Intro.play(0.8);
-
         const title = new Label({
             text: "Planet Keeper",
             font: Resources.MainText.toFont({
@@ -52,6 +50,7 @@ export class StartScene extends Scene {
 
     onActivate(context) {
         this.sceneStarted = false
+        Resources.Intro.play(0.8);
     }
 
     onPreUpdate(engine) {

@@ -9,7 +9,7 @@ export class Pointer extends Actor {
 
     constructor() {
         super({
-            pos: new Vector(640, 400),
+            pos: new Vector(650, 550),
             scale: new Vector(0.2, 0.2),
             anchor: Vector.Half,
             z: 5,
