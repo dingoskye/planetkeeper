@@ -9,7 +9,9 @@ import { WorldFaseFour } from '../worlds/world_fase-4.js'
 import { WorldFaseFive } from '../worlds/world_fase-5.js'
 import { WorldDead } from '../worlds/worldDead.js'
 import { DilemmaEvent } from "../dilemmaEvent.js"
-
+import { Flower } from '../collectabel/flower.js'
+import { BloodBird } from '../collectabel/bloodBird.js'
+import { RainbowBird } from '../collectabel/rainbowBird.js'
 export class GameScene extends Scene {
 
     onInitialize(engine) {
@@ -28,7 +30,20 @@ export class GameScene extends Scene {
         const dilemma = new DilemmaEvent();
         this.add(dilemma)
 
+        /* 
+        Onder dit zijn tijdelijke adds
+        */
+        const flower = new Flower()
+        this.add(flower)
 
+        const bloodBird = new BloodBird()
+        this.add(bloodBird)
+
+        const rainbowBird = new RainbowBird()
+        this.add(rainbowBird)
+        /* 
+        boven dit staan tijdelijke adds
+        */
     }
 
     onPostUpdate(engine) {
