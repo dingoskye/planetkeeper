@@ -58,7 +58,7 @@ export class World extends Actor {
         }
 
         if (engine.input.keyboard.wasPressed(Keys.Enter)) {
-            this.updateReputation(0)
+            this.updateReputation(+10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.B)) {
@@ -84,14 +84,12 @@ export class World extends Actor {
     }
 
     updateResource(number) {
-        if (number < 0 || number > 0) {
-            //Haald het nummer en het wiskundige teken uit elkaar
-            const update = number < 0 ? "-" : "+"
-            const number1 = Math.abs(number)
+        //Haald het nummer en het wiskundige teken uit elkaar
+        const update = number < 0 ? "-" : "+"
+        const number1 = Math.abs(number)
 
-            this.scene.ui.resourceUI.showResources(update, number1)
-            this.scene.ui.showPopUp("resource", update, number1)
-        }
+        this.scene.ui.resourceUI.showResources(update, number1)
+        this.scene.ui.showPopUp("resource", update, number1)
     }
 
     updateProgression(progress) {
@@ -101,19 +99,21 @@ export class World extends Actor {
     }
 
     updateReputation(number) {
-        //Haald het nummer en het wiskundige teken uit elkaar
-        const update = number < 0 ? "-" : "+"
-        const number1 = Math.abs(number)
+        if (number !== 0) {
+            //Haald het nummer en het wiskundige teken uit elkaar
+            const update = number < 0 ? "-" : "+"
+            const number1 = Math.abs(number)
 
-        if (update === "+") {
-            this.reputation += number1
-        } else if (update === "-") {
-            this.reputation -= number1
+            if (update === "+") {
+                this.reputation += number1
+            } else if (update === "-") {
+                this.reputation -= number1
+            }
+
+            this.scene.ui.reputationBar.showReputation()
+            this.scene.ui.showPopUp("reputation", update, number1)
+            console.log(this.reputation)
         }
-
-        this.scene.ui.reputationBar.showReputation()
-        this.scene.ui.showPopUp("reputation", update, number1)
-        console.log(this.reputation)
     }
 
     updateWorld(fase) {
