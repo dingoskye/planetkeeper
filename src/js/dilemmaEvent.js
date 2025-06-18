@@ -29,12 +29,13 @@ export class DilemmaEvent extends Actor {
     dilemmaManager() {
         // Toon direct een random dilemma bij start
         // this.showRandomDilemma();
-
-        // Daarna elke minuut een nieuw dilemma
-        this.dilemmaInterval = setInterval(() => {
-            this.hideDilemma(); // Verberg het vorige dilemma
-            this.showRandomDilemma();
-        }, 60000); // 60.000 ms = 1 minuut
+        if (!this.activeDilemma) {
+            // Daarna elke minuut een nieuw dilemma
+            this.dilemmaInterval = setInterval(() => {
+                this.hideDilemma(); // Verberg het vorige dilemma
+                this.showRandomDilemma();
+            }, 2000); // 60.000 ms = 1 minuut
+        }
     }
 
     showRandomDilemma() {
@@ -47,7 +48,10 @@ export class DilemmaEvent extends Actor {
 
     showDilemma(event) {
 
-        this.hideDilemma(); // Verberg eventueel vorig dilemma
+        // Stop het bestaande interval
+        if (this.dilemmaInterval) {
+            clearInterval(this.dilemmaInterval);
+        }
 
         // Achtergrond 
         this.activeDilemma = true
@@ -60,7 +64,7 @@ export class DilemmaEvent extends Actor {
         const bgPaddingX = 20;
         const bgPaddingY = 20;
 
-        const bgWidth = 900; // of bijvoorbeeld 1240 als je bijna het hele canvas wilt
+        const bgWidth = 1280; // of bijvoorbeeld 1280 als je bijna het hele canvas wilt
         const bgHeight = (labelSpacing * (labelCount - 1)) + 40 + bgPaddingY * 2; // hoogte van alle labels + marge
 
         const bgX = labelStartX + bgWidth / 2 - bgPaddingX;
@@ -88,7 +92,7 @@ export class DilemmaEvent extends Actor {
         // Label voor het dilemma
         this.#LabelDilemma = new Label({
             text: event.title + "\n" + event.context,
-            pos: new Vector(20, 570),
+            pos: new Vector(30, 550),
             font: new Font({
                 size: 25,
                 family: 'Open Sans',
@@ -103,7 +107,7 @@ export class DilemmaEvent extends Actor {
         // Labels voor de keuzes
         this.#labelA = new Label({
             text: "A: " + event.choices[0].option,
-            pos: new Vector(20, 630),
+            pos: new Vector(30, 610),
             font: new Font({
                 size: 20,
                 family: 'Open Sans',
@@ -123,7 +127,7 @@ export class DilemmaEvent extends Actor {
 
         this.#labelB = new Label({
             text: "B: " + event.choices[1].option,
-            pos: new Vector(20, 650),
+            pos: new Vector(30, 640),
             font: new Font({
                 size: 20,
                 family: 'Open Sans',
@@ -143,7 +147,7 @@ export class DilemmaEvent extends Actor {
 
         this.#LabelC = new Label({
             text: "C: " + event.choices[2].option,
-            pos: new Vector(20, 670),
+            pos: new Vector(30, 670),
             font: new Font({
                 size: 20,
                 family: 'Open Sans',
@@ -202,20 +206,6 @@ export class DilemmaEvent extends Actor {
             console.warn('World instance niet gevonden!');
         }
 
-
-
-        // Verberg het dilemma na keuze
-        this.hideDilemma();
-
-        // Stop het bestaande interval
-        if (this.dilemmaInterval) {
-            clearInterval(this.dilemmaInterval);
-        }
-
-        // Start het interval opnieuw (1 minuut)
-        this.dilemmaInterval = setInterval(() => {
-            this.hideDilemma();
-            this.showRandomDilemma();
-        }, 60000);
+        this.dilemmaManager();
     }
 }
