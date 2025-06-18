@@ -35,8 +35,8 @@ export class GameScene extends Scene {
         /* 
         Onder dit zijn tijdelijke adds
         */
-        const flower = new Flower()
-        this.add(flower)
+        this.flower = new Flower()
+        this.add(this.flower)
 
         const bloodBird = new BloodBird()
         this.add(bloodBird)

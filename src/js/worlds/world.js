@@ -12,6 +12,7 @@ export class World extends Actor {
     maxProgress
     fase
     activeDilemma
+    collectableCounter
 
 
     constructor(progression) {
@@ -27,7 +28,7 @@ export class World extends Actor {
         this.scale = new Vector(1, 1)
         this.progressionCounter = 0
         this.resourceCounter = 0
-
+        this.collectableCounter = 0
         this.reputation = 50
         this.minProgress = 0
         this.maxProgress = 110
@@ -38,13 +39,19 @@ export class World extends Actor {
     onPostUpdate(engine) {
         this.progressionCounter++
         this.resourceCounter++
-
+        this.collectableCounter++
         if (engine.input.keyboard.wasPressed(Keys.R)) {
             this.updateProgression(10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.F)) {
             this.updateProgression(-10)
+        }
+
+        if (this.collectableCounter === 500) {
+            this.scene.flower.flowerCollectible()
+            this.collectableCounter
+            console.log(this.collectableCounter)
         }
 
         if (this.progressionCounter >= 3600) {
