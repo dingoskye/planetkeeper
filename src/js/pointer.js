@@ -10,7 +10,7 @@ export class Pointer extends Actor {
     constructor() {
         super({
             pos: new Vector(650, 550),
-            scale: new Vector(0.2, 0.2),
+            scale: new Vector(0.1, 0.1),
             anchor: Vector.Half,
             z: 5,
             collisionType: CollisionType.ActiveCollision,

@@ -12,6 +12,7 @@ import { DilemmaEvent } from "../dilemmaEvent.js"
 import { Flower } from '../collectabel/flower.js'
 import { BloodBird } from '../collectabel/bloodBird.js'
 import { RainbowBird } from '../collectabel/rainbowBird.js'
+
 export class GameScene extends Scene {
 
     onInitialize(engine) {
@@ -60,13 +61,17 @@ export class GameScene extends Scene {
         }
     }
 
+    onActivate(context) {
+
+    }
+
     gameOver(engine) {
         console.log("Overschakelen naar gameover");
         engine.goToScene("gameover");
     }
 
     worldUpdate(newWorld, progression) {
-        console.log("Adding world:", this.world);
+        console.log("Adding world:", this.world)
         if (this.worldActor) {
             this.worldActor.kill()
         }
@@ -77,6 +82,7 @@ export class GameScene extends Scene {
         else if (newWorld === "faseTwo") {
             this.worldActor = new WorldFaseTwo(progression)
             this.add(this.worldActor)
+            Resources.upgradeFase.play(0,5);
         }
         else if (newWorld === "faseThree") {
             this.worldActor = new WorldFaseThree(progression)
