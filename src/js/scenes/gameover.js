@@ -7,12 +7,11 @@ import { StartButton } from "../startButton.js";
 export class GameOver extends Scene {
     pointer;
     startButton;
+    sceneStart = false;
     wasHovering = false;
 
     onInitialize(engine) {
         console.log("gameover scherm");
-
-        Resources.GameOver.play(0.4);
 
         const bg = new Bg();
         this.add(bg);
@@ -63,6 +62,11 @@ export class GameOver extends Scene {
         this.add(title);
         this.add(message);
         this.add(instruction);
+    }
+
+      onActivate(context) {
+        this.sceneStarted = false
+        Resources.GameOver.play(0.5);
     }
 
     onPreUpdate(engine) {

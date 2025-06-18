@@ -5,12 +5,12 @@ import { Pointer } from "../pointer.js"
 import { StartButton } from "../startButton.js"
 
 export class StartScene extends Scene {
-    mygamepad
-    pointer
-    startButton
-    buttonFocused = false
-    sceneStarted = false
-    wasHovering = false
+    mygamepad;
+    pointer;
+    startButton;
+    buttonFocused = false;
+    sceneStarted = false;
+    wasHovering = false;
 
     onInitialize(engine) {
         const startbg = new Startbg();
@@ -50,7 +50,7 @@ export class StartScene extends Scene {
 
     onActivate(context) {
         this.sceneStarted = false
-        Resources.Intro.play(0.8);
+        Resources.Intro.play(0.6);
     }
 
     onPreUpdate(engine) {

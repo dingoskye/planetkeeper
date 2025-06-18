@@ -28,7 +28,7 @@ export class StartButton extends Actor {
                 textAlign: 'center',
                 size: 30,
             }),
-            pos: new Vector(0, 0),
+            pos: new Vector(0, -15),
         });
 
         this.addChild(this.buttonText);
