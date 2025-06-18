@@ -11,6 +11,8 @@ export class GameOver extends Scene {
     onInitialize(engine) {
         console.log("gameover scherm");
 
+        Resources.GameOver.play(0.4);
+
         const bg = new Bg();
         this.add(bg);
         bg.graphics.use(Resources.Endbg.toSprite());
@@ -80,12 +82,15 @@ export class GameOver extends Scene {
 
         if (engine.input.keyboard.wasPressed(Keys.Enter)) {
             engine.goToScene("start");
+            Resources.Click.play(0.5);
+            Resources.GameOver.stop();
         }
 
         const gamepad = engine.mygamepad;
         if (isHovering && gamepad && gamepad.isButtonPressed(Buttons.Face1)) {
             engine.goToScene("start");
             Resources.Click.play(0.5);
+            Resources.GameOver.stop();
         }
     }
 }
