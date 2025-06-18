@@ -100,9 +100,9 @@ export class World extends Actor {
         const update = number < 0 ? "-" : "+"
         const number1 = Math.abs(number)
         if (update === "+") {
-            this.reputation = this.reputation + number
+            this.reputation = this.reputation + number1
         } else if (update === "-") {
-            this.reputation = this.reputation - number
+            this.reputation = this.reputation - number1
         }
 
         this.scene.ui.reputationBar.showReputation()

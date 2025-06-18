@@ -43,7 +43,6 @@ export class PopUp extends Actor {
 
     onInitialize() {
         console.log(this.kind)
-
         if (this.kind === "reputation") {
             this.label.pos = new Vector(1100, 100)
             this.label1.pos = new Vector(1190, 100)
@@ -51,10 +50,13 @@ export class PopUp extends Actor {
             this.image.pos = new Vector(1150, 116)
             if (this.updatekind === "-") {
                 this.image.graphics.use(Resources.SadFace.toSprite())
+                Resources.DecreaseReputation.play()
             } else if (this.updatekind === "+") {
                 this.image.graphics.use(Resources.HappyFace.toSprite())
+                Resources.IncreaseReputation.play()
             }
             this.image.scale = new Vector(0.5, 0.5)
+
         } else if (this.kind === "resource") {
             this.label.pos = new Vector(25, 100)
             this.label1.pos = new Vector(115, 100)
@@ -62,6 +64,7 @@ export class PopUp extends Actor {
             this.image.pos = new Vector(75, 116)
             this.image.graphics.use(Resources.Goldbar.toSprite())
             this.image.scale = new Vector(0.5, 0.5)
+            Resources.Materials.play()
         }
 
         this.addChild(this.label)

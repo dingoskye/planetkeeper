@@ -36,10 +36,6 @@ export class UI extends ScreenElement {
         this.addChild(this.progressionBar)
     }
 
-    onInitialize() {
-        //this.showPopUp("resource", "+", 10)
-    }
-
     showPopUp(kind, update, number) {
         let popUp = new PopUp(kind, update, number)
         this.addChild(popUp)
