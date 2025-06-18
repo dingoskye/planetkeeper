@@ -5,6 +5,7 @@ import { StartScene } from './scenes/startscene.js'
 import { GameScene } from './scenes/gamescene.js'
 import { GameOver } from './scenes/gameover.js'
 import { DilemmaEvent } from './dilemmaEvent.js'
+import { CollectablesScene } from './scenes/collectablescene.js'
 
 export class Game extends Engine {
 
@@ -49,6 +50,11 @@ export class Game extends Engine {
 
         this.add('game', {
             scene: new GameScene(),
+            transitions: transitions
+        });
+
+        this.add('collectables', {
+            scene: new CollectablesScene(),
             transitions: transitions
         });
 

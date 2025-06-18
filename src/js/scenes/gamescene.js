@@ -1,4 +1,4 @@
-import { Actor, Scene, Vector, Buttons } from "excalibur"
+import { Actor, Scene, Vector, Buttons, Keys } from "excalibur"
 import { Resources } from '../resources.js'
 import { UI } from '../ui/ui.js'
 import { Bg } from '../background.js'
@@ -46,6 +46,10 @@ export class GameScene extends Scene {
         */
     }
 
+    onActivate(context) {
+        this.sceneStarted = false
+    }
+
     onPostUpdate(engine) {
         if (engine.mygamepad) {
             const xButton = engine.mygamepad.isButtonPressed(Buttons.Face3);
@@ -53,6 +57,10 @@ export class GameScene extends Scene {
                 console.log("X-knop ingedrukt");
                 this.gameOver(engine);
             }
+        }
+
+        if (engine.input.keyboard.wasPressed(Keys.C)) {
+            this.engine.goToScene("collectables")
         }
     }
 
