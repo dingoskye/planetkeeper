@@ -58,7 +58,7 @@ export class World extends Actor {
         }
 
         if (engine.input.keyboard.wasPressed(Keys.Enter)) {
-            this.updateReputation(-10)
+            this.updateReputation(0)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.B)) {
@@ -84,12 +84,14 @@ export class World extends Actor {
     }
 
     updateResource(number) {
-        //Haald het nummer en het wiskundige teken uit elkaar
-        const update = number < 0 ? "-" : "+"
-        const number1 = Math.abs(number)
+        if (number < 0 || number > 0) {
+            //Haald het nummer en het wiskundige teken uit elkaar
+            const update = number < 0 ? "-" : "+"
+            const number1 = Math.abs(number)
 
-        this.scene.ui.resourceUI.showResources(update, number1)
-        this.scene.ui.showPopUp("resource", update, number1)
+            this.scene.ui.resourceUI.showResources(update, number1)
+            this.scene.ui.showPopUp("resource", update, number1)
+        }
     }
 
     updateProgression(progress) {

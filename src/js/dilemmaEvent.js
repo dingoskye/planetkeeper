@@ -32,9 +32,8 @@ export class DilemmaEvent extends Actor {
         if (!this.activeDilemma) {
             // Daarna elke minuut een nieuw dilemma
             this.dilemmaInterval = setInterval(() => {
-                this.hideDilemma(); // Verberg het vorige dilemma
                 this.showRandomDilemma();
-            }, 60.000); // 60.000 ms = 1 minuut
+            }, 60000); // 60.000 ms = 1 minuut
         }
     }
 
@@ -206,6 +205,7 @@ export class DilemmaEvent extends Actor {
             console.warn('World instance niet gevonden!');
         }
 
+        this.hideDilemma(); // Verberg het vorige dilemma
         this.dilemmaManager();
     }
 }
