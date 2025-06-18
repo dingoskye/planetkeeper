@@ -4,6 +4,7 @@ import { ReputationBar } from './reputationbar.js'
 import { ResourceUI } from './resourcesui.js'
 import { BackgroundUi } from './backgroundUi.js'
 import { PopUp } from './popup.js'
+import { ProgressButtonUI } from './progressbutton.js'
 
 export class UI extends ScreenElement {
 
@@ -34,6 +35,11 @@ export class UI extends ScreenElement {
         //Progressie
         this.progressionBar = new ProgressionBar()
         this.addChild(this.progressionBar)
+
+        //ProgessButton
+        this.progressButton = new ProgressButtonUI()
+        this.addChild(this.progressButton)
+
     }
 
     showPopUp(kind, update, number) {

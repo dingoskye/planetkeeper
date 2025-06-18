@@ -26,11 +26,12 @@ export class ProgressButtonUI extends Actor {
     onPostUpdate(engine) {
         if (engine.input.keyboard.wasPressed(Keys.Z)) {
 
-            console.log("Progression button pressed")
+
             console.log(this.scene)
             console.log(this.scene.worldActor)
             this.scene.worldActor.updateProgression(10)
-            // this.scene.worldActor.updateResource(10)
+            this.scene.worldActor.updateResource(-10)
+            
             // this.scene.worldActor.updateReputation(-10)
         }
     }
