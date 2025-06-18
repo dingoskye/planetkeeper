@@ -50,6 +50,10 @@ export class StartScene extends Scene {
         this.add(instruction);
     }
 
+    onActivate(context) {
+        this.sceneStarted = false
+    }
+
     onPreUpdate(engine) {
         //wat ik heb
         const pointer = this.pointer;

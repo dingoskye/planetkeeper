@@ -46,10 +46,6 @@ export class GameScene extends Scene {
         */
     }
 
-    onActivate(context) {
-        this.sceneStarted = false
-    }
-
     onPostUpdate(engine) {
         if (engine.mygamepad) {
             const xButton = engine.mygamepad.isButtonPressed(Buttons.Face3);
