@@ -15,6 +15,8 @@ import { RainbowBird } from '../collectabel/rainbowBird.js'
 
 export class GameScene extends Scene {
 
+    sceneStarted = false;
+
     onInitialize(engine) {
 
         const background = new Bg()
@@ -23,7 +25,6 @@ export class GameScene extends Scene {
         this.worldActor = new World();
         console.log("Adding world:", this.worldActor);
         this.add(this.worldActor)
-
 
         this.ui = new UI()
         this.add(this.ui)
@@ -62,12 +63,14 @@ export class GameScene extends Scene {
     }
 
     onActivate(context) {
-
+        this.sceneStarted = false
+        Resources.GameWorld1.play(0.6);
     }
 
     gameOver(engine) {
         console.log("Overschakelen naar gameover");
         engine.goToScene("gameover");
+        Resources.GameWorld1.stop();
     }
 
     worldUpdate(newWorld, progression) {
@@ -82,19 +85,22 @@ export class GameScene extends Scene {
         else if (newWorld === "faseTwo") {
             this.worldActor = new WorldFaseTwo(progression)
             this.add(this.worldActor)
-            Resources.upgradeFase.play(0,5);
+            Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseThree") {
             this.worldActor = new WorldFaseThree(progression)
             this.add(this.worldActor)
+            Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseFour") {
             this.worldActor = new WorldFaseFour(progression)
             this.add(this.worldActor)
+            Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseFive") {
             this.worldActor = new WorldFaseFive(progression)
             this.add(this.worldActor)
+            Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseOne") {
             this.worldActor = new World(progression)

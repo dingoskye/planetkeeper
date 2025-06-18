@@ -91,6 +91,7 @@ export class GameOver extends Scene {
 
         if (engine.input.keyboard.wasPressed(Keys.Enter)) {
             engine.goToScene("start");
+            Resources.GameOver.stop();
         }
 
         const gamepad = engine.mygamepad;
