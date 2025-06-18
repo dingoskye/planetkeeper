@@ -43,11 +43,13 @@ export class PopUp extends Actor {
 
     onInitialize() {
         console.log(this.kind)
+        //checkt wat er geupdate gaat worden
         if (this.kind === "reputation") {
             this.label.pos = new Vector(1100, 100)
             this.label1.pos = new Vector(1190, 100)
 
             this.image.pos = new Vector(1150, 116)
+            //past aan voor omhoog of omlaag
             if (this.updatekind === "-") {
                 this.image.graphics.use(Resources.SadFace.toSprite())
                 Resources.DecreaseReputation.play()
@@ -73,6 +75,7 @@ export class PopUp extends Actor {
     }
 
     onPostUpdate() {
+        //zorgt dat de popup weg gaat
         this.counter--
         if (this.counter === 0) {
             this.actions.fade(0, 100).callMethod(() => this.kill)

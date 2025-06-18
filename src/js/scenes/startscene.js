@@ -107,6 +107,8 @@ export class StartScene extends Scene {
         if (!this.sceneStarted && engine.input.keyboard.wasPressed(Keys.Enter)) {
             this.sceneStarted = true;
             engine.goToScene("game");
+            Resources.Click.play(0.5)
+            Resources.Intro.stop()
         }
 
         const gamepad = engine.mygamepad;
@@ -115,6 +117,7 @@ export class StartScene extends Scene {
             engine.goToScene("game");
             console.log("press A");
             Resources.Click.play(0.5)
+            Resources.Intro.stop()
         }
     }
 }
