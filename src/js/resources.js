@@ -32,6 +32,7 @@ const Resources = {
     EventPopUp: new Sound('sounds/eventPopUp.mp3'),
     Materials: new Sound('sounds/materials.mp3'),
     upgradeFase: new Sound('sounds/upgradeFase.mp3'),
+    WarningDead: new Sound('sounds/warningDead.mp3'),
     IncreaseReputation: new Sound('sounds/increaseReputation.mp3'),
     DecreaseReputation: new Sound('sounds/decreaseReputation.mp3'),
     Intro: new Sound('sounds/intro.mp3'),

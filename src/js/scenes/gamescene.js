@@ -81,6 +81,7 @@ export class GameScene extends Scene {
         if (newWorld === "dead") {
             this.worldActor = new WorldDead(progression)
             this.add(this.worldActor)
+            Resources.WarningDead.play(0.3);
         }
         else if (newWorld === "faseTwo") {
             this.worldActor = new WorldFaseTwo(progression)
