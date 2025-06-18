@@ -10,6 +10,7 @@ export class StartScene extends Scene {
     startButton
     buttonFocused = false
     sceneStarted = false
+    wasHovering = false
 
     onInitialize(engine) {
         const startbg = new Startbg();
@@ -65,6 +66,10 @@ export class StartScene extends Scene {
         }
 
         //de rest is zelf
+        if (isHovering && !this.wasHovering) {
+            Resources.Hover.play(0.5);
+        }
+        this.wasHovering = isHovering;
         pointer.buttonFocused = isHovering;
         this.startButton.setFocused(isHovering);
 

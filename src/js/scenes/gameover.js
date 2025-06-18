@@ -7,6 +7,7 @@ import { StartButton } from "../startButton.js";
 export class GameOver extends Scene {
     pointer;
     startButton;
+    wasHovering = false;
 
     onInitialize(engine) {
         console.log("gameover scherm");
@@ -77,13 +78,15 @@ export class GameOver extends Scene {
                 pointer.pos.y <= btn.pos.y + btn.height / 2;
         }
 
+        if (isHovering && !this.wasHovering) {
+            Resources.Hover.play(0.5);
+        }
+        this.wasHovering = isHovering;
         pointer.buttonFocused = isHovering;
         btn.setFocused(isHovering);
 
         if (engine.input.keyboard.wasPressed(Keys.Enter)) {
             engine.goToScene("start");
-            Resources.Click.play(0.5);
-            Resources.GameOver.stop();
         }
 
         const gamepad = engine.mygamepad;
