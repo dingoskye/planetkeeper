@@ -9,6 +9,7 @@ export class DilemmaEvent extends Actor {
     #labelA
     #labelB
     #LabelC
+    activeDilemma
 
     constructor() {
         super()
@@ -38,7 +39,8 @@ export class DilemmaEvent extends Actor {
 
     showRandomDilemma() {
         const randomIndex = Math.floor(Math.random() * jsonData.length);
-        this.scene.worldActor.eventMarking();
+        this.activeDilemma = true
+        this.scene.worldActor.eventMarking(this.activeDilemma);
         const event = jsonData[randomIndex];
         this.showDilemma(event);
     }
@@ -48,7 +50,7 @@ export class DilemmaEvent extends Actor {
         this.hideDilemma(); // Verberg eventueel vorig dilemma
 
         // Achtergrond 
-
+        this.activeDilemma = true
         const canvasHeight = 720; // of this.scene.engine.drawHeight
         const labelStartX = 20;
         const labelStartY = canvasHeight - 170; // bijvoorbeeld
@@ -162,7 +164,8 @@ export class DilemmaEvent extends Actor {
 
     hideDilemma() {
         if (this.labelScreen) {
-            this.scene.worldActor.eventKill();
+            this.activeDilemma = false;
+            this.scene.worldActor.eventKill(this.activeDilemma);
             this.labelScreen.kill();
             this.labelScreen = null;
         }

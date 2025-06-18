@@ -11,6 +11,8 @@ export class World extends Actor {
     reputation
     maxProgress
     fase
+    activeDilemma
+
 
     constructor(progression) {
         super({ anchor: new Vector(0.5, 0.5) })
@@ -19,6 +21,7 @@ export class World extends Actor {
         } else {
             this.progression = 10
         }
+        this.activeDilemma = false
         this.graphics.use(Resources.World.toSprite())
         this.pos = new Vector(640, 350)
         this.scale = new Vector(1, 1)
@@ -69,14 +72,14 @@ export class World extends Actor {
                 this.scene.worldUpdate("dead", this.progression)
             }
         }
-
-        if (this.progression >= this.maxProgress) {
-            this.scale.x -= 0.025
-            this.scale.y -= 0.025
-            if (this.scale.x < 0.75 && this.scale.y < 0.75) {
-                this.updateWorld(this.fase, this.progression)
+        if (this.activeDilemma === false)
+            if (this.progression >= this.maxProgress) {
+                this.scale.x -= 0.025
+                this.scale.y -= 0.025
+                if (this.scale.x < 0.75 && this.scale.y < 0.75) {
+                    this.updateWorld(this.fase, this.progression)
+                }
             }
-        }
     }
 
     updateResource(number) {
@@ -128,14 +131,19 @@ export class World extends Actor {
         this.kill()
         this.scene.ui.progressionBar.resetBar()
     }
-    eventMarking() {
-        if (this.eventMarker) {
-            this.eventMarker.kill()
-        }
+    eventMarking(activeDilemma) {
+        this.activeDilemma = activeDilemma
+        console.log(this.activeDilemma, "new")
         this.eventMarker = new EventMarker()
         this.addChild(this.eventMarker)
     }
-    eventKill() {
+    eventKill(activeDilemma) {
+
+        this.activeDilemma = activeDilemma
+        console.log(this.activeDilemma, "kill")
         this.eventMarker.kill()
+    }
+    eventActive() {
+        console.log("check")
     }
 }
