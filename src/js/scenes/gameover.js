@@ -37,7 +37,7 @@ export class GameOver extends Scene {
                 color: Color.Gray,
                 textAlign: 'center'
             }),
-            pos: new Vector(640, 330),
+            pos: new Vector(640, 315),
             anchor: Vector.Half
         });
 
