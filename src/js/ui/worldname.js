@@ -10,7 +10,7 @@ export class WorldnameUI extends Label {
             text: "Verzin naam",
             pos: new Vector(540, 130),
             font: Resources.SubText.toFont({
-                size: 27,
+                size: 30,
                 unit: FontUnit.Px,
                 color: Color.White
             })
