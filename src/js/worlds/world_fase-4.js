@@ -34,16 +34,16 @@ export class WorldFaseFour extends World {
         }
 
         if (this.resourceCounter >= 3600) {
-            this.updateResource("+", 10)
+            this.updateResource(+10)
             this.resourceCounter = 0
         }
 
         if (engine.input.keyboard.wasPressed(Keys.Enter)) {
-            this.updateReputation("-", 10)
+            this.updateReputation(-10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.B)) {
-            this.updateResource("+", 10)
+            this.updateResource(+10)
         }
 
         if (this.progression <= this.minProgress) {
