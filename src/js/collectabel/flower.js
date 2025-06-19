@@ -13,7 +13,7 @@ export class Flower extends Actor {
         console.log(collection)
         if (collection) {
             if (collection.includes("flower")) {
-                return
+                this.graphics.use(Resources.CollectibleFlower.toSprite())
             } else {
                 console.log("there is a collection")
                 console.log("youll get a flower")

@@ -1,6 +1,7 @@
-import { Actor, Scene, Vector, Color, Label, FontUnit, TextAlign } from "excalibur"
+import { Actor, Scene, Vector, Color, Label, FontUnit, TextAlign, Keys } from "excalibur"
 import { Resources } from '../resources.js'
 import { BackgroundUi } from '../ui/backgroundUi.js'
+import { Flower } from '../collectabel/flower.js'
 
 export class CollectablesScene extends Scene {
 
@@ -26,5 +27,18 @@ export class CollectablesScene extends Scene {
             })
         })
         this.add(label)
+
+        this.flower = new Flower(250, 250)
+        this.add(this.flower)
+    }
+
+    onActivate() {
+        this.flower.flowerCollectible()
+    }
+
+    onPostUpdate(engine) {
+        if (engine.input.keyboard.wasPressed(Keys.G)) {
+            this.engine.goToScene('game')
+        }
     }
 }
