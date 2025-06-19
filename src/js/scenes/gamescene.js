@@ -35,14 +35,14 @@ export class GameScene extends Scene {
         /* 
         Onder dit zijn tijdelijke adds
         */
-        this.flower = new Flower()
-        this.add(this.flower)
+        // this.flower = new Flower()
+        // this.add(this.flower)
 
-        const bloodBird = new BloodBird()
-        this.add(bloodBird)
+        // const bloodBird = new BloodBird()
+        // this.add(bloodBird)
 
-        const rainbowBird = new RainbowBird()
-        this.add(rainbowBird)
+        // const rainbowBird = new RainbowBird()
+        // this.add(rainbowBird)
         /* 
         boven dit staan tijdelijke adds
         */
@@ -71,6 +71,26 @@ export class GameScene extends Scene {
         console.log("Overschakelen naar gameover");
         engine.goToScene("gameover");
         Resources.GameWorld1.stop();
+    }
+
+    collectCollectable(kind) {
+        let collection = JSON.parse(localStorage.getItem("collection"))
+        console.log(collection)
+        if (collection) {
+            if (collection.includes(kind)) {
+                return
+            } else {
+                console.log("there is a collection")
+                //console.log("youll get a flower")
+                collection.push(kind)
+                localStorage.setItem("collection", JSON.stringify(collection))
+            }
+        } else {
+            console.log("youll get your first collection")
+            collection = []
+            collection.push(kind)
+            localStorage.setItem("collection", JSON.stringify(collection))
+        }
     }
 
     worldUpdate(newWorld, progression) {

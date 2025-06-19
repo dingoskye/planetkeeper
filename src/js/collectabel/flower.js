@@ -2,43 +2,29 @@ import { Actor, Vector } from "excalibur"
 import { Resources } from '../resources.js'
 
 export class Flower extends Actor {
-    constructor(x, y) {
-        super()
+    constructor(x, y, scale) {
+        super({ anchor: new Vector(0.5, 0.5) })
         this.graphics.use(Resources.CollectableFlowerShadow.toSprite())
         this.pos = new Vector(x, y)
-        //  this.scale = new Vector(3, 3)
+        this.scale = new Vector(scale, scale)
     }
 
-    flowerCollectible() {
-        let collection = JSON.parse(localStorage.getItem("collection"))
-        console.log(collection)
-        if (collection) {
-            if (collection.includes("flower")) {
-                this.graphics.use(Resources.CollectibleFlower.toSprite())
-            } else {
-                console.log("there is a collection")
-                console.log("youll get a flower")
-                collection.push("flower")
-                localStorage.setItem("collection", JSON.stringify(collection))
-            }
-        } else {
-            console.log("youll get your first collection")
-            collection = []
-            collection.push("flower")
-            localStorage.setItem("collection", JSON.stringify(collection))
-            this.graphics.use(Resources.CollectibleFlower.toSprite())
-        }
-    }
-
-    showFlower() {
+    showCollectable(kind) {
         let collection = []
         if (JSON.parse(localStorage.getItem("collection"))) {
             collection = JSON.parse(localStorage.getItem("collection"))
         }
-        if (collection.includes("flower")) {
-            this.graphics.use(Resources.CollectibleFlower.toSprite())
-        } else {
-            this.graphics.use(Resources.CollectableFlowerShadow.toSprite())
+        if (collection.includes(kind)) {
+            switch (kind) {
+                case "bloodbird":
+                    this.graphics.use(Resources.CollectibleBloodBird.toSprite())
+                    break;
+                case "rainbowbird":
+                    this.graphics.use(Resources.CollectibleBird.toSprite())
+                    break;
+                case "flower":
+                    this.graphics.use(Resources.CollectibleFlower.toSprite())
+            }
         }
     }
 }

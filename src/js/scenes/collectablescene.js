@@ -30,20 +30,20 @@ export class CollectablesScene extends Scene {
         })
         this.add(label)
 
-        this.flower = new Flower(250, 250)
+        this.flower = new Flower(250, 200, 2)
         this.add(this.flower)
 
-        this.bloodBird = new BloodBird(640, 250)
+        this.bloodBird = new BloodBird(580, 250, 1)
         this.add(this.bloodBird)
 
-        this.bird = new RainbowBird(1050, 250)
+        this.bird = new RainbowBird(990, 250, 1)
         this.add(this.bird)
     }
 
     onActivate() {
-        this.flower.showFlower()
-        this.bird.showBird()
-        this.bloodBird.showBloodBird()
+        this.flower.showCollectable("flower")
+        this.bird.showCollectable("rainbowbird")
+        this.bloodBird.showCollectable("bloodbird")
     }
 
     onPostUpdate(engine) {

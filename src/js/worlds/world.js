@@ -50,8 +50,7 @@ export class World extends Actor {
         }
 
         if (this.collectableCounter === 500) {
-            this.scene.flower.flowerCollectible()
-
+            this.scene.collectCollectable("flower")
             console.log(this.collectableCounter)
         }
 
@@ -126,25 +125,25 @@ export class World extends Actor {
 
     updateFaseName() {
         switch (this.fase) {
-            case 1: 
+            case 1:
                 this.scene.ui.worldFase.faseTwo();
                 break;
-            case 2: 
+            case 2:
                 this.scene.ui.worldFase.faseThree();
                 break;
-            case 3: 
+            case 3:
                 this.scene.ui.worldFase.faseFour();
                 break;
-            case 4: 
+            case 4:
                 this.scene.ui.worldFase.faseFive();
                 break;
-            
+
         }
     }
 
 
     updateWorld() {
-        
+
         //checkt welke fase de wereld nu is en welke hij moet worden stuurd hij mee
         switch (this.fase) {
             case 1:
