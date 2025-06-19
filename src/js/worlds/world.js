@@ -40,6 +40,7 @@ export class World extends Actor {
         this.progressionCounter++
         this.resourceCounter++
         this.collectableCounter++
+
         if (engine.input.keyboard.wasPressed(Keys.R)) {
             this.updateProgression(10)
         }
@@ -50,7 +51,7 @@ export class World extends Actor {
 
         if (this.collectableCounter === 500) {
             this.scene.flower.flowerCollectible()
-            this.collectableCounter
+
             console.log(this.collectableCounter)
         }
 

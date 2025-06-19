@@ -3,10 +3,10 @@ import { Resources } from '../resources.js'
 import { Flower } from './flower.js'
 
 export class RainbowBird extends Flower {
-    constructor() {
+    constructor(x, y) {
         super()
-        this.graphics.use(Resources.CollectibleBird.toSprite())
-        //this.pos = new Vector(250, 250)
+        this.graphics.use(Resources.CollectableBirdShadow.toSprite())
+        this.pos = new Vector(x, y)
         //  this.scale = new Vector(3, 3)
     }
     flowerCollectible() {
@@ -14,7 +14,7 @@ export class RainbowBird extends Flower {
         console.log(collection)
         if (collection) {
             if (collection.includes("GayBird")) {
-                return
+                this.graphics.use(Resources.CollectibleBird.toSprite())
             } else {
                 console.log("there is a collection")
                 console.log("youll get a GayBird")
@@ -27,6 +27,17 @@ export class RainbowBird extends Flower {
             collection.push("GayBird")
             localStorage.setItem("collection", JSON.stringify(collection))
             this.graphics.use(Resources.CollectibleBird.toSprite())
+        }
+    }
+    showBird() {
+        let collection = []
+        if (JSON.parse(localStorage.getItem("collection"))) {
+            collection = JSON.parse(localStorage.getItem("collection"))
+        }
+        if (collection.includes("GayBird")) {
+            this.graphics.use(Resources.CollectibleBird.toSprite())
+        } else {
+            this.graphics.use(Resources.CollectableBirdShadow.toSprite())
         }
     }
 }
