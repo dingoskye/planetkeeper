@@ -2,10 +2,10 @@ import { Actor, Vector } from "excalibur"
 import { Resources } from '../resources.js'
 
 export class Flower extends Actor {
-    constructor() {
+    constructor(x, y) {
         super()
-
-        this.pos = new Vector(250, 250)
+        this.graphics.use(Resources.CollectibleFlowerShadow.toSprite())
+        this.pos = new Vector(x, y)
         //  this.scale = new Vector(3, 3)
     }
     flowerCollectible() {

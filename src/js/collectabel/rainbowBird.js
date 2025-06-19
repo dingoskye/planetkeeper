@@ -9,4 +9,24 @@ export class RainbowBird extends Flower {
         //this.pos = new Vector(250, 250)
         //  this.scale = new Vector(3, 3)
     }
+    flowerCollectible() {
+        let collection = JSON.parse(localStorage.getItem("collection"))
+        console.log(collection)
+        if (collection) {
+            if (collection.includes("GayBird")) {
+                return
+            } else {
+                console.log("there is a collection")
+                console.log("youll get a GayBird")
+                collection.push("Bird")
+                localStorage.setItem("collection", JSON.stringify(collection))
+            }
+        } else {
+            console.log("youll get your first collection")
+            collection = []
+            collection.push("GayBird")
+            localStorage.setItem("collection", JSON.stringify(collection))
+            this.graphics.use(Resources.CollectibleBird.toSprite())
+        }
+    }
 }
