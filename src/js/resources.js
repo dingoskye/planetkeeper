@@ -22,7 +22,7 @@ const Resources = {
     CollectableBloodBird: new ImageSource('images/Collectable_BloodBird.png'),
     CollectableBloodBirdShadow: new ImageSource('images/BloodBird_shadow.png'),
     CollectableFlowerShadow: new ImageSource('images/flower_shadow.png'),
-    CollectableBird: new ImageSource('images/GayBird_shadow.png'),
+    CollectableBirdShadow: new ImageSource('images/GayBird_shadow.png'),
     Backpack: new ImageSource('images/Backpack.png'),
     PinPointer: new ImageSource('images/pinpointer.png'),
     Materiaal1: new ImageSource('images/Materiaal_1.jpg'),

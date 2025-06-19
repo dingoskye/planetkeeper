@@ -8,6 +8,7 @@ export class Flower extends Actor {
         this.pos = new Vector(x, y)
         //  this.scale = new Vector(3, 3)
     }
+
     flowerCollectible() {
         let collection = JSON.parse(localStorage.getItem("collection"))
         console.log(collection)
@@ -26,6 +27,18 @@ export class Flower extends Actor {
             collection.push("flower")
             localStorage.setItem("collection", JSON.stringify(collection))
             this.graphics.use(Resources.CollectibleFlower.toSprite())
+        }
+    }
+
+    showFlower() {
+        let collection = []
+        if (JSON.parse(localStorage.getItem("collection"))) {
+            collection = JSON.parse(localStorage.getItem("collection"))
+        }
+        if (collection.includes("flower")) {
+            this.graphics.use(Resources.CollectibleFlower.toSprite())
+        } else {
+            this.graphics.use(Resources.CollectableFlowerShadow.toSprite())
         }
     }
 }
