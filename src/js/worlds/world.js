@@ -85,7 +85,7 @@ export class World extends Actor {
                 this.scale.x -= 0.025
                 this.scale.y -= 0.025
                 if (this.scale.x < 0.75 && this.scale.y < 0.75) {
-                    this.updateWorld(this.fase, this.progression)
+                    this.updateWorld()
                 }
             }
     }
@@ -123,9 +123,29 @@ export class World extends Actor {
         }
     }
 
-    updateWorld(fase) {
+    updateFaseName() {
+        switch (this.fase) {
+            case 1: 
+                this.scene.ui.worldFase.faseTwo();
+                break;
+            case 2: 
+                this.scene.ui.worldFase.faseThree();
+                break;
+            case 3: 
+                this.scene.ui.worldFase.faseFour();
+                break;
+            case 4: 
+                this.scene.ui.worldFase.faseFive();
+                break;
+            
+        }
+    }
+
+
+    updateWorld() {
+        
         //checkt welke fase de wereld nu is en welke hij moet worden stuurd hij mee
-        switch (fase) {
+        switch (this.fase) {
             case 1:
                 this.scene.worldUpdate("faseTwo", this.progression)
                 break;
@@ -141,10 +161,10 @@ export class World extends Actor {
             case 5:
                 this.scene.worldUpdate("faseFive", this.progression)
         }
-
         //haald deze wereld weg en reset de progressiebalk
         this.kill()
         this.scene.ui.progressionBar.resetBar()
+        this.updateFaseName();
     }
     eventMarking(activeDilemma) {
         this.activeDilemma = activeDilemma

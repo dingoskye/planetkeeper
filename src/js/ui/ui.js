@@ -11,8 +11,11 @@ import { WorldFaseUI } from "./worldfaseui.js"
 export class UI extends ScreenElement {
 
     progressionBar
+    progressButton
     reputationBar
     resourceUI
+    worldFase
+    worldName
 
     constructor() {
         super()

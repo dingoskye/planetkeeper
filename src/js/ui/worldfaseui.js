@@ -15,7 +15,23 @@ export class WorldFaseUI extends Label {
                 color: Color.White
             })
         })
+        this.z= 1	
+    }
 
+    faseTwo() {
+        this.text = "Fase 2"
+    }
+
+    faseThree() {
+        this.text = "Fase 3"
+    }
+
+    faseFour() {
+        this.text = "Fase 4"
+    }
+
+    faseFive() {
+        this.text = "Fase 5"
     }
 
 }

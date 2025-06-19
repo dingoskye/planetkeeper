@@ -15,9 +15,10 @@ export class WorldnameUI extends Label {
                 color: Color.White
             })
         })
-
+        this.z= 1	
 
     }
+
 
 
 }
