@@ -4,7 +4,7 @@ import { Resources } from '../resources.js'
 export class Flower extends Actor {
     constructor(x, y) {
         super()
-        this.graphics.use(Resources.CollectibleFlowerShadow.toSprite())
+        this.graphics.use(Resources.CollectableFlowerShadow.toSprite())
         this.pos = new Vector(x, y)
         //  this.scale = new Vector(3, 3)
     }
