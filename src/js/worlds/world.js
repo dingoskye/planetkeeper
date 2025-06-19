@@ -117,15 +117,15 @@ export class World extends Actor {
                 this.reputation -= number1
             }
 
-            if (this.reputation > 100) this.reputation = 100
+            if (this.reputation > 70) this.reputation = 70
             if (this.reputation <= 0) {
                 this.reputation = 0
-                console.log("Game Over - reputatie op 0")
+                console.log("Game Over - rep = 0")
                 this.scene.gameOver(this.scene.engine)
             }
 
             this.scene.ui.reputationBar.showReputation()
-            this.scene.ui.showPopUp("reputation", update, number1)
+            this.scene.ui.showPopUp(update, number1)
             console.log("Reputatie is nu:", this.reputation)
         }
     }
