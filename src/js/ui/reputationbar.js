@@ -50,21 +50,76 @@ export class ReputationBar extends Actor {
 
     showReputation() {
         let currentValue = this.scene.worldActor.reputation
-        let percentage = currentValue / this.maxValue
-        if (percentage >= 1) {
-            percentage = 1
-        }
-        if (percentage <= 0) {
-            percentage = 0
-        }
-        this.bar.scale = new Vector(percentage, 1)
+        this.percentage = currentValue / this.maxValue
 
-        if (percentage < 0.4 && this.barGraphics.color !== Color.fromRGB(225, 0, 0, 1)) {
-            this.barGraphics.color = Color.Red
-        } else if (percentage < 0.7 && this.barGraphics.color !== Color.fromRGB(0, 225, 0, 1)) {
-            this.barGraphics.color = Color.Yellow
+        if (this.percentage >= 1) {
+            this.percentage = 1
+        }
+        if (this.percentage <= 0) {
+            this.percentage = 0
+        }
+        this.bar.scale = new Vector(this.percentage, 1);
+
+        if (this.percentage < 0.4) {
+            this.barGraphics.color = Color.Red;
+        } else if (this.percentage < 0.7) {
+            this.barGraphics.color = Color.Yellow;
         } else {
-            this.barGraphics.color = Color.Green
+            this.barGraphics.color = Color.Green;
+        }
+    }
+
+    checkGameState() {
+        const world = this.scene.worldActor
+        const engine = this.scene.engine
+
+        const progressFull = world.progression >= world.maxProgress
+        const reputationFull = world.reputation >= this.maxValue
+
+        if (world.reputation <= 0) {
+            console.log("Game over triggered by reputation")
+            this.scene.gameOver(engine)
+        }
+
+        if (progressFull && reputationFull) {
+            console.log("Allebei vol, doorgaan naar volgende fase")
+            world.fase++
+            this.scene.worldUpdate("fase" + world.fase, world.progression)
         }
     }
 }
+
+//voor world.js
+
+
+//   if (!this.activeDilemma && this.progression >= this.maxProgress && this.reputation === 100) {
+//             this.fase++
+//             this.progression = 0
+//             this.scene.ui.progressionBar.resetBar()
+//             this.updateWorld(this.fase)
+//         }
+
+//rep update
+    // updateReputation(number) {
+    //     if (number !== 0) {
+    //         const update = number < 0 ? "-" : "+"
+    //         const number1 = Math.abs(number)
+
+    //         if (update === "+") {
+    //             this.reputation += number1
+    //         } else if (update === "-") {
+    //             this.reputation -= number1
+    //         }
+
+    //         if (this.reputation > 100) this.reputation = 100
+    //         if (this.reputation <= 0) {
+    //             this.reputation = 0
+    //             console.log("Game Over - reputatie op 0")
+    //             this.scene.gameOver(this.scene.engine)
+    //         }
+
+    //         this.scene.ui.reputationBar.showReputation()
+    //         this.scene.ui.showPopUp("reputation", update, number1)
+    //         console.log("Reputatie is nu:", this.reputation)
+    //     }
+    // }
