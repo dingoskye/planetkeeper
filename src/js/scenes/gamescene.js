@@ -127,5 +127,6 @@ export class GameScene extends Scene {
             this.worldActor = new World(progression)
             this.add(this.worldActor)
         }
+        this.ui.progressionBar.showProgress()
     }
 }

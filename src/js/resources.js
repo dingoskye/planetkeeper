@@ -16,7 +16,6 @@ const Resources = {
     SadFace: new ImageSource('images/sadface.png'),
     Scenebg: new ImageSource('images/background.png'),
     StartScenebackground: new ImageSource('images/startscene.png'),
-    CollectibleBird: new ImageSource('images/Collectable_Bird.png'),
     CollectibleFlower: new ImageSource('images/Collectable_Flower.png'),
     CollectibleBird: new ImageSource('images/Collectable_Bird.png'),
     CollectableBloodBird: new ImageSource('images/Collectable_BloodBird.png'),
