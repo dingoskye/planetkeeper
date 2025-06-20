@@ -36,6 +36,10 @@ export class World extends Actor {
 
     }
 
+    onInitialize() {
+        this.scene.ui.progressionBar.showProgress()
+    }
+
     onPostUpdate(engine) {
         this.progressionCounter++
         this.resourceCounter++
@@ -81,7 +85,7 @@ export class World extends Actor {
             }
         }
         if (this.activeDilemma === false)
-            if (this.progression >= this.maxProgress > 0,7) {
+            if (this.progression >= this.maxProgress && this.reputation >= 70) {
                 this.scale.x -= 0.025
                 this.scale.y -= 0.025
                 if (this.scale.x < 0.75 && this.scale.y < 0.75) {
@@ -111,13 +115,13 @@ export class World extends Actor {
             const update = number < 0 ? "-" : "+"
             const number1 = Math.abs(number)
 
-          if (update === "+") {
+            if (update === "+") {
                 this.reputation += number1
             } else if (update === "-") {
                 this.reputation -= number1
             }
 
-            if (this.reputation > 70) this.reputation = 70
+            //if (this.reputation > 70) this.reputation = 70
             if (this.reputation <= 0) {
                 this.reputation = 0
                 console.log("Game Over - rep = 0")
@@ -125,7 +129,7 @@ export class World extends Actor {
             }
 
             this.scene.ui.reputationBar.showReputation()
-            this.scene.ui.showPopUp(update, number1)
+            this.scene.ui.showPopUp("reputation", update, number1)
             console.log("Reputatie is nu:", this.reputation)
         }
     }

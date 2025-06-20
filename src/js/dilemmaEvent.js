@@ -72,7 +72,7 @@ export class DilemmaEvent extends Actor {
             // Daarna elke minuut een nieuw dilemma
             this.dilemmaInterval = setInterval(() => {
                 this.showRandomDilemma();
-            }, 2000); // 60.000 ms = 1 minuut
+            }, 30000); // 60.000 ms = 1 minuut
         }
     }
 
