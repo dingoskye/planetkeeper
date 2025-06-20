@@ -69,24 +69,24 @@ export class ReputationBar extends Actor {
         }
     }
 
-    checkGameState() {
-        const world = this.scene.worldActor
-        const engine = this.scene.engine
+    // checkGameState() {
+    //     const world = this.scene.worldActor
+    //     const engine = this.scene.engine
 
-        const progressFull = world.progression >= world.maxProgress
-        const reputationFull = world.reputation >= this.maxValue
+    //     const progressFull = world.progression >= world.maxProgress
+    //     const reputationFull = world.reputation >= this.maxValue
 
-        if (world.reputation <= 0) {
-            console.log("Game over triggered by reputation")
-            this.scene.gameOver(engine)
-        }
+    //     if (world.reputation <= 0) {
+    //         console.log("Game over triggered by reputation")
+    //         this.scene.gameOver(engine)
+    //     }
 
-        if (progressFull && reputationFull) {
-            console.log("Allebei vol, doorgaan naar volgende fase")
-            world.fase++
-            this.scene.worldUpdate("fase" + world.fase, world.progression)
-        }
-    }
+    //     if (progressFull && reputationFull) {
+    //         console.log("Allebei vol, doorgaan naar volgende fase")
+    //         world.fase++
+    //         this.scene.worldUpdate("fase" + world.fase, world.progression)
+    //     }
+    // }
 }
 
 //voor world.js
@@ -100,26 +100,26 @@ export class ReputationBar extends Actor {
 //         }
 
 //rep update
-    // updateReputation(number) {
-    //     if (number !== 0) {
-    //         const update = number < 0 ? "-" : "+"
-    //         const number1 = Math.abs(number)
+// updateReputation(number) {
+//     if (number !== 0) {
+//         const update = number < 0 ? "-" : "+"
+//         const number1 = Math.abs(number)
 
-    //         if (update === "+") {
-    //             this.reputation += number1
-    //         } else if (update === "-") {
-    //             this.reputation -= number1
-    //         }
+//         if (update === "+") {
+//             this.reputation += number1
+//         } else if (update === "-") {
+//             this.reputation -= number1
+//         }
 
-    //         if (this.reputation > 100) this.reputation = 100
-    //         if (this.reputation <= 0) {
-    //             this.reputation = 0
-    //             console.log("Game Over - reputatie op 0")
-    //             this.scene.gameOver(this.scene.engine)
-    //         }
+//         if (this.reputation > 100) this.reputation = 100
+//         if (this.reputation <= 0) {
+//             this.reputation = 0
+//             console.log("Game Over - reputatie op 0")
+//             this.scene.gameOver(this.scene.engine)
+//         }
 
-    //         this.scene.ui.reputationBar.showReputation()
-    //         this.scene.ui.showPopUp("reputation", update, number1)
-    //         console.log("Reputatie is nu:", this.reputation)
-    //     }
-    // }
+//         this.scene.ui.reputationBar.showReputation()
+//         this.scene.ui.showPopUp("reputation", update, number1)
+//         console.log("Reputatie is nu:", this.reputation)
+//     }
+// }

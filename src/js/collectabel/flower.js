@@ -17,7 +17,7 @@ export class Flower extends Actor {
         if (collection.includes(kind)) {
             switch (kind) {
                 case "bloodbird":
-                    this.graphics.use(Resources.CollectibleBloodBird.toSprite())
+                    this.graphics.use(Resources.CollectableBloodBird.toSprite())
                     break;
                 case "rainbowbird":
                     this.graphics.use(Resources.CollectibleBird.toSprite())
@@ -27,4 +27,4 @@ export class Flower extends Actor {
             }
         }
     }
-}
+}   

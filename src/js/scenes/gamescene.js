@@ -1,4 +1,4 @@
-import { Actor, Scene, Vector, Buttons, Keys } from "excalibur"
+import { Actor, Scene, Vector, Buttons, Keys, CollisionType } from "excalibur"
 import { Resources } from '../resources.js'
 import { UI } from '../ui/ui.js'
 import { Bg } from '../background.js'
@@ -12,10 +12,13 @@ import { DilemmaEvent } from "../dilemmaEvent.js"
 import { Flower } from '../collectabel/flower.js'
 import { BloodBird } from '../collectabel/bloodBird.js'
 import { RainbowBird } from '../collectabel/rainbowBird.js'
+import { Pointer } from '../pointer.js'
+import { ProgressButtonUI } from '../ui/progressbutton.js'
 
 export class GameScene extends Scene {
 
     sceneStarted = false;
+    gamepad;
 
     onInitialize(engine) {
 
@@ -30,7 +33,24 @@ export class GameScene extends Scene {
         this.add(this.ui)
 
         const dilemma = new DilemmaEvent();
-        this.add(dilemma)
+        this.add(dilemma);
+
+        this.pointer = new Pointer();
+        this.add(this.pointer);
+
+        this.material1 = new ProgressButtonUI();
+        this.add(this.material1);
+
+        this.pointer.on('collisionstart', (event) => {
+            if (event.other === this.material1) {
+                console.log("Pointer collided with material1!");
+                if (engine.mygamepad) {
+                    this.engine.mygamepad.isButtonPressed(Buttons.Face1);
+                    //als TEST, hier komt popup
+                    this.engine.goToScene("collectables");
+                }
+            }
+        });
 
         /* 
         Onder dit zijn tijdelijke adds
@@ -91,41 +111,44 @@ export class GameScene extends Scene {
             collection.push(kind)
             localStorage.setItem("collection", JSON.stringify(collection))
         }
+
+        this.ui.showCollectablePopUp(kind)
     }
 
-    worldUpdate(newWorld, progression) {
+    worldUpdate(newWorld, progression, reputation) {
         console.log("Adding world:", this.world)
         if (this.worldActor) {
             this.worldActor.kill()
         }
         if (newWorld === "dead") {
-            this.worldActor = new WorldDead(progression)
+            this.worldActor = new WorldDead(progression, reputation)
             this.add(this.worldActor)
             Resources.WarningDead.play(0.3);
         }
         else if (newWorld === "faseTwo") {
-            this.worldActor = new WorldFaseTwo(progression)
+            this.worldActor = new WorldFaseTwo(progression, reputation)
             this.add(this.worldActor)
             Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseThree") {
-            this.worldActor = new WorldFaseThree(progression)
+            this.worldActor = new WorldFaseThree(progression, reputation)
             this.add(this.worldActor)
             Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseFour") {
-            this.worldActor = new WorldFaseFour(progression)
+            this.worldActor = new WorldFaseFour(progression, reputation)
             this.add(this.worldActor)
             Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseFive") {
-            this.worldActor = new WorldFaseFive(progression)
+            this.worldActor = new WorldFaseFive(progression, reputation)
             this.add(this.worldActor)
             Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseOne") {
-            this.worldActor = new World(progression)
+            this.worldActor = new World(progression, reputation)
             this.add(this.worldActor)
         }
+        this.ui.progressionBar.showProgress()
     }
 }
