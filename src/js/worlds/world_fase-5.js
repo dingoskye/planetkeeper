@@ -11,7 +11,9 @@ export class WorldFaseFive extends World {
         this.graphics.use(Resources.WorldStage5.toSprite())
         this.progressionCounter = 0
         this.resourceCounter = 0
-
+        //
+        this.reputation = -50
+        //
         this.minProgress = 800
         this.maxProgress = 1610
         this.fase = 5
@@ -21,12 +23,25 @@ export class WorldFaseFive extends World {
         this.progressionCounter++
         this.resourceCounter++
 
+        if (this.reputation >= 100 || this.reputation <= 0) {
+            this.collectableCounter++
+        }
         if (engine.input.keyboard.wasPressed(Keys.R)) {
             this.updateProgression(+10)
         }
 
         if (engine.input.keyboard.wasPressed(Keys.F)) {
             this.updateProgression(-10)
+        }
+
+        if (this.collectableCounter === 500 && this.reputation >= 100) {
+            this.scene.collectCollectable("rainbowbird")
+            console.log(this.collectableCounter, "regenboog")
+        }
+
+        if (this.collectableCounter === 500 && this.reputation <= 0) {
+            this.scene.collectCollectable("bloodbird")
+            console.log(this.collectableCounter)
         }
 
         if (this.progressionCounter >= 3600) {
