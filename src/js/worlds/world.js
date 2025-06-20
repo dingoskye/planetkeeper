@@ -111,7 +111,7 @@ export class World extends Actor {
 
     updateReputation(number) {
         if (number !== 0) {
-            //Haald het nummer en het wiskundige teken uit elkaar
+            //Haalt het nummer en het wiskundige teken uit elkaar
             const update = number < 0 ? "-" : "+"
             const number1 = Math.abs(number)
 
@@ -122,11 +122,11 @@ export class World extends Actor {
             }
 
             //if (this.reputation > 70) this.reputation = 70
-            if (this.reputation <= 0) {
-                this.reputation = 0
-                console.log("Game Over - rep = 0")
-                this.scene.gameOver(this.scene.engine)
-            }
+            // if (this.reputation <= 0) {
+            //     this.reputation = 0
+            //     console.log("Game Over - rep = 0")
+            //     this.scene.gameOver(this.scene.engine)
+            // }
 
             this.scene.ui.reputationBar.showReputation()
             this.scene.ui.showPopUp("reputation", update, number1)
@@ -158,21 +158,21 @@ export class World extends Actor {
         //checkt welke fase de wereld nu is en welke hij moet worden stuurd hij mee
         switch (this.fase) {
             case 1:
-                this.scene.worldUpdate("faseTwo", this.progression)
+                this.scene.worldUpdate("faseTwo", this.progression, this.reputation)
                 break;
             case 2:
-                this.scene.worldUpdate("faseThree", this.progression)
+                this.scene.worldUpdate("faseThree", this.progression, this.reputation)
                 break;
             case 3:
-                this.scene.worldUpdate("faseFour", this.progression)
+                this.scene.worldUpdate("faseFour", this.progression, this.reputation)
                 break;
             case 4:
-                this.scene.worldUpdate("faseFive", this.progression)
+                this.scene.worldUpdate("faseFive", this.progression, this.reputation)
                 break
             case 5:
-                this.scene.worldUpdate("faseFive", this.progression)
+                this.scene.worldUpdate("faseFive", this.progression, this.reputation)
         }
-        //haald deze wereld weg en reset de progressiebalk
+        //haalt deze wereld weg en reset de progressiebalk
         this.kill()
         this.scene.ui.progressionBar.resetBar()
         this.updateFaseName();

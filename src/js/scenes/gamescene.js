@@ -93,38 +93,38 @@ export class GameScene extends Scene {
         }
     }
 
-    worldUpdate(newWorld, progression) {
+    worldUpdate(newWorld, progression, reputation) {
         console.log("Adding world:", this.world)
         if (this.worldActor) {
             this.worldActor.kill()
         }
         if (newWorld === "dead") {
-            this.worldActor = new WorldDead(progression)
+            this.worldActor = new WorldDead(progression, reputation)
             this.add(this.worldActor)
             Resources.WarningDead.play(0.3);
         }
         else if (newWorld === "faseTwo") {
-            this.worldActor = new WorldFaseTwo(progression)
+            this.worldActor = new WorldFaseTwo(progression, reputation)
             this.add(this.worldActor)
             Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseThree") {
-            this.worldActor = new WorldFaseThree(progression)
+            this.worldActor = new WorldFaseThree(progression, reputation)
             this.add(this.worldActor)
             Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseFour") {
-            this.worldActor = new WorldFaseFour(progression)
+            this.worldActor = new WorldFaseFour(progression, reputation)
             this.add(this.worldActor)
             Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseFive") {
-            this.worldActor = new WorldFaseFive(progression)
+            this.worldActor = new WorldFaseFive(progression, reputation)
             this.add(this.worldActor)
             Resources.upgradeFase.play(0, 9);
         }
         else if (newWorld === "faseOne") {
-            this.worldActor = new World(progression)
+            this.worldActor = new World(progression, reputation)
             this.add(this.worldActor)
         }
         this.ui.progressionBar.showProgress()
