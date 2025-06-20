@@ -111,6 +111,8 @@ export class GameScene extends Scene {
             collection.push(kind)
             localStorage.setItem("collection", JSON.stringify(collection))
         }
+
+        this.ui.showCollectablePopUp(kind)
     }
 
     worldUpdate(newWorld, progression, reputation) {
