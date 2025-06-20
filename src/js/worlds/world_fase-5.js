@@ -11,9 +11,6 @@ export class WorldFaseFive extends World {
         this.graphics.use(Resources.WorldStage5.toSprite())
         this.progressionCounter = 0
         this.resourceCounter = 0
-        //
-        this.reputation = -50
-        //
         this.minProgress = 800
         this.maxProgress = 1610
         this.fase = 5
