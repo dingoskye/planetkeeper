@@ -22,6 +22,8 @@ const Resources = {
     CollectableBloodBirdShadow: new ImageSource('images/BloodBird_shadow.png'),
     CollectableFlowerShadow: new ImageSource('images/flower_shadow.png'),
     CollectableBirdShadow: new ImageSource('images/GayBird_shadow.png'),
+    CollectableDuck: new ImageSource('images/rob_test.png'),
+    CollectableDuckShadow: new ImageSource('images/rob_test_shadow.png'),
     Backpack: new ImageSource('images/Backpack.png'),
     PinPointer: new ImageSource('images/pinpointer.png'),
     Materiaal1: new ImageSource('images/Materiaal_1.jpg'),
