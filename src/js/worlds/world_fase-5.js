@@ -3,9 +3,10 @@ import { Resources } from '../resources.js'
 import { World } from './world.js'
 
 export class WorldFaseFive extends World {
-    constructor(progression) {
+    constructor(progression, reputation) {
         super()
         this.progression = progression
+        this.reputation = reputation
         console.log(this.progression)
         this.graphics.use(Resources.WorldStage5.toSprite())
         this.progressionCounter = 0
@@ -54,14 +55,5 @@ export class WorldFaseFive extends World {
                 this.scene.worldUpdate("faseFour", this.progression)
             }
         }
-
-        if (this.activeDilemma === false)
-            if (this.progression >= this.maxProgress && this.reputation >= 70) {
-                this.scale.x -= 0.025
-                this.scale.y -= 0.025
-                if (this.scale.x < 0.75 && this.scale.y < 0.75) {
-                    this.updateWorld()
-                }
-            }
     }
 }

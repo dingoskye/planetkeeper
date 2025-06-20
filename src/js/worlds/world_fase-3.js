@@ -3,9 +3,10 @@ import { Resources } from '../resources.js'
 import { World } from './world.js'
 
 export class WorldFaseThree extends World {
-    constructor(progression) {
+    constructor(progression, reputation) {
         super()
         this.progression = progression
+        this.reputation = reputation
         this.progressionCounter = 0
         this.resourceCounter = 0
         console.log(this.progression)

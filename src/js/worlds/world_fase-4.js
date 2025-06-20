@@ -3,9 +3,10 @@ import { Resources } from '../resources.js'
 import { World } from './world.js'
 
 export class WorldFaseFour extends World {
-    constructor(progression) {
+    constructor(progression, reputation) {
         super()
         this.progression = progression
+        this.reputation = reputation
         console.log(this.progression)
         this.graphics.use(Resources.WorldStage4.toSprite())
         this.progressionCounter = 0
