@@ -11,6 +11,7 @@ export class PopUp extends Actor {
     updatekind
     number
 
+
     constructor(kind, update, number) {
         super()
         this.counter = 120
@@ -38,17 +39,30 @@ export class PopUp extends Actor {
                 color: Color.White
             })
         })
-
     }
 
+    static activePopUps = 0;
+
+
     onInitialize() {
+        PopUp.activePopUps++
+
+        if (PopUp.activePopUps > 9) {
+            PopUp.activePopUps = 1
+        } 
+
+        const baseY = 100;
+        const offsetY = 60 * (PopUp.activePopUps - 1);
+
+        console.log(`PopUp active: ${PopUp.activePopUps}`)
+
         console.log(this.kind)
         //checkt wat er geupdate gaat worden
         if (this.kind === "reputation") {
-            this.label.pos = new Vector(1100, 100)
-            this.label1.pos = new Vector(1190, 100)
+            this.label.pos = new Vector(1100, baseY + offsetY)
+            this.label1.pos = new Vector(1190, baseY + offsetY)
 
-            this.image.pos = new Vector(1150, 116)
+            this.image.pos = new Vector(1150, baseY + offsetY + 16)
             //past aan voor omhoog of omlaag
             if (this.updatekind === "-") {
                 this.image.graphics.use(Resources.SadFace.toSprite())
@@ -60,10 +74,10 @@ export class PopUp extends Actor {
             this.image.scale = new Vector(0.5, 0.5)
 
         } else if (this.kind === "resource") {
-            this.label.pos = new Vector(25, 100)
-            this.label1.pos = new Vector(115, 100)
+            this.label.pos = new Vector(25, baseY + offsetY)
+            this.label1.pos = new Vector(115, baseY + offsetY)
 
-            this.image.pos = new Vector(75, 116)
+            this.image.pos = new Vector(75, baseY + offsetY + 16)
             this.image.graphics.use(Resources.Goldbar.toSprite())
             this.image.scale = new Vector(0.5, 0.5)
             Resources.Materials.play()
@@ -79,6 +93,7 @@ export class PopUp extends Actor {
         this.counter--
         if (this.counter === 0) {
             this.actions.fade(0, 100).callMethod(() => this.kill)
+            PopUp.activePopUps = 0
         }
     }
 }
