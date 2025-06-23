@@ -28,6 +28,7 @@ const Resources = {
     PinPointer: new ImageSource('images/pinpointer.png'),
     Materiaal1: new ImageSource('images/Materiaal_1.jpg'),
     Materiaal2: new ImageSource('images/Materiaal_2.jpg'),
+    CloseButton: new ImageSource('images/cross.png'),
     Endbg: new ImageSource('images/endscene.png'),
     MainText: new FontSource('fonts/Audiowide-Regular.ttf', 'AudioWide'),
     SubText: new FontSource('fonts/Orbitron-VariableFont_wght.ttf', 'Orbitron'),

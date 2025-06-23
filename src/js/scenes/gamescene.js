@@ -94,6 +94,10 @@ export class GameScene extends Scene {
             if (engine.input.keyboard.wasPressed(Keys.C)) {
                 this.engine.goToScene("collectables")
             }
+
+            if (engine.input.keyboard.wasPressed(Keys.M)) {
+                this.ui.showMaterials()
+            }
         }
     }
 

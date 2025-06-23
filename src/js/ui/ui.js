@@ -8,6 +8,7 @@ import { CollectPopUp } from '../collectabel/collectPopUp.js'
 import { ProgressButtonUI } from './progressbutton.js'
 import { WorldnameUI } from "./worldname.js"
 import { WorldFaseUI } from "./worldfaseui.js"
+import { MaterialsPopUp } from "./materialsPopUp.js"
 
 export class UI extends ScreenElement {
 
@@ -53,7 +54,6 @@ export class UI extends ScreenElement {
         //Worldfase
         this.worldFase = new WorldFaseUI()
         this.addChild(this.worldFase)
-
     }
 
     showPopUp(kind, update, number) {
@@ -63,6 +63,11 @@ export class UI extends ScreenElement {
 
     showCollectablePopUp(kind) {
         let popUp = new CollectPopUp(kind)
+        this.addChild(popUp)
+    }
+
+    showMaterials() {
+        let popUp = new MaterialsPopUp()
         this.addChild(popUp)
     }
 }
