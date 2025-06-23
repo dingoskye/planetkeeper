@@ -13,7 +13,7 @@ export class World extends Actor {
     fase
     activeDilemma
     collectableCounter
-
+    resources
 
     constructor(progression) {
         super({ anchor: new Vector(0.5, 0.5) })
@@ -22,6 +22,7 @@ export class World extends Actor {
         } else {
             this.progression = 10
         }
+        this.resources = 0
         this.activeDilemma = false
         this.graphics.use(Resources.World.toSprite())
         this.pos = new Vector(640, 350)
@@ -99,6 +100,8 @@ export class World extends Actor {
         const update = number < 0 ? "-" : "+"
         const number1 = Math.abs(number)
 
+        this.resources += number
+
         this.scene.ui.resourceUI.showResources(update, number1)
         this.scene.ui.showPopUp("resource", update, number1)
     }
@@ -132,6 +135,14 @@ export class World extends Actor {
             this.scene.ui.showPopUp("reputation", update, number1)
             console.log("Reputatie is nu:", this.reputation)
         }
+    }
+
+    getWorldState() {
+        return {
+            resources: this.resources,
+            reputation: this.reputation,
+            progression: this.progression
+        };
     }
 
     updateFaseName() {
