@@ -1,11 +1,16 @@
-import { Actor, Scene, Vector, Color, Label, FontUnit, TextAlign, Keys } from "excalibur"
+import { Actor, Scene, Vector, Color, Label, FontUnit, TextAlign, Keys, Buttons, CollisionType } from "excalibur"
 import { Resources } from '../resources.js'
 import { BackgroundUi } from '../ui/backgroundUi.js'
 import { Flower } from '../collectabel/flower.js'
 import { BloodBird } from '../collectabel/bloodBird.js'
 import { RainbowBird } from '../collectabel/rainbowBird.js'
+import { Pointer } from "../pointer.js"
 
 export class CollectablesScene extends Scene {
+
+    sceneStarted = false;
+    gamepad;
+    pointerTouchingClose = false;
 
     onInitialize(engine) {
         let background = new Actor({
@@ -17,12 +22,31 @@ export class CollectablesScene extends Scene {
         let borderTop = new BackgroundUi(0, 0, 100)
         this.add(borderTop)
 
+        this.pointer = new Pointer();
+        this.add(this.pointer);
+
         this.close = new Actor({
+            width: Resources.CloseButton.width * 0.5,
+            height: Resources.CloseButton.height * 0.5,
             x: 1225, y: 45,
+            collisionType: CollisionType.Fixed,
             //scale: new Vector(0.75, 0.75)
         })
         this.close.graphics.use(Resources.CloseButton.toSprite())
         this.add(this.close)
+
+        this.close.on('collisionstart', (event) => {
+            if (event.other.owner instanceof Pointer) {
+                this.pointerTouchingClose = true;
+                console.log('test')
+            }
+        });
+
+        this.close.on('collisionend', (event) => {
+            if (event.other.owner instanceof Pointer) {
+                this.pointerTouchingClose = false;
+            }
+        });
 
         let label = new Label({
             anchor: new Vector(0.5, 0.5),
@@ -54,8 +78,18 @@ export class CollectablesScene extends Scene {
     }
 
     onPostUpdate(engine) {
-        if (engine.input.keyboard.wasPressed(Keys.G)) {
-            this.engine.goToScene('game')
+        if (engine.mygamepad) {
+            const face1Pressed = engine.mygamepad.isButtonPressed(Buttons.Face1);
+
+            if (face1Pressed && this.pointerTouchingClose) {
+                console.log("Player druekt op collectables");
+                Resources.Click.play(0.5);
+                engine.goToScene("game");
+            }
+
+            if (engine.input.keyboard.wasPressed(Keys.G)) {
+                this.engine.goToScene('game')
+            }
         }
     }
 }

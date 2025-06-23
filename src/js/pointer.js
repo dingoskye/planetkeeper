@@ -15,7 +15,6 @@ export class Pointer extends Actor {
             scale: new Vector(0.1, 0.1),
             anchor: Vector.Half,
             z: 10000,
-            // collisionType: CollisionType.Active,
         });
         this.graphics.use(Resources.Pointer.toSprite());
     }
