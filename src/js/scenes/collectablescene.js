@@ -17,6 +17,13 @@ export class CollectablesScene extends Scene {
         let borderTop = new BackgroundUi(0, 0, 100)
         this.add(borderTop)
 
+        this.close = new Actor({
+            x: 1225, y: 45,
+            //scale: new Vector(0.75, 0.75)
+        })
+        this.close.graphics.use(Resources.CloseButton.toSprite())
+        this.add(this.close)
+
         let label = new Label({
             anchor: new Vector(0.5, 0.5),
             text: 'Verzameling',
