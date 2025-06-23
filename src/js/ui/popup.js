@@ -41,29 +41,24 @@ export class PopUp extends Actor {
         })
     }
 
-    static activePopUps = 0;
+    //pop up lijst
+    static activeResourcePopUps = [] = []
+    static activeReputationPopUps = [] = []
 
 
     onInitialize() {
-        PopUp.activePopUps++
+        const baseY = 100
 
-        if (PopUp.activePopUps > 9) {
-            PopUp.activePopUps = 1
-        } 
+        let offsetY = 0
 
-        const baseY = 100;
-        const offsetY = 60 * (PopUp.activePopUps - 1);
-
-        console.log(`PopUp active: ${PopUp.activePopUps}`)
-
-        console.log(this.kind)
-        //checkt wat er geupdate gaat worden
         if (this.kind === "reputation") {
+            PopUp.activeReputationPopUps.push(this)
+            offsetY = 60 * (PopUp.activeReputationPopUps.indexOf(this))
+
             this.label.pos = new Vector(1100, baseY + offsetY)
             this.label1.pos = new Vector(1190, baseY + offsetY)
-
             this.image.pos = new Vector(1150, baseY + offsetY + 16)
-            //past aan voor omhoog of omlaag
+
             if (this.updatekind === "-") {
                 this.image.graphics.use(Resources.SadFace.toSprite())
                 Resources.DecreaseReputation.play()
@@ -71,13 +66,17 @@ export class PopUp extends Actor {
                 this.image.graphics.use(Resources.HappyFace.toSprite())
                 Resources.IncreaseReputation.play()
             }
+
             this.image.scale = new Vector(0.5, 0.5)
 
         } else if (this.kind === "resource") {
+            PopUp.activeResourcePopUps.push(this)
+            offsetY = 60 * (PopUp.activeResourcePopUps.indexOf(this))
+
             this.label.pos = new Vector(25, baseY + offsetY)
             this.label1.pos = new Vector(115, baseY + offsetY)
-
             this.image.pos = new Vector(75, baseY + offsetY + 16)
+
             this.image.graphics.use(Resources.Goldbar.toSprite())
             this.image.scale = new Vector(0.5, 0.5)
             Resources.Materials.play()
@@ -89,11 +88,37 @@ export class PopUp extends Actor {
     }
 
     onPostUpdate() {
-        //zorgt dat de popup weg gaat
+        //oude popups verwijderen en terug naar pos
         this.counter--
         if (this.counter === 0) {
-            this.actions.fade(0, 100).callMethod(() => this.kill)
-            PopUp.activePopUps = 0
+            this.actions.fade(0, 100).callMethod(() => {
+                const baseY = 100
+
+                if (this.kind === "reputation") {
+                    const index = PopUp.activeReputationPopUps.indexOf(this)
+                    if (index !== -1) PopUp.activeReputationPopUps.splice(index, 1)
+
+                    PopUp.activeReputationPopUps.forEach((popup, i) => {
+                        const offsetY = 60 * i
+                        popup.label.pos.y = baseY + offsetY
+                        popup.label1.pos.y = baseY + offsetY
+                        popup.image.pos.y = baseY + offsetY + 16
+                    })
+
+                } else if (this.kind === "resource") {
+                    const index = PopUp.activeResourcePopUps.indexOf(this)
+                    if (index !== -1) PopUp.activeResourcePopUps.splice(index, 1)
+
+                    PopUp.activeResourcePopUps.forEach((popup, i) => {
+                        const offsetY = 60 * i
+                        popup.label.pos.y = baseY + offsetY
+                        popup.label1.pos.y = baseY + offsetY
+                        popup.image.pos.y = baseY + offsetY + 16
+                    })
+                }
+
+                this.kill()
+            })
         }
     }
 }
