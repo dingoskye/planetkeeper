@@ -14,7 +14,7 @@ export class ResourceUI extends Actor {
             x: 50, y: 40,
         })
 
-        
+
         resourceImage.graphics.use(Resources.GoldbarStacks.toSprite())
         resourceImage.scale = new Vector(0.5, 0.5)
         this.addChild(resourceImage)
@@ -43,7 +43,11 @@ export class ResourceUI extends Actor {
         if (update === "+") {
             this.resource = this.resource + number
         } else if (update === "-") {
-            this.resource = this.resource - number
+            if (this.resource - number >= 0) {
+                this.resource -= number
+            } else {
+                console.log("geen resources meer")
+            }
         }
 
         this.label.text = `${this.resource}`
