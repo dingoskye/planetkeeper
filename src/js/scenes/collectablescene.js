@@ -4,6 +4,7 @@ import { BackgroundUi } from '../ui/backgroundUi.js'
 import { Flower } from '../collectabel/flower.js'
 import { BloodBird } from '../collectabel/bloodBird.js'
 import { RainbowBird } from '../collectabel/rainbowBird.js'
+import { Duck } from '../collectabel/duck.js'
 import { Pointer } from "../pointer.js"
 
 export class CollectablesScene extends Scene {
@@ -69,12 +70,16 @@ export class CollectablesScene extends Scene {
 
         this.bird = new RainbowBird(990, 250, 1)
         this.add(this.bird)
+
+        this.duck = new Duck(250, 550, 2.5)
+        this.add(this.duck)
     }
 
     onActivate() {
         this.flower.showCollectable("flower")
         this.bird.showCollectable("rainbowbird")
         this.bloodBird.showCollectable("bloodbird")
+        this.duck.showCollectable("duck")
     }
 
     onPostUpdate(engine) {

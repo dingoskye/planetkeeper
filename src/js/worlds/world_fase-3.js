@@ -16,7 +16,9 @@ export class WorldFaseThree extends World {
         this.maxProgress = 410
         this.fase = 3
     }
-
+    onInitialize() {
+        this.scene.collectCollectable("duck")
+    }
     onPostUpdate(engine) {
         this.progressionCounter++
         this.resourceCounter++
@@ -52,7 +54,8 @@ export class WorldFaseThree extends World {
             this.scale.x -= 0.025
             this.scale.y -= 0.025
             if (this.scale.x < 0.75 && this.scale.y < 0.75) {
-                this.scene.worldUpdate("faseTwo", this.progression)
+                this.scene.worldUpdate("faseTwo", this.progression, this.reputation)
+                this.scene.ui.worldFase.faseTwo()
             }
         }
 

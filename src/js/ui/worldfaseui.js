@@ -15,9 +15,11 @@ export class WorldFaseUI extends Label {
                 color: Color.White
             })
         })
-        this.z= 1	
+        this.z = 1
     }
-
+    faseOne() {
+        this.text = "Fase 1"
+    }
     faseTwo() {
         this.text = "Fase 2"
     }

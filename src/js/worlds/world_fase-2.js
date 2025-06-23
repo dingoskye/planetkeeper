@@ -54,7 +54,8 @@ export class WorldFaseTwo extends World {
             this.scale.x -= 0.025
             this.scale.y -= 0.025
             if (this.scale.x < 0.75 && this.scale.y < 0.75) {
-                this.scene.worldUpdate("faseOne", this.progression)
+                this.scene.worldUpdate("faseOne", this.progression, this.reputation)
+                this.scene.ui.worldFase.faseOne()
             }
         }
 

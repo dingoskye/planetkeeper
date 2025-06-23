@@ -24,6 +24,9 @@ export class Flower extends Actor {
                     break;
                 case "flower":
                     this.graphics.use(Resources.CollectibleFlower.toSprite())
+                    break;
+                case "duck":
+                    this.graphics.use(Resources.CollectableDuck.toSprite())
             }
         }
     }

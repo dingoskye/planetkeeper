@@ -51,6 +51,10 @@ export class CollectPopUp extends Actor {
             this.image.graphics.use(Resources.CollectibleBird.toSprite())
             this.image.pos = new Vector(55, 40)
             this.image.scale = new Vector(0.5, 0.5)
+        } else if (this.kind === "duck") {
+            this.image.graphics.use(Resources.CollectableDuck.toSprite())
+            this.image.pos = new Vector(80, 50)
+            this.image.scale = new Vector(1, 1)
         }
 
         this.addChild(this.image)
