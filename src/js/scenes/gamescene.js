@@ -13,7 +13,6 @@ import { Flower } from '../collectabel/flower.js'
 import { BloodBird } from '../collectabel/bloodBird.js'
 import { RainbowBird } from '../collectabel/rainbowBird.js'
 import { Pointer } from '../pointer.js'
-import { ProgressButtonUI } from '../ui/progressbutton.js'
 
 export class GameScene extends Scene {
 
@@ -36,10 +35,8 @@ export class GameScene extends Scene {
         this.add(dilemma);
 
         this.pointer = new Pointer();
+        this.pointer.z = 10000;
         this.add(this.pointer);
-
-        this.material1 = new ProgressButtonUI();
-        this.add(this.material1);
 
         this.pointer.on('collisionstart', (event) => {
             if (event.other === this.material1) {

@@ -12,7 +12,7 @@ export class Pointer extends Actor {
             pos: new Vector(650, 550),
             scale: new Vector(0.1, 0.1),
             anchor: Vector.Half,
-            z: 5,
+            z: 10000,
             collisionType: CollisionType.ActiveCollision,
         })
         this.graphics.use(Resources.Pointer.toSprite())
