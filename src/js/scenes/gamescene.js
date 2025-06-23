@@ -1,6 +1,7 @@
 import { Actor, Scene, Vector, Buttons, Keys, CollisionType } from "excalibur"
 import { Resources } from '../resources.js'
 import { UI } from '../ui/ui.js'
+import { MaterialsPopUp } from "../ui/materialsPopUp.js"
 import { Bg } from '../background.js'
 import { World } from '../worlds/world.js'
 import { WorldFaseTwo } from '../worlds/world_fase-2.js'
@@ -19,9 +20,13 @@ export class GameScene extends Scene {
 
     sceneStarted = false;
     gamepad;
-    pointerTouchingBackpack = false;
+    pointerTouchingBackpack
+    pointerTouchingMaterial
 
     onInitialize(engine) {
+
+        this.pointerTouchingBackpack = false
+        this.pointerTouchingMaterial = false
 
         const background = new Bg()
         this.add(background)
@@ -32,6 +37,8 @@ export class GameScene extends Scene {
 
         this.ui = new UI()
         this.add(this.ui)
+
+        // this.progressButton = this.ui.progressButton;
 
         const dilemma = new DilemmaEvent();
         this.add(dilemma);
@@ -46,7 +53,6 @@ export class GameScene extends Scene {
         this.backpack.on('collisionstart', (event) => {
             if (event.other.owner instanceof Pointer) {
                 this.pointerTouchingBackpack = true;
-                console.log('test')
             }
         });
 
@@ -55,6 +61,19 @@ export class GameScene extends Scene {
                 this.pointerTouchingBackpack = false;
             }
         });
+
+        this.ui.progressButton.on('collisionstart', (event) => {
+            console.log("test")
+            if (event.other.owner instanceof Pointer) {
+                this.pointerTouchingMaterial = true;
+            }
+        });
+
+        this.ui.progressButton.on('collisionend', (event) => {
+            if (event.other.owner instanceof Pointer) {
+                this.pointerTouchingMaterial = false;
+            }
+        })
 
         /* 
         Onder dit zijn tijdelijke adds
@@ -77,10 +96,15 @@ export class GameScene extends Scene {
             const face1Pressed = engine.mygamepad.isButtonPressed(Buttons.Face1);
 
             if (face1Pressed && this.pointerTouchingBackpack) {
-                //this.pointerTouchingBackpack = true;
                 console.log("Player druekt op collectables");
                 Resources.Click.play(0.5);
                 engine.goToScene("collectables");
+            }
+
+            if (face1Pressed && this.pointerTouchingMaterial) {
+                console.log("Player drurkt op Material");
+                Resources.Click.play(0.5);
+                this.ui.showMaterials();
             }
 
             if (engine.mygamepad) {

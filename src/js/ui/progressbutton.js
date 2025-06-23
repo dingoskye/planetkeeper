@@ -9,12 +9,16 @@ export class ProgressButtonUI extends Actor {
     resource
 
     constructor() {
-        super({ x: 440, y: 40 })
+        super({
+            x: 440, y: 40,
+            width: Resources.Materiaal1.width * 0.5,
+            height: Resources.Materiaal1.height * 0.5,
+        })
         // this.resource = 0
         this.graphics.use(Resources.Materiaal1.toSprite())
         this.scale = new Vector(0.08, 0.08)
-        this.body.collisionType = CollisionType.Passive;
-        this.collider.useBoxCollider(); 
+        this.body.collisionType = CollisionType.Fixed;
+        //this.collider.useBoxCollider();
 
 
 
