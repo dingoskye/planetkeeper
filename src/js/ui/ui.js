@@ -69,7 +69,6 @@ export class UI extends ScreenElement {
     showMaterials() {
         let popUp = new MaterialsPopUp()
         this.addChild(popUp)
-        console.log("JOE")
     }
 
 }
