@@ -13,11 +13,13 @@ import { Flower } from '../collectabel/flower.js'
 import { BloodBird } from '../collectabel/bloodBird.js'
 import { RainbowBird } from '../collectabel/rainbowBird.js'
 import { Pointer } from '../pointer.js'
+import { Backpack } from "../backpack.js"
 
 export class GameScene extends Scene {
 
     sceneStarted = false;
     gamepad;
+    pointerTouchingBackpack = false;
 
     onInitialize(engine) {
 
@@ -38,14 +40,19 @@ export class GameScene extends Scene {
         this.pointer.z = 10000;
         this.add(this.pointer);
 
-        this.pointer.on('collisionstart', (event) => {
-            if (event.other === this.material1) {
-                console.log("Pointer collided with material1!");
-                if (engine.mygamepad) {
-                    this.engine.mygamepad.isButtonPressed(Buttons.Face1);
-                    //als TEST, hier komt popup
-                    this.engine.goToScene("collectables");
-                }
+        this.backpack = new Backpack();
+        this.add(this.backpack);
+
+        this.backpack.on('collisionstart', (event) => {
+            if (event.other.owner instanceof Pointer) {
+                this.pointerTouchingBackpack = true;
+                console.log('test')
+            }
+        });
+
+        this.backpack.on('collisionend', (event) => {
+            if (event.other.owner instanceof Pointer) {
+                this.pointerTouchingBackpack = false;
             }
         });
 
@@ -67,15 +74,26 @@ export class GameScene extends Scene {
 
     onPostUpdate(engine) {
         if (engine.mygamepad) {
-            const xButton = engine.mygamepad.isButtonPressed(Buttons.Face3);
-            if (xButton) {
-                console.log("X-knop ingedrukt");
-                this.gameOver(engine);
-            }
-        }
+            const face1Pressed = engine.mygamepad.isButtonPressed(Buttons.Face1);
 
-        if (engine.input.keyboard.wasPressed(Keys.C)) {
-            this.engine.goToScene("collectables")
+            if (face1Pressed && this.pointerTouchingBackpack) {
+                //this.pointerTouchingBackpack = true;
+                console.log("Player druekt op collectables");
+                Resources.Click.play(0.5);
+                engine.goToScene("collectables");
+            }
+
+            if (engine.mygamepad) {
+                const xButton = engine.mygamepad.isButtonPressed(Buttons.Face3);
+                if (xButton) {
+                    console.log("X-knop ingedrukt");
+                    this.gameOver(engine);
+                }
+            }
+
+            if (engine.input.keyboard.wasPressed(Keys.C)) {
+                this.engine.goToScene("collectables")
+            }
         }
     }
 
