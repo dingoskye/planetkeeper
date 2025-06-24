@@ -35,7 +35,7 @@ export class WorldFaseFour extends World {
         }
 
         if (this.resourceCounter >= 3600) {
-            this.updateResource(+10)
+            this.updateResource(+45)
             this.resourceCounter = 0
         }
 
