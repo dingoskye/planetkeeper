@@ -11,8 +11,8 @@ export class ProgressButtonUI extends Actor {
     constructor() {
         super({
             x: 440, y: 40,
-            width: Resources.Materiaal1.width * 0.5,
-            height: Resources.Materiaal1.height * 0.5,
+            width: Resources.Materiaal1.width * 1,
+            height: Resources.Materiaal1.height * 1,
         })
         // this.resource = 0
         this.graphics.use(Resources.Materiaal1.toSprite())
