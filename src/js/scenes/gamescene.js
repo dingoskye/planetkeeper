@@ -9,45 +9,20 @@ import { WorldFaseFour } from '../worlds/world_fase-4.js'
 import { WorldFaseFive } from '../worlds/world_fase-5.js'
 import { WorldDead } from '../worlds/worldDead.js'
 import { DilemmaEvent } from "../dilemmaEvent.js"
-import { Flower } from '../collectabel/flower.js'
-import { BloodBird } from '../collectabel/bloodBird.js'
-import { RainbowBird } from '../collectabel/rainbowBird.js'
 import { Pointer } from '../pointer.js'
 import { Backpack } from "../backpack.js"
 
 export class GameScene extends Scene {
 
-    sceneStarted = false;
-    gamepad;
+    sceneStarted
+    gamepad
     pointerTouchingBackpack
     pointerTouchingMaterial
     pointerTouchingClose
+    reset
 
     onInitialize(engine) {
-
-        this.pointerTouchingClose = false;
-        this.pointerTouchingBackpack = false;
-        this.pointerTouchingMaterial = false;
-
-        const background = new Bg()
-        this.add(background)
-
-        this.worldActor = new World();
-        console.log("Adding world:", this.worldActor);
-        this.add(this.worldActor)
-
-        this.ui = new UI()
-        this.add(this.ui)
-
-        const dilemma = new DilemmaEvent();
-        this.add(dilemma);
-
-        this.pointer = new Pointer();
-        this.pointer.z = 10000;
-        this.add(this.pointer);
-
-        this.backpack = new Backpack();
-        this.add(this.backpack);
+        this.resetScene()
 
         this.backpack.on('collisionstart', (event) => {
             if (event.other.owner instanceof Pointer) {
@@ -144,6 +119,40 @@ export class GameScene extends Scene {
     onActivate(context) {
         this.sceneStarted = false
         Resources.GameWorld1.play(0.6);
+
+        if (this.reset === true) {
+            this.resetScene()
+        }
+    }
+
+    resetScene() {
+        this.clear()
+
+        this.reset = false
+        this.sceneStarted = false
+        this.pointerTouchingClose = false;
+        this.pointerTouchingBackpack = false;
+        this.pointerTouchingMaterial = false;
+
+        const background = new Bg()
+        this.add(background)
+
+        this.worldActor = new World();
+        console.log("Adding world:", this.worldActor);
+        this.add(this.worldActor)
+
+        this.ui = new UI()
+        this.add(this.ui)
+
+        const dilemma = new DilemmaEvent();
+        this.add(dilemma);
+
+        this.pointer = new Pointer();
+        this.pointer.z = 10000;
+        this.add(this.pointer);
+
+        this.backpack = new Backpack();
+        this.add(this.backpack);
     }
 
     gameOver(engine) {
