@@ -49,18 +49,6 @@ export class MaterialsPopUp extends Actor {
         this.close.graphics.use(Resources.CloseButton.toSprite());
         this.addChild(this.close)
 
-        //     this.close.on('collisionstart', (event) => {
-        //     if (event.other.owner instanceof Pointer) {
-        //         this.pointerTouchingClose = true;
-        //     }
-        // });
-
-        // this.close.on('collisionend', (event) => {
-        //     if (event.other.owner instanceof Pointer) {
-        //         this.pointerTouchingClose = false;
-        //     }
-        // });
-
         this.button1 = new MaterialsButton(-215, 0, 25)
         this.addChild(this.button1)
 

@@ -9,7 +9,8 @@ export class MaterialsButton extends Actor {
         super({
             x: x, y: y,
             color: Color.fromRGB(96, 96, 96),
-            width: 250, height: 75
+            width: 250, height: 75,
+            collisionType: collisionType.Fixed
         })
 
         this.many = many

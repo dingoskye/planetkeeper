@@ -67,8 +67,16 @@ export class UI extends ScreenElement {
     }
 
     showMaterials() {
-        let popUp = new MaterialsPopUp()
-        this.addChild(popUp)
+        if (!this.materialsPopUp) {
+            this.materialsPopUp = new MaterialsPopUp();
+            this.addChild(this.materialsPopUp);
+        }
     }
 
+    closeMaterials() {
+        if (this.materialsPopUp) {
+            this.materialsPopUp.kill();
+            this.materialsPopUp = null;
+        }
+    }
 }

@@ -73,7 +73,6 @@ export class GameScene extends Scene {
             }
         });
 
-
         /* 
         Onder dit zijn tijdelijke adds
         */
@@ -102,12 +101,26 @@ export class GameScene extends Scene {
             if (face1Pressed && this.pointerTouchingMaterial) {
                 Resources.Click.play(0.5);
                 this.ui.showMaterials();
+
+                const closeButton = this.ui.materialsPopUp.close;
+
+                closeButton.on('collisionstart', (event) => {
+                    if (event.other.owner instanceof Pointer) {
+                        this.pointerTouchingClose = true;
+                    }
+                });
+
+                closeButton.on('collisionend', (event) => {
+                    if (event.other.owner instanceof Pointer) {
+                        this.pointerTouchingClose = false;
+                    }
+                });
             }
 
             if (face1Pressed && this.pointerTouchingClose) {
                 console.log("Player drukt op Close");
                 Resources.Click.play(0.5);
-                this.ui.showMaterials.kill();
+                this.ui.closeMaterials();
             }
 
             if (engine.mygamepad) {
