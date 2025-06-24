@@ -1,19 +1,19 @@
-import { Actor, Vector, Color, Label, Font, FontUnit, Rectangle } from "excalibur"
+import { Actor, Vector, Color, Label, Font, FontUnit, Rectangle, CollisionType } from "excalibur"
 import { Resources } from '../resources.js'
 
 export class MaterialsButton extends Actor {
 
-    many
+    amount
 
     constructor(x, y, many) {
         super({
             x: x, y: y,
             color: Color.fromRGB(96, 96, 96),
             width: 250, height: 75,
-            collisionType: collisionType.Fixed
+            collisionType: CollisionType.Fixed,
         })
 
-        this.many = many
+        this.amount = many
 
         let image = new Actor({
             x: -75, y: 0,

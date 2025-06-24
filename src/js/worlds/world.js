@@ -74,7 +74,7 @@ export class World extends Actor {
         }
 
         if (engine.input.keyboard.wasPressed(Keys.B)) {
-            this.updateResource(10)
+            this.updateResource(+10)
         }
 
         //animatie voor de upgrade en downgrade

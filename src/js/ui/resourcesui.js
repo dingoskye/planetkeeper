@@ -41,7 +41,7 @@ export class ResourceUI extends Actor {
     showResources(update, number) {
         //resources
         if (update === "+") {
-            this.resource = this.resource + number
+            this.resource += number
         } else if (update === "-") {
             if (this.resource - number >= 0) {
                 this.resource -= number

@@ -19,6 +19,11 @@ export class GameScene extends Scene {
     pointerTouchingBackpack
     pointerTouchingMaterial
     pointerTouchingClose
+    pointerTouchingButtons = {}
+    button1
+    button2
+    button3
+    button4
     reset
 
     onInitialize(engine) {
@@ -96,6 +101,113 @@ export class GameScene extends Scene {
                 console.log("Player drukt op Close");
                 Resources.Click.play(0.5);
                 this.ui.closeMaterials();
+            }
+
+            const popup = this.ui.materialsPopUp
+            if (popup && !this.materialsHandlersSet) {
+                this.materialsHandlersSet = true
+                
+                this.button1 = popup.button1
+                this.button2 = popup.button2
+                this.button3 = popup.button3
+                this.button4 = popup.button4
+
+                this.button1.on('collisionstart', (evt) => {
+                    if (evt.other.owner instanceof Pointer)
+                        this.pointerTouchingButton1 = true
+                })
+                this.button1.on('collisionend', (evt) => {
+                    if (evt.other.owner instanceof Pointer)
+                        this.pointerTouchingButton1 = false
+                })
+
+                this.button2.on('collisionstart', (evt) => {
+                    if (evt.other.owner instanceof Pointer)
+                        this.pointerTouchingButton2 = true
+                })
+                this.button2.on('collisionend', (evt) => {
+                    if (evt.other.owner instanceof Pointer)
+                        this.pointerTouchingButton2 = false
+                })
+
+                this.button3.on('collisionstart', (evt) => {
+                    if (evt.other.owner instanceof Pointer)
+                        this.pointerTouchingButton3 = true
+                })
+                this.button3.on('collisionend', (evt) => {
+                    if (evt.other.owner instanceof Pointer)
+                        this.pointerTouchingButton3 = false
+                })
+
+                this.button4.on('collisionstart', (evt) => {
+                    if (evt.other.owner instanceof Pointer)
+                        this.pointerTouchingButton4 = true
+                })
+                this.button4.on('collisionend', (evt) => {
+                    if (evt.other.owner instanceof Pointer)
+                        this.pointerTouchingButton4 = false
+                })
+            }
+
+            if (face1Pressed && this.pointerTouchingButton1) {
+                const amount = this.button1.amount;
+                const currentResources = this.ui.resourceUI.resource;
+                console.log(currentResources)
+
+                if (currentResources >= amount) {
+                    Resources.Click.play(0.5);
+                    this.worldActor.updateResource(-amount);
+                    this.worldActor.updateProgression(+amount);
+                    this.ui.closeMaterials();
+                } else {
+                    console.log("Niet genoeg materiaal");
+                    Resources.WarningDead.play(0.5);
+                }
+            }
+
+            if (face1Pressed && this.pointerTouchingButton2) {
+                const amount = this.button2.amount;
+                const currentResources = this.ui.resourceUI.resource;
+
+                if (currentResources >= amount) {
+                    Resources.Click.play(0.5);
+                    this.worldActor.updateResource(-amount);
+                    this.worldActor.updateProgression(+amount);
+                    this.ui.closeMaterials();
+                } else {
+                    console.log("Niet genoeg materiaal");
+                    Resources.WarningDead.play(0.5);
+                }
+            }
+
+            if (face1Pressed && this.pointerTouchingButton3) {
+                const amount = this.button3.amount;
+                const currentResources = this.ui.resourceUI.resource;
+
+                if (currentResources >= amount) {
+                    Resources.Click.play(0.5);
+                    this.worldActor.updateResource(-amount);
+                    this.worldActor.updateProgression(+amount);
+                    this.ui.closeMaterials();
+                } else {
+                    console.log("Niet genoeg materiaal");
+                    Resources.WarningDead.play(0.5);
+                }
+            }
+
+            if (face1Pressed && this.pointerTouchingButton4) {
+                const amount = this.button4.amount;
+                const currentResources = this.ui.resourceUI.resource;
+
+                if (currentResources >= amount) {
+                    Resources.Click.play(0.5);
+                    this.worldActor.updateResource(-amount);
+                    this.worldActor.updateProgression(+amount);
+                    this.ui.closeMaterials();
+                } else {
+                    console.log("Niet genoeg materiaal");
+                    Resources.WarningDead.play(0.5);
+                }
             }
 
             if (engine.mygamepad) {

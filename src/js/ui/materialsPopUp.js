@@ -1,7 +1,6 @@
 import { Actor, Vector, Color, Label, Font, FontUnit, Rectangle, CollisionType } from "excalibur"
 import { Resources } from '../resources.js'
 import { MaterialsButton } from "./materialsButton.js"
-import { Pointer } from "../pointer.js";
 
 export class MaterialsPopUp extends Actor {
 
@@ -16,7 +15,7 @@ export class MaterialsPopUp extends Actor {
         })
 
         let label = new Label({
-            text: "Hoeveel materiaal wil",
+            text: "Hoeveel materialen wil",
             pos: new Vector(0, -150),
             font: Resources.SubText.toFont({
                 size: 40,
@@ -42,7 +41,7 @@ export class MaterialsPopUp extends Actor {
         this.close = new Actor({
             x: 335, y: -135,
             scale: new Vector(0.75, 0.75),
-            width: Resources.CloseButton.width * 0.5,
+            width: Resources.CloseButton.width * 1,
             height: Resources.CloseButton.height * 0.5,
             collisionType: CollisionType.Fixed,
         })
