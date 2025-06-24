@@ -1,4 +1,4 @@
-import { Actor, Vector, Color, Keys, Label, Font, FontUnit, Rectangle } from "excalibur"
+import { Actor, Vector, Color, Keys, Label, Font, FontUnit, Rectangle, Line } from "excalibur"
 import { Resources } from '../resources.js'
 
 export class ReputationBar extends Actor {
@@ -31,6 +31,17 @@ export class ReputationBar extends Actor {
             width: 300, height: 30, anchor: Vector.Zero
         })
         this.addChild(barbackground)
+
+        let lineThing = new Actor({
+            x: 945, y: 25,
+        })
+        lineThing.graphics.use(new Line({
+            start: new Vector(210, 15),
+            end: new Vector(210, 45),
+            color: Color.fromRGB(99, 99, 99, 1),
+            thickness: 5
+        }))
+        this.addChild(lineThing)
 
         this.bar = new Actor({
             x: 945, y: 25,
