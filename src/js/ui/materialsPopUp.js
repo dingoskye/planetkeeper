@@ -1,8 +1,11 @@
-import { Actor, Vector, Color, Label, Font, FontUnit, Rectangle } from "excalibur"
+import { Actor, Vector, Color, Label, Font, FontUnit, Rectangle, CollisionType } from "excalibur"
 import { Resources } from '../resources.js'
 import { MaterialsButton } from "./materialsButton.js"
+import { Pointer } from "../pointer.js";
 
 export class MaterialsPopUp extends Actor {
+
+    pointerTouchingClose = false;
 
     constructor() {
         super({
@@ -38,9 +41,12 @@ export class MaterialsPopUp extends Actor {
 
         this.close = new Actor({
             x: 335, y: -135,
-            scale: new Vector(0.75, 0.75)
+            scale: new Vector(0.75, 0.75),
+            width: Resources.CloseButton.width * 0.5,
+            height: Resources.CloseButton.height * 0.5,
+            collisionType: CollisionType.Fixed,
         })
-        this.close.graphics.use(Resources.CloseButton.toSprite())
+        this.close.graphics.use(Resources.CloseButton.toSprite());
         this.addChild(this.close)
 
         this.button1 = new MaterialsButton(-215, 0, 25)

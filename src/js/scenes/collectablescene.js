@@ -39,7 +39,6 @@ export class CollectablesScene extends Scene {
         this.close.on('collisionstart', (event) => {
             if (event.other.owner instanceof Pointer) {
                 this.pointerTouchingClose = true;
-                console.log('test')
             }
         });
 

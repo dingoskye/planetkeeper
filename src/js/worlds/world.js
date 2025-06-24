@@ -82,7 +82,7 @@ export class World extends Actor {
             this.scale.x -= 0.025
             this.scale.y -= 0.025
             if (this.scale.x < 0.75 && this.scale.y < 0.75) {
-                this.scene.worldUpdate("dead", this.progression)
+                this.death()
             }
         }
         if (this.activeDilemma === false)
@@ -93,6 +93,11 @@ export class World extends Actor {
                     this.updateWorld()
                 }
             }
+    }
+
+    death() {
+        this.scene.reset = true
+        this.scene.worldUpdate("dead", this.progression)
     }
 
     updateResource(number) {
@@ -159,13 +164,11 @@ export class World extends Actor {
             case 4:
                 this.scene.ui.worldFase.faseFive();
                 break;
-
         }
     }
 
 
     updateWorld() {
-
         //checkt welke fase de wereld nu is en welke hij moet worden stuurd hij mee
         switch (this.fase) {
             case 1:
@@ -188,18 +191,20 @@ export class World extends Actor {
         this.scene.ui.progressionBar.resetBar()
         this.updateFaseName();
     }
+
     eventMarking(activeDilemma) {
         this.activeDilemma = activeDilemma
         console.log(this.activeDilemma, "new")
         this.eventMarker = new EventMarker()
         this.addChild(this.eventMarker)
     }
-    eventKill(activeDilemma) {
 
+    eventKill(activeDilemma) {
         this.activeDilemma = activeDilemma
         console.log(this.activeDilemma, "kill")
         this.eventMarker.kill()
     }
+
     eventActive() {
         console.log("check")
     }
