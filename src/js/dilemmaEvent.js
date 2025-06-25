@@ -170,7 +170,7 @@ export class DilemmaEvent extends Actor {
             font: new Font({
                 size: 25,
                 family: 'Open Sans',
-                color: Color.Red,
+                color: Color.Orange,
 
 
             })
