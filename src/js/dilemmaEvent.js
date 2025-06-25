@@ -91,8 +91,8 @@ export class DilemmaEvent extends Actor {
                 label.font.color = !available
                     ? Color.Gray
                     : selected
-                        ? Color.Red
-                        : Color.Yellow;
+                        ? Color.Yellow
+                        : Color.Orange;
             });
         }
     }
