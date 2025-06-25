@@ -181,18 +181,23 @@ export class World extends Actor {
         switch (this.fase) {
             case 1:
                 this.scene.worldUpdate("faseTwo", this.progression, this.reputation)
+                this.scene.ui.resourceUI.resourceMin.text = "25/min"
                 break;
             case 2:
                 this.scene.worldUpdate("faseThree", this.progression, this.reputation)
+                this.scene.ui.resourceUI.resourceMin.text = "35/min"
                 break;
             case 3:
                 this.scene.worldUpdate("faseFour", this.progression, this.reputation)
+                this.scene.ui.resourceUI.resourceMin.text = "45/min"
                 break;
             case 4:
                 this.scene.worldUpdate("faseFive", this.progression, this.reputation)
+                this.scene.ui.resourceUI.resourceMin.text = "50/min"
                 break
             case 5:
                 this.scene.worldUpdate("faseFive", this.progression, this.reputation)
+                this.scene.ui.resourceUI.resourceMin.text = "50/min"
         }
         //haalt deze wereld weg en reset de progressiebalk
         this.kill()

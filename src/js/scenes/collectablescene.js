@@ -36,18 +36,6 @@ export class CollectablesScene extends Scene {
         this.close.graphics.use(Resources.CloseButton.toSprite())
         this.add(this.close)
 
-        this.close.on('collisionstart', (event) => {
-            if (event.other.owner instanceof Pointer) {
-                this.pointerTouchingClose = true;
-            }
-        });
-
-        this.close.on('collisionend', (event) => {
-            if (event.other.owner instanceof Pointer) {
-                this.pointerTouchingClose = false;
-            }
-        });
-
         let label = new Label({
             anchor: new Vector(0.5, 0.5),
             text: 'Verzameling',
@@ -63,15 +51,71 @@ export class CollectablesScene extends Scene {
 
         this.flower = new Flower(250, 200, 2)
         this.add(this.flower)
+        this.infoFlower = new Label({
+            text: '?',
+            pos: new Vector(185, 350),
+            font: Resources.SubText.toFont({
+                size: 20,
+                unit: FontUnit.Px,
+                color: Color.Black,
+                textAlign: TextAlign.Center
+            })
+        })
+        this.add(this.infoFlower)
 
         this.bloodBird = new BloodBird(580, 250, 1)
         this.add(this.bloodBird)
+        this.infoBloodbird = new Label({
+            text: '?',
+            pos: new Vector(595, 350),
+            font: Resources.SubText.toFont({
+                size: 20,
+                unit: FontUnit.Px,
+                color: Color.Black,
+                textAlign: TextAlign.Center
+            })
+        })
+        this.add(this.infoBloodbird)
 
         this.bird = new RainbowBird(990, 250, 1)
         this.add(this.bird)
+        this.infoRainbowbird = new Label({
+            text: '?',
+            pos: new Vector(1010, 350),
+            font: Resources.SubText.toFont({
+                size: 20,
+                unit: FontUnit.Px,
+                color: Color.Black,
+                textAlign: TextAlign.Center
+            })
+        })
+        this.add(this.infoRainbowbird)
 
-        this.duck = new Duck(250, 550, 2.5)
+        this.duck = new Duck(220, 525, 2)
         this.add(this.duck)
+        this.infoDuck = new Label({
+            text: '?',
+            pos: new Vector(185, 600),
+            font: Resources.SubText.toFont({
+                size: 20,
+                unit: FontUnit.Px,
+                color: Color.Black,
+                textAlign: TextAlign.Center
+            })
+        })
+        this.add(this.infoDuck)
+
+        this.close.on('collisionstart', (event) => {
+            if (event.other.owner instanceof Pointer) {
+                this.pointerTouchingClose = true;
+            }
+        });
+
+        this.close.on('collisionend', (event) => {
+            if (event.other.owner instanceof Pointer) {
+                this.pointerTouchingClose = false;
+            }
+        });
     }
 
     onActivate() {
@@ -90,10 +134,9 @@ export class CollectablesScene extends Scene {
                 Resources.Click.play(0.5);
                 engine.goToScene("game");
             }
-
-            if (engine.input.keyboard.wasPressed(Keys.G)) {
-                this.engine.goToScene('game')
-            }
+        }
+        if (engine.input.keyboard.wasPressed(Keys.G)) {
+            this.engine.goToScene('game')
         }
     }
 }

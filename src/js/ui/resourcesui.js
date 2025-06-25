@@ -11,9 +11,8 @@ export class ResourceUI extends Actor {
         this.resource = 0
 
         let resourceImage = new Actor({
-            x: 50, y: 40,
+            x: 50, y: 35,
         })
-
 
         resourceImage.graphics.use(Resources.GoldbarStacks.toSprite())
         resourceImage.scale = new Vector(0.5, 0.5)
@@ -29,13 +28,17 @@ export class ResourceUI extends Actor {
             })
         })
         this.addChild(this.label)
-    }
 
-    onPostUpdate(engine) {
-        // if (engine.input.keyboard.wasPressed(Keys.B)) {
-        //     //this.resources = this.resources + 10
-        //     this.updateResources(+10)
-        // }
+        this.resourceMin = new Label({
+            text: '10/min',
+            pos: new Vector(25, 60),
+            font: Resources.SubText.toFont({
+                size: 15,
+                unit: FontUnit.Px,
+                color: Color.Black
+            })
+        })
+        this.addChild(this.resourceMin)
     }
 
     showResources(update, number) {
@@ -51,12 +54,6 @@ export class ResourceUI extends Actor {
         }
 
         this.label.text = `${this.resource}`
-        // if (this.resource > 0) {
-        //     // this.resource -= number
-        //     console.log(`Your resources are: ${this.resource}`)
-        // } else {
-        //     console.log("Not enough resources to update progress")
-        // }
     }
 
 }

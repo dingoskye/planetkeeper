@@ -55,6 +55,7 @@ export class WorldFaseThree extends World {
             this.scale.y -= 0.025
             if (this.scale.x < 0.75 && this.scale.y < 0.75) {
                 this.scene.worldUpdate("faseTwo", this.progression, this.reputation)
+                this.scene.ui.resourceUI.resourceMin.text = "25/min"
                 this.scene.ui.worldFase.faseTwo()
             }
         }
