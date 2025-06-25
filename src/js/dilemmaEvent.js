@@ -164,6 +164,18 @@ export class DilemmaEvent extends Actor {
         });
         this.addChild(this.#LabelDilemma);
 
+        this.warningLabel = new Label({
+            text: `Events hebben invloed op resources en reputatie`,
+            pos: new Vector(700, 0),
+            font: new Font({
+                size: 25,
+                family: 'Open Sans',
+                color: Color.Red,
+
+
+            })
+        })
+        this.#LabelDilemma.addChild(this.warningLabel)
         // Labels A, B, C met beschikbaarheid
         const labelsData = [
             { labelRef: "#labelA", key: "A", y: 610 },
