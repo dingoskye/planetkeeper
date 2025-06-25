@@ -42,7 +42,9 @@ export class WorldFaseFour extends World {
         if (engine.input.keyboard.wasPressed(Keys.Enter)) {
             this.updateReputation(+10)
         }
-
+        if (engine.input.keyboard.wasPressed(Keys.B)) {
+            this.updateResource(+10)
+        }
         //animatie voor de upgrade en downgrade
         if (this.progression <= this.minProgress) {
             this.scale.x -= 0.025
@@ -61,13 +63,5 @@ export class WorldFaseFour extends World {
                     this.updateWorld()
                 }
             }
-
-        if (this.progression >= this.maxProgress) {
-            this.scale.x -= 0.025
-            this.scale.y -= 0.025
-            if (this.scale.x < 0.75 && this.scale.y < 0.75) {
-                this.updateWorld(this.fase, this.progression)
-            }
-        }
     }
 }
