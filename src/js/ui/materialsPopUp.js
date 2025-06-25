@@ -49,7 +49,7 @@ export class MaterialsPopUp extends Actor {
             x: 335, y: -135,
             scale: new Vector(0.75, 0.75),
             width: Resources.CloseButton.width * 1,
-            height: Resources.CloseButton.height * 0.5,
+            height: Resources.CloseButton.height * 1,
             collisionType: CollisionType.Fixed,
         });
         this.close.graphics.use(Resources.CloseButton.toSprite());
@@ -112,5 +112,10 @@ export class MaterialsPopUp extends Actor {
             if (evt.other.owner instanceof Pointer)
                 this.pointerTouchingButton4 = false;
         });
+    }
+
+    closeMaterials() {
+        this.kill();
+        // this.materialsPopUp = null;
     }
 }

@@ -93,6 +93,14 @@ export class World extends Actor {
                     this.updateWorld()
                 }
             }
+
+        if (
+            this.activeDilemma === false &&
+            this.progression >= this.maxProgress &&
+            this.reputation < 70
+        ) {
+            this.scene.ui.showReputationLowPopUp();
+        }
     }
 
     death() {

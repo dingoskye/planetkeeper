@@ -9,6 +9,7 @@ import { ProgressButtonUI } from './progressbutton.js'
 import { WorldnameUI } from "./worldname.js"
 import { WorldFaseUI } from "./worldfaseui.js"
 import { MaterialsPopUp } from "./materialsPopUp.js"
+import { ReputationLowPopUp } from "./reputationLowPopUp.js"
 
 export class UI extends ScreenElement {
 
@@ -59,6 +60,22 @@ export class UI extends ScreenElement {
     showPopUp(kind, update, number) {
         let popUp = new PopUp(kind, update, number)
         this.addChild(popUp)
+    }
+
+    showReputationLowPopUp() {
+        if (!this.reputationLowPopUp) {
+            this.reputationLowPopUp = new ReputationLowPopUp(); 
+            this.reputationLowPopUp.pos.x = 1100; 
+            this.reputationLowPopUp.pos.y = this.reputationBar.pos.y + this.reputationBar.height + 20; 
+            this.addChild(this.reputationLowPopUp);
+        }
+    }
+
+    closeReputationLowPopUp() {
+        if (this.reputationLowPopUp) {
+            this.reputationLowPopUp.kill();
+            this.reputationLowPopUp = null;
+        }
     }
 
     showCollectablePopUp(kind) {
