@@ -101,7 +101,7 @@ export class DilemmaEvent extends Actor {
         if (!this.activeDilemma) {
             this.dilemmaInterval = setInterval(() => {
                 this.showRandomDilemma();
-            }, 60000);
+            }, 10000);
         }
     }
 

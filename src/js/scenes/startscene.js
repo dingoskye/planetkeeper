@@ -91,5 +91,9 @@ export class StartScene extends Scene {
             Resources.Click.play(0.5);
             Resources.Intro.stop();
         }
+
+        if (engine.input.keyboard.wasPressed(Keys.C)) {
+            localStorage.removeItem("collection")
+        }
     }
 }
