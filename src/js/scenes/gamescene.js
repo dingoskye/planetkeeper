@@ -123,12 +123,6 @@ export class GameScene extends Scene {
                     }
                 }
             }
-
-            const xButton = engine.mygamepad.isButtonPressed(Buttons.Face3);
-            if (xButton) {
-                console.log("X-knop ingedrukt");
-                this.gameOver(engine);
-            }
         }
 
         if (engine.input.keyboard.wasPressed(Keys.C)) {
