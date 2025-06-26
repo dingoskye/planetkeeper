@@ -154,7 +154,7 @@
     "context": "Jullie AI-systeem discrimineert onbedoeld bepaalde groepen.",
     "choices": [
       {
-        "option": "Hervorm AI met bias-checks",
+        "option": "Herschrijf AI met bias-checks",
         "effects": {
           "reputation": 12,
           "resources": -9,
@@ -162,7 +162,7 @@
         }
       },
       {
-        "option": "Minimaliseer menselijke tussenkomst",
+        "option": "Verminder menselijke tussenkomst",
         "effects": {
           "reputation": -6,
           "resources": 5,
@@ -214,7 +214,7 @@
     "context": "In virtuele omgevingen ontstaat racisme en seksisme.",
     "choices": [
       {
-        "option": "Ontwikkel streng moderatiebeleid",
+        "option": "Ontwikkel strenge communityregels",
         "effects": {
           "reputation": 9,
           "resources": -6,
@@ -230,7 +230,7 @@
         }
       },
       {
-        "option": "Integreer gedragsscores",
+        "option": "Werk met gedragsscores",
         "effects": {
           "reputation": 6,
           "resources": -3,
