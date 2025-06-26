@@ -42,7 +42,7 @@ export class GameOver extends Scene {
         });
 
         const instruction = new Label({
-            text: "Druk op 'A' of 'X' om terug te gaan",
+            text: "Druk op 'X' om terug te gaan",
             font: Resources.SubText.toFont({
                 size: 25,
                 unit: FontUnit.Px,

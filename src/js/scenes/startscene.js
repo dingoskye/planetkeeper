@@ -34,7 +34,7 @@ export class StartScene extends Scene {
         })
 
         const instruction = new Label({
-            text: "Druk op 'A' of 'X' om iets te selecteren",
+            text: "Druk op 'X' om iets te selecteren",
             font: Resources.SubText.toFont({
                 color: Color.White,
                 textAlign: 'center',
